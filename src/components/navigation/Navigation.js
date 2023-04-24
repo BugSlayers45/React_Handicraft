@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "../../redux-config/CustomerSlice";
 export default function Navigation() {
+  const {currentCustomer}=useSelector(state=>state.customer)
+  // window.alert(currentCustomer)
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const customerSignOut=()=>{
+    dispatch(signOut())
+  }
+
   return (
     <>
       {/* Header */}
@@ -58,7 +67,7 @@ export default function Navigation() {
                 </li>
               </ul>
             </div>
-            <div class="navbar align-self-center d-flex ml-5">
+            <div className="navbar align-self-center d-flex ml-5">
              
             
                 <Link
@@ -73,20 +82,24 @@ export default function Navigation() {
                 </Link>
             
             
-                <Link
+                {!currentCustomer&&<Link
                   to="/signIn"
                   className="nav-icon position-relative text-decoration-none"
-                  href="#"
                 >
                   <i className="fa fa-fw fa-user text-dark mr-3" />
-                  SignIn
-                </Link>
-              
+                  Signin
+                </Link>}
              
+                {currentCustomer&&<Link
+                  onClick={customerSignOut}
+                  className="nav-icon position-relative text-decoration-none"
+                >
+                  <i className="fa fa-fw fa-user text-dark mr-3" />
+                  SignOut
+                </Link>}
                 <Link
                   to="/signUp"
                   className="nav-icon position-relative text-decoration-none"
-                  href="#"
                 >
                   <i className="fa fa-fw fa-user text-dark mr-3" />
                   SignUp
@@ -97,27 +110,7 @@ export default function Navigation() {
       </nav>
       <div className="align-self-center d-flex mt-3 offset-2 col-8 text-centre">
         {" "}
-        <form
-          action=""
-          method="get"
-          className="modal-content modal-body border-0 p-0"
-        >
-          <div className="input-group mb-2">
-            <input
-              type="text"
-              className="form-control"
-              id="inputModalSearch"
-              name="q"
-              placeholder="Search ..."
-            />
-            <button
-              type="submit"
-              className="input-group-text bg-success text-light"
-            >
-              <i className="fa fa-fw fa-search text-white" />
-            </button>
-          </div>
-        </form>
+     
       </div>
 
       {/* Close Header */}
