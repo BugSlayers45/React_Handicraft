@@ -1,19 +1,5 @@
 [
   {
-    "id": "id",
-    "title": "title",
-    "description": "description",
-    "price": "price",
-    "discountPercentage": "discountPercentage",
-    "rating": "rating",
-    "stock": "stock",
-    "categoryId": "categoryId",
-    "thumbnail": "thumbnail",
-    "images": "images",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
-  },
-  {
     "id": 32,
     "title": "Handmade Moonj Grass Laundry Basket ",
     "description": "A Handmade Moonj Grass Laundry Basket is a beautifully crafted storage solution, made from natural moonj grass found in India. The basket is woven by skilled artisans using traditional techniques, making each piece unique.\n",
@@ -23,9 +9,9 @@
     "stock": 101,
     "categoryId": "backet",
     "thumbnail": "https://cdn.shopify.com/s/files/1/0579/6836/1670/products/MoonjLaundryBasket8-min.jpg?v=1658304123",
-    "images": "https://cdn.shopify.com/s/files/1/0579/6836/1670/products/MoonjLaundryBasket-min.jpg?v=1658304137,https://cdn.shopify.com/s/files/1/0579/6836/1670/products/SabaiLaundryBasket4-min.jpg?v=1658304154,https://cdn.shopify.com/s/files/1/0579/6836/1670/products/SabaiLaundryBasket6-min.jpg?v=1658304175",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://cdn.shopify.com/s/files/1/0579/6836/1670/products/MoonjLaundryBasket-min.jpg?v=1658304137,https://cdn.shopify.com/s/files/1/0579/6836/1670/products/SabaiLaundryBasket4-min.jpg?v=1658304154,https://cdn.shopify.com/s/files/1/0579/6836/1670/products/SabaiLaundryBasket6-min.jpg?v=1658304175"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 33,
@@ -36,9 +22,9 @@
     "rating": 4,
     "stock": 100,
     "thumbnail": "https://i.etsystatic.com/35624614/r/il/2507d2/4878550951/il_1588xN.4878550951_rm19.jpg",
-    "images": "https://i.etsystatic.com/35624614/r/il/d4457e/4878550959/il_300x300.4878550959_bgcx.jpg,https://i.etsystatic.com/35624614/r/il/e7abfa/4830290530/il_300x300.,https://i.etsystatic.com/35624614/r/il/e7abfa/4830290530/il_300x300.4830290530_3yxq.jpg4830290530_3yxq.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images":[ "https://i.etsystatic.com/35624614/r/il/d4457e/4878550959/il_300x300.4878550959_bgcx.jpg,https://i.etsystatic.com/35624614/r/il/e7abfa/4830290530/il_300x300.,https://i.etsystatic.com/35624614/r/il/e7abfa/4830290530/il_300x300.4830290530_3yxq.jpg4830290530_3yxq.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 34,
@@ -49,9 +35,9 @@
     "rating": 4,
     "stock": 50,
     "thumbnail": "https://i.etsystatic.com/31862652/r/il/bccd75/4767989213/il_1588xN.4767989213_p5r8.jpg",
-    "images": "https://i.etsystatic.com/31862652/r/il/83cf6a/4768203939/il_300x300.4768203939_dukn.jpg,https://i.etsystatic.com/31862652/r/il/c9e3b8/4768208465/il_300x300.4768208465_298i.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/31862652/r/il/83cf6a/4768203939/il_300x300.4768203939_dukn.jpg,https://i.etsystatic.com/31862652/r/il/c9e3b8/4768208465/il_300x300.4768208465_298i.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 35,
@@ -63,9 +49,9 @@
     "stock": 20,
     "categoryId": "home decore",
     "thumbnail": "https://i.etsystatic.com/10462870/r/il/e2f8f3/808697432/il_1588xN.808697432_b4xq.jpg",
-    "images": "https://i.etsystatic.com/10462870/r/il/4f4943/808697444/il_300x300.808697444_3e3f.jpg,https://i.etsystatic.com/10462870/r/il/d13a41/2278048492/il_300x300.2278048492_pzcz.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/10462870/r/il/4f4943/808697444/il_300x300.808697444_3e3f.jpg,https://i.etsystatic.com/10462870/r/il/d13a41/2278048492/il_300x300.2278048492_pzcz.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 36,
@@ -77,9 +63,9 @@
     "stock": 30,
     "categoryId": "home decore",
     "thumbnail": "https://i.etsystatic.com/12450242/r/il/d25098/4555464565/il_1588xN.4555464565_mqrw.jpg",
-    "images": "https://i.etsystatic.com/12450242/r/il/6a78f9/4508052104/il_1588xN.4508052104_lzjx.jpg,https://i.etsystatic.com/12450242/r/il/f5a3cb/4508051298/il_1588xN.4508051298_83ca.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/12450242/r/il/6a78f9/4508052104/il_1588xN.4508052104_lzjx.jpg,https://i.etsystatic.com/12450242/r/il/f5a3cb/4508051298/il_1588xN.4508051298_83ca.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 37,
@@ -91,9 +77,9 @@
     "stock": 25,
     "categoryId": "home decore",
     "thumbnail": "https://i.etsystatic.com/34852614/r/il/95bec3/4744924644/il_1588xN.4744924644_s7ir.jpg",
-    "images": "https://i.etsystatic.com/34852614/c/2250/2250/0/0/il/adf2e0/4705170014/il_300x300.4705170014_nqkp.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/34852614/c/2250/2250/0/0/il/adf2e0/4705170014/il_300x300.4705170014_nqkp.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 38,
@@ -105,9 +91,9 @@
     "stock": 10,
     "categoryId": "home decore",
     "thumbnail": "https://i.etsystatic.com/34852614/r/il/916858/4665854709/il_1588xN.4665854709_jft3.jpg",
-    "images": "https://i.etsystatic.com/34852614/r/il/9c4f28/4617502642/il_300x300.4617502642_qfc1.jpg,https://i.etsystatic.com/34852614/r/il/c7e1d0/4617575738/il_1588xN.4617575738_tlr8.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/34852614/r/il/9c4f28/4617502642/il_300x300.4617502642_qfc1.jpg,https://i.etsystatic.com/34852614/r/il/c7e1d0/4617575738/il_1588xN.4617575738_tlr8.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 39,
@@ -118,9 +104,9 @@
     "stock": 10,
     "categoryId": "home decore",
     "thumbnail": "https://i.etsystatic.com/34852614/r/il/c7e1d0/4617575738/il_1588xN.4617575738_tlr8.jpg",
-    "images": "https://i.etsystatic.com/34852614/c/1688/1688/0/166/il/a2d7cf/4545974748/il_300x300.4545974748_hw21.jpg,https://i.etsystatic.com/34852614/r/il/5abc55/4545877312/il_300x300.4545877312_2xvb.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/34852614/c/1688/1688/0/166/il/a2d7cf/4545974748/il_300x300.4545974748_hw21.jpg,https://i.etsystatic.com/34852614/r/il/5abc55/4545877312/il_300x300.4545877312_2xvb.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 40,
@@ -132,9 +118,9 @@
     "stock": 20,
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/37930439/r/il/14b68a/4221262114/il_1588xN.4221262114_alm8.jpg",
-    "images": "https://i.etsystatic.com/37930439/r/il/14b68a/4221262114/il_1588xN.4221262114_alm8.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/37930439/r/il/14b68a/4221262114/il_1588xN.4221262114_alm8.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 41,
@@ -146,9 +132,9 @@
     "stock": 5,
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/37930439/r/il/b9e60f/4231967252/il_1588xN.4231967252_6ddj.jpg",
-    "images": "animalshttps://i.etsystatic.com/37930439/r/il/b9e60f/4231967252/il_1588xN.4231967252_6ddj.jpg,https://i.etsystatic.com/37930439/r/il/89fb8d/4452484542/il_300x300.4452484542_bspm.jpg,https://i.etsystatic.com/37930439/r/il/d55b28/4499836653/il_300x300.4499836653_7oh2.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/37930439/r/il/b9e60f/4231967252/il_1588xN.4231967252_6ddj.jpg,https://i.etsystatic.com/37930439/r/il/89fb8d/4452484542/il_300x300.4452484542_bspm.jpg,https://i.etsystatic.com/37930439/r/il/d55b28/4499836653/il_300x300.4499836653_7oh2.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 42,
@@ -160,9 +146,9 @@
     "stock": 5,
     "categoryId": "doll",
     "thumbnail": "https://i.etsystatic.com/37930439/r/il/394b92/4205618042/il_1588xN.4205618042_6mie.jpg",
-    "images": "https://i.etsystatic.com/37930439/r/il/394b92/4205618042/il_1588xN.4205618042_6mie.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/37930439/r/il/394b92/4205618042/il_1588xN.4205618042_6mie.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 43,
@@ -174,9 +160,9 @@
     "stock": 5,
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/37166010/r/il/e3c89c/4275332038/il_1588xN.4275332038_1bi6.jpg",
-    "images": "https://i.etsystatic.com/37166010/r/il/bff2ca/4275332184/il_300x300.4275332184_mhhf.jpg,https://i.etsystatic.com/37166010/r/il/e3c89c/4275332038/il_300x300.4275332038_1bi6.jpg",
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "images": ["https://i.etsystatic.com/37166010/r/il/bff2ca/4275332184/il_300x300.4275332184_mhhf.jpg,https://i.etsystatic.com/37166010/r/il/e3c89c/4275332038/il_300x300.4275332038_1bi6.jpg"],
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 44,
@@ -189,8 +175,8 @@
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/32185293/r/il/b4f9fe/3492710241/il_1588xN.3492710241_cfr5.jpg",
     "images": ["https://i.etsystatic.com/32185293/r/il/c3fe7c/3445044526/il_300x300.3445044526_h7tm.jpg,https://i.etsystatic.com/32185293/r/il/58d9ed/3492710277/il_300x300.3492710277_fhgx.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 45,
@@ -203,8 +189,8 @@
     "categoryId": "cartoon",
     "thumbnail": "https://i.etsystatic.com/32185293/r/il/baafc1/3490004871/il_1588xN.3490004871_brw5.jpg",
     "images":[ "https://i.etsystatic.com/32185293/r/il/b22570/3490005025/il_300x300.3490005025_7w5s.jpg,https://i.etsystatic.com/32185293/r/il/b22570/3490005025/il_300x300.3490005025_7w5s.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 46,
@@ -216,8 +202,8 @@
     "stock": 5,
     "categoryId": "animals",
     "thumbnail": ["https://i.etsystatic.com/20666972/r/il/00023a/4390295334/il_1588xN.4390295334_3feg.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 47,
@@ -230,8 +216,8 @@
     "categoryId": "stars",
     "thumbnail": "https://i.etsystatic.com/20666972/r/il/47c1fa/4268949700/il_300x300.4268949700_d1u4.jpg",
     "images": ["https://i.etsystatic.com/20666972/r/il/47c1fa/4268949700/il_300x300.4268949700_d1u4.jpg,https://i.etsystatic.com/20666972/r/il/a7f92d/4268944602/il_300x300.4268944602_8fzt.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 48,
@@ -244,8 +230,8 @@
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/34867263/r/il/61cc7b/3835107657/il_1588xN.3835107657_23tm.jpg",
     "images": ["https://i.etsystatic.com/34867263/r/il/58137c/3787509970/il_300x300.3787509970_f51z.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 49,
@@ -258,8 +244,8 @@
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/34658296/r/il/aac8eb/4268239726/il_1588xN.4268239726_qpzq.jpg",
     "images": ["https://i.etsystatic.com/34658296/r/il/10b77e/3791394412/il_300x300.3791394412_rhdh.jpg,https://i.etsystatic.com/34658296/r/il/7e6cba/4315638383/il_300x300.4315638383_b394.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 50,
@@ -272,8 +258,8 @@
     "categoryId": "animals",
     "thumbnail": "https://i.etsystatic.com/15916206/r/il/863b22/3320579342/il_1588xN.3320579342_62jc.jpg",
     "images": ["https://i.etsystatic.com/15916206/r/il/07e563/3368268797/il_300x300.3368268797_6rl6.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 51,
@@ -286,8 +272,8 @@
     "categoryId": "home decore",
     "thumbnail": "https://i.etsystatic.com/41072388/r/il/738d90/4838637278/il_1588xN.4838637278_6vje.jpg",
     "images": ["https://i.etsystatic.com/41072388/r/il/23cccb/4838634428/il_300x300.4838634428_kfy1.jpg,https://i.etsystatic.com/41072388/r/il/4337d8/4886897859/il_300x300.4886897859_82bt.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 52,
@@ -300,8 +286,8 @@
     "categoryId": "other",
     "thumbnail": "https://i.etsystatic.com/24538127/r/il/dd535e/2499294937/il_1588xN.2499294937_1jhp.jpg",
     "images": ["https://i.etsystatic.com/24538127/r/il/d7064f/2499295149/il_300x300.2499295149_2kad.jpg"],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 53,
@@ -316,8 +302,8 @@
     "images": [
       "https://i.etsystatic.com/34592816/r/il/c8c893/4531322531/il_300x300.4531322531_9qpr.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 54,
@@ -332,8 +318,8 @@
     "images": [
       "https://i.etsystatic.com/22105348/c/1886/1886/64/620/il/be13ee/4105518464/il_300x300.4105518464_2s8h.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 55,
@@ -348,8 +334,8 @@
     "images": [
       "https://i.etsystatic.com/13974971/r/il/9c9437/4711373744/il_300x300.4711373744_12ll.jpg,https://i.etsystatic.com/13974971/r/il/dac1ad/4759615585/il_1588xN.4759615585_qrrn.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 56,
@@ -364,8 +350,8 @@
     "images": [
       "https://i.etsystatic.com/23599020/r/il/bae9f6/4886412969/il_300x300.4886412969_cprg.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 57,
@@ -380,8 +366,8 @@
     "images": [
       "https://i.etsystatic.com/23763931/r/il/9fe41f/3811676890/il_1588xN.3811676890_t7wl.jpg,https://i.etsystatic.com/23763931/r/il/9fe41f/3811676890/il_1588xN.3811676890_t7wl.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 58,
@@ -396,8 +382,8 @@
     "images": [
       "https://i.etsystatic.com/23763931/r/il/1d38ad/3333225605/il_300x300.3333225605_oelb.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 59,
@@ -412,8 +398,8 @@
     "images": [
       "https://i.etsystatic.com/5159130/r/il/733197/2257659074/il_300x300.2257659074_a50c.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   },
   {
     "id": 60,
@@ -428,7 +414,7 @@
     "images": [
       "https://i.etsystatic.com/42154733/r/il/2f2d06/4799243848/il_300x300.4799243848_i5bh.jpg"
     ],
-    "sellerId": "sellerId",
-    "keyword": "keyword"
+    "sellerId": "1",
+    "keyword": "home decor handicraft women box gifts set decor jewellery lantern metal under 200 100 vintage hanging set tea leaf beautyfu decor pandan box aesthetics ghari"
   }
 ]
