@@ -8,23 +8,31 @@ import SellerSignUp from './SellerComponents/sellerSignUp';
 import SellerSignIn from './SellerComponents/sellerSignIn';
 import ProductList from './SellerComponents/productList';
 import UpdateProduct from './SellerComponents/updateProduct';
-
+import SignIn from './components/User/SignIn/SignIn';
+import SignUp from './components/User/SignUp/SignUp';
 function App() {
   return <>
-
-    <Routes>
-      <Route path='/' element={<Home />} />
-    </Routes>
-    <Routes>
-      <Route path='/products' element={<ProductPage />} />
-    </Routes>
-    <Routes>
+ 
+  <Routes>
+    <Route path='/' element={ <Home/>} />
+  </Routes>
+  <Routes> 
+    <Route path='/products' element={<ProductPage/>} />
+  </Routes>
+  <Routes> 
+    <Route path='/signIn' element={<SignIn/>} />
+  </Routes>
+  <Routes> 
+    <Route path='/signUp' element={<SignUp/>} />
+  </Routes>
+  <Routes>
       <Route path='/sellerHome' element={<SellerHome />} />
       <Route path='/sellersignup' element={<SellerSignUp />} />
       <Route path='/sellersignin' element={<SellerSignIn />} />
       <Route path='/productList' element={<ProductList />} />
       <Route path='/updateproduct' element={<UpdateProduct />} />
     </Routes>
+
 
   </>
 }

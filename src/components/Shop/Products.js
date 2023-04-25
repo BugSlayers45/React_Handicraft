@@ -21,6 +21,28 @@ export default function Products() {
     productList();
 
    },[])
+  
+   const searchFilter=async(event)=>{
+    let key =event.target.value
+    if(key){
+      let result=await axios.get(`http://localhost:3000/product/search/${key}`)
+      console.log(result.data.Product)
+      
+       if(result)setProducts(result.data.Product)
+    }
+    else{
+      productList()
+    }
+  }
+  const categroyFilter=async(key)=>{
+    console.log(key)
+    let result=await axios.get(`http://localhost:3000/product/${key}`)
+    console.log(result)
+    if(result.data.product)
+    setProducts(result.data.product)
+    else 
+     productList()
+  }
   return <>
   {/* Start Content */}
   <div className="container py-5">
@@ -29,7 +51,7 @@ export default function Products() {
         <h1 className="h2 pb-4">Categories</h1>
         <ul className="list-unstyled templatemo-accordion">
         {categoryList.map((category)=>
-          <Link to="#" className='h3 text-dark text-decoration-none mr-3'><li className="pb-3">
+          <Link onClick={()=>(categroyFilter(category._id))} className='h3 text-dark text-decoration-none mr-3'><li className="pb-3">
            {category.categoryName}
           </li></Link>
            )}
@@ -40,9 +62,28 @@ export default function Products() {
           <div className="col-md-6">
             <ul className="list-inline shop-top-menu pb-3 pt-1">
               <li className="list-inline-item">
-                <a className="h3 text-dark text-decoration-none mr-3" href="#">
-                  All
-                </a>
+              <form
+          action=""
+          method="get"
+          className="modal-content modal-body border-0 p-0"
+        >
+          <div className="input-group mb-2">
+            <input
+              type="text"
+              className="form-control"
+              id="inputModalSearch"
+              name="q"
+              placeholder="Search ..."
+              onChange={searchFilter}
+            />
+            <button
+              type="submit"
+              className="input-group-text bg-success text-light"
+            >
+              <i className="fa fa-fw fa-search text-white" />
+            </button>
+          </div>
+        </form>
               </li>
               <li className="list-inline-item">
                 <a className="h3 text-dark text-decoration-none mr-3" href="#">
