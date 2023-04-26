@@ -27,7 +27,7 @@ export default function SignUp() {
     }
   return (
     <>
-     <ToastContainer/>
+     <ToastContainer />
 
     <div  className="container-fluid" style={{
       backgroundImage: 'url("./assets/img/banner_img_04.jpg")',
