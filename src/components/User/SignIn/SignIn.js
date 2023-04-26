@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { setCustomer } from "../../../redux-config/CustomerSlice";
+import 'react-toastify/dist/ReactToastify.css'
+
 
 export default function SignIn() {
     const [customerEmail,setEmail]=useState("")
@@ -32,11 +34,12 @@ export default function SignIn() {
     }
 
   return (<>
- <ToastContainer/>
+<ToastContainer/>
   <div  className="container-fluid" style={{
-      backgroundImage: 'url("./assets/img/banner_img_04.jpg")',
+      backgroundImage: 'url("https://as2.ftcdn.net/v2/jpg/05/85/57/95/1000_F_585579596_GrtWWqQT0zivZldjc34hTSs4h1khWzS9.jpg")',
       backgroundSize: "cover"
     }}>
+       
        <Header/>
     <div className="container" >
     <div className="container form bg-white pt-5 mt-4 mb-3">

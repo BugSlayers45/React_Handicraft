@@ -72,7 +72,7 @@ export default function FeatureProducts() {
      
        <div className="row">
        {!error&&featuresProductList.map((products,index)=>
-          <div className="col-md-4">
+          <div className="col-md-3">
             <div className="card mb-4 product-wap rounded-0" style={{height:"500px"}}>
               <div className="card rounded-0">
                 <img
