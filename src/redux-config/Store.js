@@ -12,6 +12,7 @@ const store=configureStore({
         featuresproduct:featuresProductSlice,
         cart:CartSlice,
         seller: SellerSlice,
+
     }
 })
 export default store
