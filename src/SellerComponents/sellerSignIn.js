@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setSeller } from "../redux-config/sellerSignInSlice";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
 function SellerSignIn() {
 
@@ -18,21 +20,20 @@ function SellerSignIn() {
             event.preventDefault();
             let response = await axios.post("http://localhost:3000/seller/signin", { sellerEmail, sellerPassword });
             dispatch(setSeller(response.data.seller));
-            window.alert("SingIn Successful..")
+            toast.success("SingIn Successful..");
             navigate("/sellerHome");
         } catch (err) {
-            window.alert("Oops! something went wrong");
+            toast.error("Oops! something went wrong");
         }
 
     }
 
 
-    return <>
-        <SellerNavigation />
-        <div className="container mt-4 mb-5" style={{ marginLeft: "35vw" }}>
+    return <><SellerNavigation />
+        <div className="container mt-4 mb-5" style={{ marginLeft: "35vw", }}>
             <div className=" row">
-                <div className="login-box col-md-4 col-lg-4">
-                    <h2 className="text-center">Login</h2>
+                <div className="login-box col-md-4 col-lg-4" style={{ boxShadow: "3px 5px 25px gray" }}><br />
+                    <h2 className="text-center" >Login</h2><hr /><br />
                     <form method="post" action="/signin" onSubmit={signin}>
 
                         <div className="user-box">
@@ -52,12 +53,13 @@ function SellerSignIn() {
                                 onChange={(event) => setPassword(event.target.value)}
                             />
                         </div>
-                        <div style={{ marginTop: "3px", textAlign: "right" }}>
-                            <Link to="/sellersignUp">New User ?</Link>
-                        </div>
-                        <button type="submit" className="btn btn-outline-danger mb-5" style={{ borderRadius: "5%" }}>
+                        <button type="submit" className="btn btn-dark mt-2" style={{ borderRadius: "5%", width: "100%" }}>
                             SignIn
                         </button>
+                        <div className="mt-2 text-right mb-4">
+                            <Link to="/sellersignUp">New User ?</Link>
+                        </div>
+
                     </form>
                 </div>
             </div >

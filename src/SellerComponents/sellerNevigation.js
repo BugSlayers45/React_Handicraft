@@ -7,132 +7,130 @@ import { signOut } from "../redux-config/sellerSignInSlice";
 export default function SellerNavigation() {
 
     const { currentSeller } = useSelector(state => state.seller);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const sellerSignOut = () => {
         dispatch(signOut());
+        navigate("/sellersignin")
     }
     return (
-        <>
-            {/* Header */}
-
-            <nav className="navbar navbar-expand-lg navbar-light shadow">
-                <div className="container d-flex justify-content-between align-items-center">
-                    <a
-                        className="navbar-brand text-success logo h2 align-self-center"
-                        href="index.html"
-                    >
-                        <img
-                            src="./assets/img/logo1.png"
-                            style={{ width: "190px", height: "90px" }}
-                            className=""
-                            alt=""
-                        />
-                    </a>
-                    <button
-                        className="navbar-toggler border-0"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#templatemo_main_nav"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon" />
-                    </button>
-                    <div
-                        className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-                        id="templatemo_main_nav"
-                    >
-                        <div className="flex-fill" style={{ marginLeft: "20vw" }}>
-                            <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                                <li className="nav-item">
-                                    <Link to="/" className="nav-link">
-                                        Home
+        <><nav className="navbar navbar-expand-lg navbar-light shadow">
+            <div className="container d-flex justify-content-between align-items-center">
+                <a
+                    className="navbar-brand text-success logo h2 align-self-center"
+                    href="index.html"
+                >
+                    <img
+                        src="./assets/img/logo1.png"
+                        style={{ width: "190px", height: "90px" }}
+                        className=""
+                        alt=""
+                    />
+                </a>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon" />
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/sellerHome">
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/order">
+                                Order
+                            </Link>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Shop
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <Link className="dropdown-item" to="/addproduct">
+                                        Add Product
                                     </Link>
                                 </li>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Shop
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Add Product</a>
-                                        <Link class="dropdown-item" to="/productList">ProductList</Link>
-
-                                    </div>
-                                </div>
-
-                                <li className="nav-item">
-                                    <a className="nav-link" href="contact.html">
-                                        Contact
-                                    </a>
+                                <hr />
+                                <li>
+                                    <Link className="dropdown-item" to="/productList">
+                                        ProductList
+                                    </Link>
                                 </li>
+
                             </ul>
-                        </div>
-                        <div className="navbar align-self-center">
+                        </li>
+                        {currentSeller &&
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link"
+                                    to="/sellersignin"
+                                    tabIndex={-1}
 
-                            <a
-                                className="nav-icon position-relative text-decoration-none"
-                                href="#"
-                            >
-                                <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
-                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                                    7
-                                </span>
-                            </a>
-                            {currentSeller && <Link
-                                onClick={sellerSignOut}
-                                className="nav-icon position-relative text-decoration-none"
+                                >
+                                    SignOut
+                                </Link>
+                            </li>}
 
-                            >
-                                <i className="fa fa-fw fa-user text-dark mr-3" />
-                                SignOut
-                            </Link>}
-                            {!currentSeller && <Link
-                                to="/sellersignIn"
-                                className="nav-icon position-relative text-decoration-none"
+                        {!currentSeller &&
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link"
+                                    to="/sellersignin"
+                                    tabIndex={-1}
 
-                            >
-                                <i className="fa fa-fw fa-user text-dark mr-3" />
-                                SignIn
-                            </Link>}
-                            <Link
-                                to="/sellersignUp"
-                                className="nav-icon position-relative text-decoration-none"
+                                >
+                                    SignIn
+                                </Link>
+                            </li>}
+                        {!currentSeller &&
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link"
+                                    to="/sellersignup"
+                                    tabIndex={-1}
 
-                            >
-                                <i className="fa fa-fw fa-user text-dark mr-3" />
-                                SignUp
-                            </Link>
-                        </div>
-                    </div>
+                                >
+                                    SignUp
+                                </Link>
+                            </li>}
+                    </ul>
+                    <form className="d-flex">
+                        <input
+                            className="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                        <button className="btn btn-outline-success" type="submit">
+                            Search
+                        </button>
+                    </form>
                 </div>
 
-            </nav>
-            <div className="align-self-center d-flex mt-3 offset-2 col-8 text-centre">
-                {" "}
-                <form
-                    action=""
-                    method="get"
-                    className="modal-content modal-body border-0 p-0"
-                >
-                    <div className="input-group mb-2">
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="inputModalSearch"
-                            name="q"
-                            placeholder="Search ..."
-                        />
-                        <button
-                            type="submit"
-                            className="input-group-text bg-success text-light"
-                        >
-                            <i className="fa fa-fw fa-search text-white" />
-                        </button>
-                    </div>
-                </form>
+
+
             </div>
+
+        </nav >
 
             {/* Close Header */}
         </>

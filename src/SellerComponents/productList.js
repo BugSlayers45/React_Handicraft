@@ -8,15 +8,13 @@ import UpdateProduct from "./updateProduct";
 
 function ProductList() {
     const { currentSeller } = useSelector(state => state.seller);
-    console.log(currentSeller);
     const [products, setProductList] = useState([]);
     const navigate = useNavigate();
 
 
     const productlist = async () => {
         try {
-            let response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
-            // window.alert(response)
+            let response = await axios.get(`http://localhost:3000/product/productLisT/${currentSeller._id}`)
 
             setProductList(response.data.productsList)
         } catch (err) {
@@ -33,6 +31,10 @@ function ProductList() {
             console.log(err);
             window.alert(err);
         }
+    }
+
+    const UpdateProduct = (productdetail) => {
+        navigate(("/updateproduct"), { state: { productdetail: productdetail } })
     }
 
     useEffect(() => {
@@ -64,17 +66,17 @@ function ProductList() {
                         </thead>
                         <tbody className="text-center">
                             {products.map((product, index) =>
-                                <tr>
-                                    <td>{index + 1}</td>
+                                <tr style={{ boxShadow: "2px 5px 15px gray" }}>
+                                    <td >{index + 1}</td>
                                     <td><img className="img-fluid" src={product.thumbnail} style={{ height: "100px", width: "100px", borderRadius: "30%" }} /></td>
                                     <td>{product.title.substring(0, 15)}</td>
 
-                                    <td>{product.description.substring(1, 40)}</td>
+                                    <td>{product.description.substring(0, 40)}</td>
                                     <td>{product.price}</td>
                                     <td>{product.discountPercentage}</td>
                                     <td>{product.rating}</td>
                                     <td>{product.stock}</td>
-                                    <td><button className="btn btn-outline-primary" ><Link to="/updateproduct">Edit</Link></button></td>
+                                    <td><button className="btn btn-outline-primary" onClick={() => UpdateProduct(product)} ><i class="fas fa-edit"></i></button></td>
                                     <td><button onClick={() => deleteProduct(product._id)}><i class="fas fa-trash-alt" style={{ color: "red" }}></i></button></td>
                                 </tr>
                             )}
