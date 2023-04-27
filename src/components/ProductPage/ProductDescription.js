@@ -1,23 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductDescription() {
-  // const [productDetail, setProductDetail] = useState([]);
- 
   const location = useLocation();
   const productDetail = location.state.productDetail;
  const imageArray=productDetail.images
-  // console.log(productObject)
-  // setProductDetail=productObject
-  // console.log(productDetail.thumbnail)
   return <>
   <h1 className="text-center display-3">Product Description</h1>
-      <div className="container mt-5">
+      <div className="container-fluid mt-5">
         <div className="row col-lg-12">
           <div className="col-lg-12 d-flex" >
             <div className="col-lg-1 " >
-              <div className="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-2">
                 {imageArray.map((singleImage, index) => (
                   <img
                     src={ singleImage}
@@ -40,7 +36,7 @@ export default function ProductDescription() {
             </div>
             <div
               className="col-lg-5 offset-1">
-              <div className="col-lg-12 col-md-6 offset-1">
+              <div className="col-lg-12 col-md-5 col-md-10">
                 <h6 className="disabled">{productDetail.categoryId?.categoryName}</h6>
                 <h2 className="title" style={{ color: "black" }}>
                   {productDetail.title}
@@ -58,10 +54,10 @@ export default function ProductDescription() {
                 <del><small  style={{ color: "brown" }}>Price:₹{productDetail.price}</small></del>
                 <small className="title" style={{ color: "black" }}><br/>
                   <i class="fa fa-check-circle" aria-hidden="true"></i> Made in India<br/>
-                  <small><i class="fas fa-dot-circle    " style={{color:"green"}}></i>In Stock</small>
+                  <small><i class="fas fa-dot-circle    " style={{color:"green"}}></i>In Stock({productDetail.stock})</small>
                 </small>
                 <h5>Quantitiy:</h5>
-<input type="number" name="quantity" id="inputquantity" className="form-control" min={1} style={{width:"90px"}} title /> <br/>
+<input type="number" name="quantity" id="inputquantity" defaultValue={1} className="form-control" min={1} style={{width:"90px"}} title /> <br/>
               <button type="button" name id className="btn btn-secondary btn-lg btn-block">Add TO Cart</button>
               <button type="button" name id className="btn btn-dark btn-lg btn-block">Buy It Now</button>
 

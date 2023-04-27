@@ -9,9 +9,10 @@ const store=configureStore({
     reducer:{
         category:CategorySlice,
         customer:CustomerSlice,
+        featuresproduct:featuresProductSlice,
         cart:CartSlice,
         seller: SellerSlice,
-        featuresproduct:featuresProductSlice
+
     }
 })
 export default store

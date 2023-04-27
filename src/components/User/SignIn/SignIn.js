@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { setCustomer } from "../../../redux-config/CustomerSlice";
 import 'react-toastify/dist/ReactToastify.css'
+import api from "../../../WebApi/api";
 
 
 export default function SignIn() {
@@ -19,8 +20,7 @@ export default function SignIn() {
     const handleSubmit=async (event)=>{
         try{
        event.preventDefault()
-       const response=await axios.post("http://localhost:3000/customer/signIn",{customerEmail,customerPassword})
-        // console.log(response.data)
+       const response=await axios.post(api.USER_SIGNIN,{customerEmail,customerPassword})
         dispatch(setCustomer(response.data.customer))
         console.log(response.data.customer)
        

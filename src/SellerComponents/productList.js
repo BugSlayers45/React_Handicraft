@@ -20,6 +20,7 @@ function ProductList() {
             const response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
             if(response.data.status)
             setData(response.data.productsList)
+
         } catch (err) {
             console.log(err);
         }
@@ -64,10 +65,12 @@ function ProductList() {
             setPageData(dataskip)
         }
     }, [data])
+
     return <>
         <SellerNavigation />
         <div className="container-fluid mt-5">
             <div className="row">
+
                 <div className="col-12">
                     <table className="table table-responsive table-hover">
                         <thead className="text-center">
@@ -95,6 +98,8 @@ function ProductList() {
                                                     <td><img className="img-fluid" src={product.thumbnail} style={{ height: "100px", width: "100px", borderRadius: "30%" }} /></td>
                                                     <td>{product.title.substring(0, 15)}</td>
                                                     <td>{product.description.substring(1, 40)}</td>
+                                                    <td>{product.price}</td>
+                                                    <td>{product.discountPercentage}</td>
                                                     <td>{product.rating}</td>
                                                     <td>{product.stock}</td>
                                                     <td><button className="btn btn-outline-primary" ><Link to="/updateproduct">Edit</Link></button></td>
@@ -124,6 +129,7 @@ function ProductList() {
                         <Pagination.Next onClick={handleNext} disabled={page === pageCount} />
                     </Pagination>
                 </div>
+
             </div>
         </div >
         <Footer />
