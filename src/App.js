@@ -29,8 +29,6 @@ function App() {
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
     </Routes>
-
-  </Routes>
   </>
 }
 
