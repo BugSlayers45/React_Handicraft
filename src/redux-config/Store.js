@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CategorySlice from "./CategorySlice";
+import SellerSlice from "./sellerSignInSlice";
 import CustomerSlice from "./CustomerSlice";
 import featuresProductSlice from "./FeaturesProductSlice";
 import CartSlice from "./CartSlice";
@@ -9,7 +10,8 @@ const store=configureStore({
         category:CategorySlice,
         customer:CustomerSlice,
         featuresproduct:featuresProductSlice,
-        cart:CartSlice
+        cart:CartSlice,
+        seller: SellerSlice,
     }
 })
 export default store
