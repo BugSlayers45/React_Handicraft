@@ -49,7 +49,7 @@ export default function Products() {
     }
   };
 
-  
+
   const categroyFilter = async (key) => {
     console.log(key);
     let result = await axios.get(api.PRODUCT_BY_CATEGORY + `${key}`);
