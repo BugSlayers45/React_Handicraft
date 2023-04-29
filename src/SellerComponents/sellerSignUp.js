@@ -34,12 +34,15 @@ function SellerSignUp() {
 
     return <>
         <SellerNavigation />
-        <div className="container mb-3 mt-5" style={{ marginLeft: "33vw", marginTop: "5px" }} >
+        <div className="container mb-3 mt-5" style={{ marginLeft: "16vw", marginTop: "5px" }} >
             <div className=" row">
-                <div className="login-box col-lg-5" style={{ boxShadow: "3px 5px 25px  gray", borderRadius: "2%" }}><br />
+                <div className="col-3 mr-5" >
+                    <img src="assets/img/potter2.jpg" />
+                </div>
+                <div className="login-box col-5" style={{ boxShadow: "3px 5px 25px  gray", marginLeft: "7vw", borderRadius: "2%" }}><br />
                     <h2 className="text-center">SignUp</h2><hr />
                     <form onSubmit={signup} className="mt-5">
-                        <div className="user-box form-group">
+                        <div className="user-box form-group ml-4">
 
                             <label>SellerName</label><br />
                             <input
@@ -49,7 +52,7 @@ function SellerSignUp() {
                             />
 
                         </div>
-                        <div className="user-box">
+                        <div className="user-box ml-4">
 
                             <label>Email</label><br />
                             <input
@@ -59,7 +62,7 @@ function SellerSignUp() {
                             />
 
                         </div>
-                        <div className="user-box">
+                        <div className="user-box ml-4">
 
                             <label>Password</label><br />
                             <input
@@ -69,13 +72,13 @@ function SellerSignUp() {
                             />
 
                         </div>
-                        <div className="user-box">
+                        <div className="user-box ml-4">
 
                             <label>Contact No</label><br />
                             <input onChange={(event) => setContact(event.target.value)} type="text" className="form-control" name="contact" required="" />
                         </div>
 
-                        <div className="user-box">
+                        <div className="user-box ml-4">
 
                             <label>Address</label><br />
                             <input
@@ -85,13 +88,13 @@ function SellerSignUp() {
                             />
 
                         </div>
-                        <button type="submit" className="btn btn-dark mt-2" style={{
-                            borderRadius: "5%", width: "100%"
+                        <button type="submit" className="btn btn-dark mt-4 ml-4 mb-2" style={{
+                            borderRadius: "5%", width: "95%"
                         }}>
                             SignUp
                         </button>
 
-                        <div className="mb-4 text-right mt-2">
+                        <div className="mb-4 text-right mt-2 ">
                             <Link to='/sellersignin'>Already an acount ?</Link>
                         </div>
 

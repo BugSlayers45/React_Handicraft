@@ -1,48 +1,76 @@
+import Footer from "../components/footer/Footer";
 import SellerNavigation from "./sellerNevigation";
+import "../SellerComponents/sellerHome.css";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 function SellerHome() {
+    const { currentSeller } = useSelector(state => state.seller);
+    const [products, setData] = useState([]);
+
+
+    const sellerproduct = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
+            if (response.data.status)
+                setData(response.data.productsList);
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    useEffect(() => {
+        sellerproduct();
+
+    }, []);
+
     return <>
 
         <SellerNavigation />
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner" style={{ height: "80vh" }}>
-                <div class="carousel-item active">
-                    <img src="assets/img/typical.jpg" class="d-block w-100" alt="..." />
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>New Arrival</h3>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
+        <div className="container-fluid">
+            <div className="row ">
+                <div className="col-3 " style={{ backgroundColor: "", height: "80vh" }}>
+                    <div class="col-12"><img className="img" src="assets/img/P8.jpg" style={{ height: "80vh", marginLeft: "-20px" }} /></div>
                 </div>
-                <div class="carousel-item">
-                    <img src="assets/img/webBanner.webp" class="d-block w-100" alt="..." />
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>New Arrival</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                <div className="col-9">
+                    <div className="mt-5 ml">
+                        <h2 className="display-6">Service Details</h2>
+                        <hr className="line" />
                     </div>
-                </div>
-                {/* < div class="carousel-item">
-                    <img src="assets/img/crafts.webp" class="d-block w-100" alt="..." />
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div> */}
+                    <div className="d-flex">
+                        <div className="col-2 ml-5 mt-5" id="home" >
+                            <h5 className="mt-2 text-center">Products</h5>
+                            <hr />
+                            <h6 className="text-center" >total : {products.length}</h6>
+                        </div>
+                        <div className="col-2 ml-5 mt-5" id="home" >
+                            <h5 className="mt-2 text-center">Customers</h5>
+                            <hr />
+                            <h6 className="text-center">total : 0</h6>
+                        </div>
+                        <div className="col-2 ml-5 mt-5" id="home">
+                            <h5 className="mt-2 text-center">Earning</h5>
+                            <hr />
+                            <h6 className="text-center" >total : 0</h6>
+                        </div>
+                        <div className="col-2 ml-5 mt-5" id="home">
+                            <h5 className="mt-2 text-center">Orders</h5>
+                            <hr />
+                            <h6 className="text-center" >total : 0</h6>
+                        </div>
 
+
+                    </div>
+
+                </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+
         </div>
+        <Footer />
     </>
 }
 export default SellerHome;

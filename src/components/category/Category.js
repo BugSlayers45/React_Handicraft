@@ -1,11 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Category() {
-
+const navigate=useNavigate()
     const{categoryList,error,isLoading}=useSelector((state)=>state.category)
     if(error)
     return<h1>error</h1>
+  const productByHomeCategory=(category)=>{
+     navigate("/products",{state:{category:category}})
+  }
+
+
   return <>
   {/* Start Categories of The Month */}
   <section className="container py-5">
@@ -19,7 +25,7 @@ export default function Category() {
         {categoryList.map((category,index)=>
         
       <div className="container col-12 col-md-2">
-        <a href="#">
+        <a onClick={()=>productByHomeCategory(category)}>
           <img
             src={`./assets/img/category(${index+1}).jpg`}
             className=" img-fluid border"

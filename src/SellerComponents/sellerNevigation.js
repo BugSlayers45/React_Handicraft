@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../redux-config/sellerSignInSlice";
+import { Divider } from "@mui/material";
 
 
 export default function SellerNavigation() {
@@ -113,21 +114,12 @@ export default function SellerNavigation() {
                                 </Link>
                             </li>}
                     </ul>
-                    <form className="d-flex">
-                        <input
-                            className="form-control me-2"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                        <button className="btn btn-outline-success" type="submit">
-                            Search
-                        </button>
-                    </form>
+                    {currentSeller &&
+                        <div>
+                            <p><i class="fa fa-user-circle" aria-hidden="true" >{currentSeller.sellerEmail}</i></p>
+
+                        </div>}    
                 </div>
-
-
-
             </div>
 
         </nav >

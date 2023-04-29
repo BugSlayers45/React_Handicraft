@@ -5,11 +5,11 @@ import "../featuresProduct/features.css"
 
 export default function FeatureProducts() {
   const{featuresProductList,isLoading,error}=useSelector(state=>state.featuresproduct)
-  // console.log(featuresProductList)
   return <>
   
   {/* Gallery */}
   <div className="row">
+    
     <div className=" col-lg-4 col-md-12 mb-4 mb-lg-0">
       <div className='img-hover-zoom' >
       <img
@@ -68,11 +68,9 @@ export default function FeatureProducts() {
           </p>
         </div>
       </div>
-
-     
        <div className="row">
        {!error&&featuresProductList.map((products,index)=>
-          <div className="col-md-4">
+          <div className="col-md-3">
             <div className="card mb-4 product-wap rounded-0" style={{height:"500px"}}>
               <div className="card rounded-0">
                 <img
