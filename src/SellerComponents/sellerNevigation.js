@@ -56,7 +56,7 @@ export default function SellerNavigation() {
                                         Shop
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Add Product</a>
+                                        <Link to="/addproduct" class="dropdown-item" >Add Product</Link>
                                         <Link class="dropdown-item" to="/productList">ProductList</Link>
 
                                     </div>

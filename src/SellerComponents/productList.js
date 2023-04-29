@@ -14,7 +14,6 @@ function ProductList() {
     const [pageCount, setPageCount] = useState(0);
 
     const { currentSeller } = useSelector(state => state.seller);
-   
     const productlist = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
@@ -95,6 +94,8 @@ function ProductList() {
                                                     <td><img className="img-fluid" src={product.thumbnail} style={{ height: "100px", width: "100px", borderRadius: "30%" }} /></td>
                                                     <td>{product.title.substring(0, 15)}</td>
                                                     <td>{product.description.substring(1, 40)}</td>
+                                                    <td>{product.price}</td>
+                                                    <td>{product.discountPercentage}</td>
                                                     <td>{product.rating}</td>
                                                     <td>{product.stock}</td>
                                                     <td><button className="btn btn-outline-primary" ><Link to="/updateproduct">Edit</Link></button></td>

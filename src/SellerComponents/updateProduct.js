@@ -23,9 +23,6 @@ function UpdateProduct() {
             console.log(err);
         }
     }
-
-
-
     return <>
         <SellerNavigation />
         <div className="container mt-5">

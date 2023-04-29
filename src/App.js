@@ -14,6 +14,8 @@ import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
+import AddProduct from './SellerComponents/AddProduct';
+import FileUpload from './components/test/FileUpload';
 function App() {
   return <>
   <Routes> 
@@ -28,6 +30,8 @@ function App() {
      <Route path='/sellersignin' element={<SellerSignIn />} />
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
+    <Route path='/addproduct' element={<AddProduct/>} />
+    <Route path='/image' element={<FileUpload/>} /> 
     </Routes>
   </>
 }
