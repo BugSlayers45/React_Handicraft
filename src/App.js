@@ -9,11 +9,15 @@ import ProductList from './SellerComponents/productList';
 import UpdateProduct from './SellerComponents/updateProduct';
 import SignIn from './components/User/SignIn/SignIn';
 import SignUp from './components/User/SignUp/SignUp';
+import AddProduct from './SellerComponents/AddProduct';
 import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
 import AddressForm from './components/User/payments/PlaceOrder';
+import Order from './SellerComponents/order';
+import SellerProduct from './SellerComponents/sellerDescription';
+
 function App() {
   return <>
   <Routes> 
@@ -29,6 +33,10 @@ function App() {
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
     <Route path='/orderplace' element={<AddressForm/>}/>
+    <Route path='/addproduct' element={<AddProduct />} />
+      <Route path='/order' element={<Order />} />
+      <Route path='/sellerProductDescription' element={<SellerProduct />} />
+
     </Routes>
   </>
 }

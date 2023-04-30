@@ -105,6 +105,11 @@ export default function Footer() {
                 Seller
               </Link>
             </li>
+            <li>
+              <Link className="text-decoration-none" to="/">
+                Customer
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

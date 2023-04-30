@@ -2,45 +2,83 @@ import { useSelector } from "react-redux";
 import SellerNavigation from "./sellerNevigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function UpdateProduct() {
-    const { currentSeller } = useSelector(state => state.seller);
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [stock, setStock] = useState("");
     const [discountPercentage, setDiscount] = useState("");
     const location = useLocation();
-    console.log(location.state);
+
+    const productdetail = location.state.productdetail
+
+
 
     const update = async (event) => {
+        // console.log(title + "  " + description)
         try {
-            event.preventDefault();
-            let response = await axios.post(`http://localhost:3000/product/update/${currentSeller._id}`, { title, description, price, stock, discountPercentage })
-            console.log(response.data.search);
+            event.preventDefault(location.state._id);
+            let response = await axios.post(`http://localhost:3000/product/updated/${productdetail._id}`, { title, description, price, stock, discountPercentage });
+            toast.info("Product update successfully");
         } catch (err) {
             console.log(err);
         }
     }
-
-
-
     return <>
+
+        <ToastContainer />
         <SellerNavigation />
-        <div className="container mt-5">
-            <label>title</label>
-            <input className="form-control" type="text" /><br />
-            <label>description</label>
-            <input className="form-control" type="text" /><br />
-            <label>discountPercentage</label>
-            <input className="form-control" type="text" /><br />
-            <label>price</label>
-            <input className="form-control" type="text" /><br />
-            <label>stock</label>
-            <input className="form-control" type="text" />
-            <button className="btn btn-outline-primary mt-3 mb-5" onClick={update}>Update</button>
-        </div>
+        <div className="container mb-3 mt-3" style={{ marginLeft: "22vw", marginTop: "5px" }} >
+            <div className=" row">
+                <div className="login-box col-lg-8" style={{ boxShadow: "1px 3px 15px  gray" }}><br />
+                    <h2 className="text-center">Product Detail Update</h2>
+                    <p className="text-center">Fill the field you want to update</p><hr />
+                    <form className="mt-5">
+                        <div className="user-box form-group">
+
+                            <label>Title</label><br />
+                            <input onChange={(event) => setTitle(event.target.value)} type="text" placeholder={productdetail.title} className="form-control" />
+
+                        </div>
+                        <div className="user-box">
+
+                            <label>Description</label><br />
+                            <input onChange={(event) => setDescription(event.target.value)} type="text" placeholder={productdetail.description} className="form-control" />
+
+                        </div>
+                        <div className="user-box">
+
+                            <label>Price</label><br />
+                            <input onChange={(event) => setPrice(event.target.value)} type="text" placeholder={productdetail.price} className="form-control" />
+
+                        </div>
+                        <div className="user-box">
+
+                            <label>Stock</label><br />
+                            <input type="text" className="form-control" placeholder={productdetail.stock} onChange={(event) => setStock(event.target.value)} name="contact" required="" />
+                        </div>
+
+                        <div className="user-box">
+
+                            <label>Discount</label><br />
+                            <input onChange={(event) => setDiscount(event.target.value)} type="text" placeholder={productdetail.discountPercentage} className="form-control" />
+
+                        </div>
+                        <button type="submit" className="btn btn-dark mt-2 mb-5" onClick={update} style={{ borderRadius: "5%" }}>
+                            Update
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div >
+
+
     </>
 }
 
