@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home/Home';
-// import ProductPage from './components/ProductPage/ProductPage';
 import { Route, Routes } from 'react-router-dom';
 import SellerHome from './SellerComponents/sellerHome';
 import SellerSignUp from './SellerComponents/sellerSignUp';
@@ -14,6 +13,7 @@ import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
+import AddressForm from './components/User/payments/PlaceOrder';
 function App() {
   return <>
   <Routes> 
@@ -25,11 +25,10 @@ function App() {
     <Route path='/cart' element={<Cart/>}/>
     <Route path='/sellerHome' element={<SellerHome />} />
     <Route path='/sellersignup' element={<SellerSignUp />} />
-
     <Route path='/sellersignin' element={<SellerSignIn />} />
-
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
+    <Route path='/orderplace' element={<AddressForm/>}/>
     </Routes>
   </>
 }
