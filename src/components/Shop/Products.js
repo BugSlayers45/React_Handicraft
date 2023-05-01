@@ -8,6 +8,7 @@ import Header from "../header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import { addItemIntoCart, updateCartItems } from "../../redux-config/CartSlice";
 import "react-toastify/dist/ReactToastify.css";
+import api from "../../WebApi/api";
 
 export default function Products() {
   const location = useLocation();
@@ -20,13 +21,12 @@ export default function Products() {
   const { cartItems, cartError } = useSelector((state) => state.cart);
   const categoryDetail = location.state?.category;
   const categoryid = categoryDetail?._id;
-  // window.alert("mukul"+categoryid)
+
+
   const [products, setProducts] = useState([]);
   const productList = async () => {
     try {
-      let response = await axios.get(
-        "http://localhost:3000/product/viewproduct"
-      );
+      let response = await axios.get(api.VIEW_ALL_PRODUCT);
       // window.alert(response)
       console.log(response.data);
       setProducts(response.data.products);
@@ -35,12 +35,12 @@ export default function Products() {
     }
   };
 
+
+
   const searchFilter = async (event) => {
     let key = event.target.value;
     if (key) {
-      let result = await axios.get(
-        `http://localhost:3000/product/search/${key}`
-      );
+      let result = await axios.get(api.SERACH_FILTER + `${key}`);
       console.log(result.data.Product);
 
       if (result) setProducts(result.data.Product);
@@ -48,27 +48,25 @@ export default function Products() {
       productList();
     }
   };
+
+
   const categroyFilter = async (key) => {
     console.log(key);
-    let result = await axios.get(
-      `http://localhost:3000/product/products/${key}`
-    );
+    let result = await axios.get(api.PRODUCT_BY_CATEGORY + `${key}`);
     console.log(result);
     if (!result.data.products.length == 0) {
       setProducts(result.data.products);
-    }
-    else{
-      productList()
+    } else {
+      productList();
     }
   };
 
-  const categroyFilterFromHome = async () => { 
-      let result = await axios.get(
-        `http://localhost:3000/product/products/${categoryid}`
-      );
-        setProducts(result.data.products);
-        window.alert(result.data.products)
-  }
+  const categroyFilterFromHome = async () => {
+    let result = await axios.get(
+      api.PRODUCT_BY_HOME_CATEGORY + `${categoryid}`
+    );
+    setProducts(result.data.products);
+  };
 
   const productDescriptionId = (productDid) => {
     navigate("/productdescription", { state: { productDetail: productDid } });
@@ -76,7 +74,6 @@ export default function Products() {
 
   ///Cart COde:
   const addToCart = (products) => {
-    console.log(products + "product sdkjfnjkn");
     if (!currentCustomer) toast.warning("Please Login For cart");
     else {
       let status = true;
@@ -94,17 +91,18 @@ export default function Products() {
         if (!cartError) {
           dispatch(updateCartItems(products));
           toast.success("Item Successfuly Added in Cart");
-          }
-         else {
+        } else {
           toast.error("!Oop somthing went wrong");
         }
       }
     }
   };
   useEffect(() => {
-    if(categoryid){categroyFilterFromHome()}
-    else{ productList()}
-   
+    if (categoryid) {
+      categroyFilterFromHome();
+    } else {
+      productList();
+    }
   }, []);
   return (
     <>
@@ -112,12 +110,17 @@ export default function Products() {
       <Header />
       <Navigation />
       <ToastContainer />
-      <Search />
       <div className="container py-5">
         <div className="row">
           <div className="col-lg-3">
             <h1 className="h2 pb-4">Categories</h1>
             <ul className="list-unstyled templatemo-accordion">
+              <Link
+                onClick={() => productList()}
+                className="h3 text-dark text-decoration-none mr-3"
+              >
+                <li className="pb-3">All</li>
+              </Link>
               {categoryList.map((category) => (
                 <Link
                   onClick={() => categroyFilter(category._id)}
@@ -156,29 +159,7 @@ export default function Products() {
                       </div>
                     </form>
                   </li>
-                  <li className="list-inline-item">
-                    <a
-                      className="h3 text-dark text-decoration-none mr-3"
-                      href="#"
-                    >
-                      Men's
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a className="h3 text-dark text-decoration-none" href="#">
-                      Women's
-                    </a>
-                  </li>
                 </ul>
-              </div>
-              <div className="col-md-6 pb-4">
-                <div className="d-flex">
-                  <select className="form-control">
-                    <option>Featured</option>
-                    <option>A to Z</option>
-                    <option>Top rating</option>
-                  </select>
-                </div>
               </div>
             </div>
             <div className="row">
@@ -239,7 +220,7 @@ export default function Products() {
                           <i className="text-muted fa fa-star" />
                         </li>
                       </ul>
-                      <p className="text-center mb-0">{products.price}</p>
+                      <p className="text-center mb-0">₹{products.price}</p>
                     </div>
                   </div>
                 </div>

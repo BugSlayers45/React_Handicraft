@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
+import api from '../../../WebApi/api'
 export default function SignUp() {
     const [customerName,setName]=useState("")
     const [customerEmail,setEmail]=useState("")
@@ -13,15 +14,15 @@ export default function SignUp() {
     const handleSubmit =async(event)=>{
         try{
           event.preventDefault()
-          var response=await axios.post("http://localhost:3001/customer/signup",{customerName,customerEmail,customerPassword,customerContact})
+          var response=await axios.post(api.USER_SIGNUP,{customerName,customerEmail,customerPassword,customerContact})
           if(response.data.status)
           toast.success("your are sucessfully sigin up")
           navigate("/signin")
         }
         catch(err){
-            if(response.status.err==400)
+            if(response.status.err===400)
             toast.error("Bad Request!")
-            else if(response.status.err==500)
+            else if(response.status.err===500)
             toast.error("Server Error !")
         }
     }
@@ -69,7 +70,7 @@ export default function SignUp() {
           <div className="col-10 pl-0">
             <input 
              
-              onChange={(event)=>setCOntact(event.target.value)}
+              onChange={(event)=>setEmail(event.target.value)}
               type="text"
               placeholder="Type your username"
               className="email"
@@ -89,7 +90,7 @@ export default function SignUp() {
           </div>
           <div className="col-10 pl-0">
             <input
-            onChange={(event)=>setEmail(event.target.value)}
+            onChange={(event)=>setPassword(event.target.value)}
               type="password"
               placeholder="Type your password"
               className="password-signup"
@@ -111,7 +112,7 @@ export default function SignUp() {
             <input
              onChange={(event)=>setCOntact(event.target.value)}
               type="text"
-              placeholder="Type your password"
+              placeholder="Type your contact number"
               className="contact-signup"
             />
           </div>

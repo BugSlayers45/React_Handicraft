@@ -1,0 +1,13 @@
+#home {
+    background-color: #bedebe;
+    height: "20vh";
+    box-shadow: 2px 5px 15px gray;
+}
+
+.line {
+    border: 1px solid brown;
+}
+
+.td {
+    border: "1px solid black";
+}
