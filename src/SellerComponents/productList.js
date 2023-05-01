@@ -7,6 +7,7 @@ import Footer from "../components/footer/Footer";
 import Pagination from 'react-bootstrap/Pagination';
 import { Spinner } from "react-bootstrap";
 import "../SellerComponents/sellerHome.css";
+import { ToastContainer } from "react-toastify";
 
 function ProductList() {
     const [data, setData] = useState([]);
@@ -18,8 +19,6 @@ function ProductList() {
 
     const [products, setProductList] = useState([]);
     const navigate = useNavigate();
-
-
 
 
     const productlist = async () => {
@@ -51,7 +50,6 @@ function ProductList() {
 
     const UpdateProduct = (productdetail) => {
         navigate(("/updateproduct"), { state: { productdetail: productdetail } });
-
     }
 
     const handleNext = () => {
@@ -67,7 +65,6 @@ function ProductList() {
 
     const productsDescription = (productData) => {
         navigate(("/sellerProductDescription"), { state: { productData: productData } });
-
     }
 
     useEffect(() => {
@@ -88,6 +85,7 @@ function ProductList() {
     }, [data])
 
     return <>
+    <ToastContainer/>
         <SellerNavigation />
         <div className="container mt-5">
             <div className="row">

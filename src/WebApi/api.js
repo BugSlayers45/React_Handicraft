@@ -7,6 +7,7 @@ export default {
    PRODUCT_BY_HOME_CATEGORY:"/product/products/",
    REMOVE_FROM_CART:"/cart/deleteproduct",
    VIEW_CART_ITEMS:"/cart/viewCartItems",
-   ADD_TO_CART:"/cart/add-to-cart"
+   ADD_TO_CART:"/cart/add-to-cart",
+   PRODUCT_ADD: "/product/save"
 
 }

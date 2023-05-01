@@ -5,6 +5,7 @@ import SellerNavigation from "./sellerNevigation";
 import { useSelector } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
+import api from "../WebApi/api";
 
 function AddProduct() {
     const [title, setTitle] = useState("");
@@ -14,43 +15,65 @@ function AddProduct() {
     const [rating, setRating] = useState("");
     const [stock, setStock] = useState("");
     const [categoryId, setCategory] = useState("");
-    const [sellerId, setSellerId] = useState("");
-    const [thumbnail, setThumbnail] = useState("");
-    const [images, setImages] = useState([]);
+    const [file, setFile] = useState(null);
+    const [thumb, setThumb] = useState(null);
     const navigate = useNavigate();
     const { categoryList, error, isLoading } = useSelector((state) => state.category);
     const { currentSeller } = useSelector((state) => state.seller);
+    let sellerId = currentSeller._id;
 
-
-    const add = async (event) => {
+    const handleFileChange = (event) => {
+        setFile(Array.from(event.target.files));
+    };
+    const handleFileChange1 = (event) => {
+        setThumb(event.target.files[0])
+    }
+    const handleUpload = async (event) => {
         try {
-            console.log(title + " " + description + " " + price + " " + discountPercentage + " " + rating + " " + categoryId + " " + images)
-            let response = await axios.post("http://localhost:3000/product/save", { title, description, price, discountPercentage, rating, stock, categoryId, thumbnail, images });
-            console.log(response.data.status)
-            if (response.data.status)
-                window.alert("Product added Successful");
-            navigate("/productList");
+            event.preventDefault()
 
+            const formData = new FormData();
+            file.map((f) => {
+                formData.append('files', f);
+            })
+            formData.append('file', thumb);
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('price', price);
+            formData.append('discountPercentage', discountPercentage);
+            formData.append('rating', rating);
+            formData.append('stock', stock);
+            formData.append('sellerId', sellerId);
+            formData.append('categoryId', categoryId);
 
+            const response = await fetch(api.PRODUCT_ADD, {
+                method: 'POST',
+                body: formData
+            })
+            if (response.ok) {
+                console.log("File uploaded")
+                toast.success("new product add successful")
+                navigate("/productList")
+            }
+            else {
+                console.error("Error uploading data");
+            }
         } catch (err) {
             console.log(err);
-            toast.error("Something went wrong");
-
         }
+
     }
-
-
 
     return <>
         <SellerNavigation />
-
-
-        <div className="container mb-3 mt-5" style={{ marginLeft: "22vw", marginTop: "5px" }} >
+        <div className="container mb-3 mt-5" style={{ marginLeft: "22vw", marginTop: "5px", height: "100vh" }} >
             <div className=" row">
                 <div className="login-box col-lg-8" style={{ boxShadow: "1px 3px 15px  gray" }}><br />
                     <h2 className="text-center">Add Product</h2><hr />
 
-                    <form className="mt-5 ml-4 mr-4" onSubmit={add}>
+
+                    <form className="mt-5 ml-4 mr-4" method="post" >
+
                         <div className="user-box form-group">
 
                             <label>Title</label><br />
@@ -95,25 +118,18 @@ function AddProduct() {
                                 )}
                             </select><br />
                         </div>
-                        <div className="form-group">
-                            {/* <label>SellerId</label> */}
-                            <input className="form-control" name="sellerId" type="hidden" onChange={(event) => setSellerId(event.target.currentSeller.id)} />
-                        </div>
                         <div className="user-box">
 
                             <label>Thumbnail</label><br />
-                            <input type="file" name="thum" onChange={(event) => setThumbnail(event.target.value)} className="form-control" /><br />
-                        </div>
+                            <input type="file" name='thum' onChange={handleFileChange1} />                        </div>
                         <div className="user-box">
 
                             <label>Images</label><br />
-                            <input type="file" name="image" onChange={(event) => setImages(event.target.value)} className="form-control" multiple /><br />
+                            <input type="file" name='image' onChange={handleFileChange} multiple />
                         </div>
-
-
-                        <button type="submit" className="btn btn-dark mt-2 mb-5" onClick={add} style={{ borderRadius: "5%" }}>
-                            Add
-                        </button>
+                        <div className="mb-5">
+                            <button className="btn btn-primary mt-3" onClick={handleUpload}>Upload File</button>
+                        </div>
                     </form>
                 </div>
             </div>
