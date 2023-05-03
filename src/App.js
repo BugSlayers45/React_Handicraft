@@ -16,6 +16,11 @@ import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
 import Order from './SellerComponents/order';
 import SellerProduct from './SellerComponents/sellerDescription';
+import SideNav from './SellerComponents/sideNav';
+import OrderDetail from './SellerComponents/orderDetail';
+
+
+
 
 function App() {
   return <>
@@ -43,6 +48,11 @@ function App() {
       <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
+      <Route path='/sidenav' element={<SideNav />} />
+      <Route path='/orderdetail' element={<OrderDetail />} />
+
+
+
     </Routes>
   </>
 }

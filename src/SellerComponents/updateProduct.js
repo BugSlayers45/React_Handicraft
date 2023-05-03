@@ -43,31 +43,31 @@ function UpdateProduct() {
                         <div className="user-box form-group">
 
                             <label>Title</label><br />
-                            <input onChange={(event) => setTitle(event.target.value)} type="text" placeholder={productdetail.title} className="form-control" />
+                            <input onChange={(event) => setTitle(event.target.value)} type="text" placeholder={productdetail.title} className="form-control" /><br />
 
                         </div>
                         <div className="user-box">
 
                             <label>Description</label><br />
-                            <input onChange={(event) => setDescription(event.target.value)} type="text" placeholder={productdetail.description} className="form-control" />
+                            <input onChange={(event) => setDescription(event.target.value)} type="text" placeholder={productdetail.description} className="form-control" /><br />
 
                         </div>
                         <div className="user-box">
 
                             <label>Price</label><br />
-                            <input onChange={(event) => setPrice(event.target.value)} type="text" placeholder={productdetail.price} className="form-control" />
+                            <input onChange={(event) => setPrice(event.target.value)} type="text" placeholder={productdetail.price} className="form-control" /><br />
 
                         </div>
                         <div className="user-box">
 
                             <label>Stock</label><br />
-                            <input type="text" className="form-control" placeholder={productdetail.stock} onChange={(event) => setStock(event.target.value)} name="contact" required="" />
+                            <input type="text" className="form-control" placeholder={productdetail.stock} onChange={(event) => setStock(event.target.value)} name="contact" required="" /><br />
                         </div>
 
                         <div className="user-box">
 
                             <label>Discount</label><br />
-                            <input onChange={(event) => setDiscount(event.target.value)} type="text" placeholder={productdetail.discountPercentage} className="form-control" />
+                            <input onChange={(event) => setDiscount(event.target.value)} type="text" placeholder={productdetail.discountPercentage} className="form-control" /><br />
 
                         </div>
                         <button type="submit" className="btn btn-dark mt-2 mb-5" onClick={update} style={{ borderRadius: "5%" }}>

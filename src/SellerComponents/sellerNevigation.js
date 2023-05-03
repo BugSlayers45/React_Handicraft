@@ -16,6 +16,10 @@ export default function SellerNavigation() {
         dispatch(signOut());
         navigate("/sellersignin")
     }
+
+    const signout = () => {
+        currentSeller = null;
+    }
     return (
         <><nav className="navbar navbar-expand-lg navbar-light shadow">
             <div className="container d-flex justify-content-between align-items-center">
@@ -42,49 +46,51 @@ export default function SellerNavigation() {
                     <span className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/sellerHome">
                                 Home
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/order">
-                                Order
-                            </Link>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a
-                                className="nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarDropdown"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                Shop
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <Link className="dropdown-item" to="/addproduct">
-                                        Add Product
-                                    </Link>
-                                </li>
-                                <hr />
-                                <li>
-                                    <Link className="dropdown-item" to="/productList">
-                                        ProductList
-                                    </Link>
-                                </li>
+                        {currentSeller &&
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/order">
+                                    Order
+                                </Link>
+                            </li>}
+                        {currentSeller &&
+                            <li className="nav-item dropdown">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Shop
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <Link className="dropdown-item" to="/addproduct">
+                                            Add Product
+                                        </Link>
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <Link className="dropdown-item" to="/productList">
+                                            ProductList
+                                        </Link>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>}
                         {currentSeller &&
                             <li className="nav-item">
                                 <Link
                                     className="nav-link"
                                     to="/sellersignin"
-                                    tabIndex={-1}
+                                    tabIndex={-1} onClick={signout}
 
                                 >
                                     SignOut
@@ -113,12 +119,12 @@ export default function SellerNavigation() {
                                     SignUp
                                 </Link>
                             </li>}
-                    </ul>
+                    </ul> */}
                     {currentSeller &&
                         <div>
                             <p><i class="fa fa-user-circle" aria-hidden="true" >{currentSeller.sellerEmail}</i></p>
 
-                        </div>}    
+                        </div>}
                 </div>
             </div>
 

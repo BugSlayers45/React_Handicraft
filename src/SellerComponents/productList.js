@@ -38,6 +38,8 @@ function ProductList() {
 
 
 
+
+
     const deleteProduct = async (id) => {
         try {
             let response = await axios.post(`http://localhost:3000/product/delete/${id}`)
