@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import Order from './SellerComponents/order';
+import SellerProduct from './SellerComponents/sellerDescription';
 import Home from './components/Home/Home';
 import { Route, Routes } from 'react-router-dom';
 import SellerHome from './SellerComponents/sellerHome';
@@ -13,14 +15,14 @@ import AddProduct from './SellerComponents/AddProduct';
 import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 import Order from './SellerComponents/order';
 import SellerProduct from './SellerComponents/sellerDescription';
 import Checkout from './components/User/payments/Checkout';
-// import PersonContext from './components/User/payments/PersonContext';
 import AddressForm from './components/User/payments/AddressForm';
+import FileUpload from './components/test/FileUpload';
 
-
+  
 function App() {
   
   return <>
@@ -40,6 +42,7 @@ function App() {
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
       <Route path='/checkout' element={<Checkout/>}/>
+      <Route path='/image' element={<FileUpload/>} /> 
     </Routes>
    
   </>

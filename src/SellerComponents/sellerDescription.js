@@ -78,12 +78,7 @@ function SellerProduct() {
                         </div>
                     </main>
                 </div>
-
-
-
-
             </div>
-
         </div>
     </>
 }

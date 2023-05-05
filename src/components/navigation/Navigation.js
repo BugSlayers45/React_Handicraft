@@ -2,13 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../redux-config/CustomerSlice";
+
+
 export default function Navigation() {
   const {currentCustomer}=useSelector(state=>state.customer)
   const{cartItems}=useSelector(state=>state.cart)
+
   // window.alert(currentCustomer)
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const customerSignOut=()=>{
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const customerSignOut = () => {
     dispatch(signOut())
   }
 
@@ -78,7 +81,7 @@ export default function Navigation() {
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
                   <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
                     {cartItems.length}
-                  </span>VIew Cart
+                  </span>View Cart
                 </Link>}
                 {!currentCustomer&&<Link
                   to="/signin"
@@ -87,7 +90,7 @@ export default function Navigation() {
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
                   <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
                     {cartItems.length}
-                  </span>VIew Cart
+                  </span>View Cart
                 </Link>}
             
             
@@ -126,7 +129,7 @@ export default function Navigation() {
       </nav>
       <div className="align-self-center d-flex mt-3 offset-2 col-8 text-centre">
         {" "}
-     
+
       </div>
 
       {/* Close Header */}
