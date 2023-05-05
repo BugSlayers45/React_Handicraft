@@ -21,7 +21,7 @@ export default function Checkout() {
   const [deliveryaddress,setdeliveryAddress]=useState()
   const[contactPerson,setContactPerson]=useState()
   const [contactNumber,setContactNumber]=useState()
- 
+   
   // console.log(location.state.orderpackage)
                          
    const personDetail=async(event)=>{
@@ -42,7 +42,7 @@ export default function Checkout() {
   return (<>    
   <Navigation/>
 
-<Link to={"/cart"}> <button type="button"  class="btn btn-primary disabled">Back To  Cart</button></Link>
+<Link to={"/cart"}> <button type="button"  className="btn btn-primary mb-4 ml-2">Back To  Cart</button></Link>
 
     <div className='container'>
     <form onSubmit={personDetail}>
@@ -78,11 +78,8 @@ export default function Checkout() {
             <input type="text" onChange={(e)=>setContactNumber(e.target.value)} id="form7Example5" className="form-control" />
             <label className="form-label" htmlFor="form7Example5">Contact Number</label>
           </div>
-          {/* Message input */}
-          <div className="form-outline mb-4">
-            <textarea className="form-control" id="form7Example7" rows={4} defaultValue={""} />
-            <label className="form-label" htmlFor="form7Example7">Additional information</label>
-          </div>
+        
+
       </div>
     </div>
   </div>
@@ -105,7 +102,7 @@ export default function Checkout() {
             <div>
               <strong>Total amount</strong>
               <strong>
-                <p className="mb-0">(including VAT)</p>
+                <p className="mb-0">(including Shiping)</p>
               </strong>
             </div>
             <span><strong>&#8377;{totalBill}</strong></span>
@@ -124,7 +121,7 @@ export default function Checkout() {
             </div>
         </ul>
         
-        <button type="submit" className="btn btn-primary btn-lg btn-block">
+        <button type="submit" data-toggle="modal" data-target="#exampleModal" className="btn btn-primary btn-lg btn-block">
           Make purchase
         </button>
        
@@ -134,6 +131,59 @@ export default function Checkout() {
 </div>
 
 </form>
+<div>
+  {/* Button trigger modal */}
+  {/* Modal */}
+  <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title" id="exampleModalLabel">Order Sucessully</h5>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div className="modal-body">
+      <div>
+  <div className="text-right"> <i className="fa fa-close close" data-dismiss="modal" /> </div>
+  <div className="px-4 py-5">
+    <h5 className="text-uppercase">{currentCustomer.customerName}</h5>
+    <h4 className="mt-5 theme-color mb-5">Thanks for your order</h4>
+    <span className="theme-color">Payment Summary</span>
+    <div className="mb-3">
+      <hr className="new1" />
+    </div>
+    <div className="d-flex justify-content-between">
+      <span className="font-weight-bold">Total Product Price</span>
+      <span className="text-muted">&#8377;{location.state.orderpackage.billamount}</span>
+    </div>
+    <div className="d-flex justify-content-between">
+      <small>Shipping</small>
+      <small>&#8377;{location.state.orderpackage.SHIPPING_FEES}</small>
+    </div>
+    {/* <div className="d-flex justify-content-between">
+      <small>Tax</small>
+      <small>$200.00</small>
+    </div> */}
+    <div className="d-flex justify-content-between mt-3">
+      <span className="font-weight-bold">Total</span>
+      <span className="font-weight-bold theme-color">&#8377;{totalBill}</span>
+    </div>  
+    <div className="text-center mt-5">
+      <button className="btn btn-primary" data-dismiss="modal">Track your order</button>
+    </div>                   
+  </div>
+</div>
+
+      
+        </div>
+        <div className="modal-footer">
+        <Link to={"/home"}><button type="button" className="btn btn-primary"> Go to Home Page</button></Link>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 
