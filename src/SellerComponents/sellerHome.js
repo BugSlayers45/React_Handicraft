@@ -21,8 +21,6 @@ function SellerHome() {
             console.log(err);
         }
     }
-
-
     useEffect(() => {
         sellerproduct();
 
