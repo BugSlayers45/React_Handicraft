@@ -19,7 +19,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Order from './SellerComponents/order';
 import SellerProduct from './SellerComponents/sellerDescription';
 import Checkout from './components/User/payments/Checkout';
-import AddressForm from './components/User/payments/AddressForm';
 import FileUpload from './components/test/FileUpload';
 
   
