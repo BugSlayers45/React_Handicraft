@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 export default function ProductDescription() {
@@ -31,7 +32,9 @@ export default function ProductDescription() {
               src={productDetail.thumbnail}
               style={{ height: 450, width: 550 }}
             />
+             
           </div>
+          <Col md={6}>
           <div
             className="col-lg-5 offset-1">
             <div className="col-lg-12 col-md-5 col-md-10">
@@ -62,17 +65,13 @@ export default function ProductDescription() {
             </div>
 
           </div>
+          </Col>
         </div>
       </div>
       <div className="card-body">
         <small className="card-title"> Description:<br />
           {productDetail.description}
         </small>
-
-
-
-
-
         <div>
           <main className="container">
             <h2 className="card-text">Product Reviews<i className="fa fa-star" aria-hidden="true"></i>
