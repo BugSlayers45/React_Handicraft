@@ -14,11 +14,15 @@ import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
-import AddressForm from './components/User/payments/PlaceOrder';
 import Order from './SellerComponents/order';
 import SellerProduct from './SellerComponents/sellerDescription';
+import Checkout from './components/User/payments/Checkout';
+// import PersonContext from './components/User/payments/PersonContext';
+import AddressForm from './components/User/payments/AddressForm';
+
 
 function App() {
+  
   return <>
   <Routes> 
     <Route path='/' element={ <Home/>} />
@@ -32,12 +36,12 @@ function App() {
     <Route path='/sellersignin' element={<SellerSignIn />} />
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
-    <Route path='/orderplace' element={<AddressForm/>}/>
     <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
-
+      <Route path='/checkout' element={<Checkout/>}/>
     </Routes>
+   
   </>
 }
 export default App;

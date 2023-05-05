@@ -85,7 +85,7 @@ export default function Products() {
         );
         if (!cartError) {
           dispatch(updateCartItems(products));
-          toast.success("Item Successfuly Added in Cart");
+          // toast.success("Item Successfuly Added in Cart");
         } else {
           toast.error("!Oop somthing went wrong");
         }

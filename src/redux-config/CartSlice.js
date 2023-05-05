@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import api from "../WebApi/api";
-import { json } from "react-router-dom";
 import { toast } from "react-toastify";
  
 export const fetchCart=createAsyncThunk("fetch cart",async(customerId)=>{
@@ -11,7 +10,8 @@ export const fetchCart=createAsyncThunk("fetch cart",async(customerId)=>{
     
 })
 export const addItemIntoCart=createAsyncThunk("cart/addItemcart",async(obj)=>{
-    let response=await axios.post(api.ADD_TO_CART,{userId:obj.userId,productId:obj.productId})
+    console.log(obj)
+    let response=await axios.post(api.ADD_TO_CART,{customerId:obj.customerId,productId:obj.productId})
     if(response.data.status)
     return response.data
 })
@@ -32,6 +32,8 @@ const slice=createSlice({
         const itemIndex=state.cartItems.findIndex((item)=>item.productId._id===action.payload._id)
         if(itemIndex>=0){
             state.cartItems[itemIndex].quantity=state.cartItems[itemIndex].quantity+1
+            toast.success(`${action.payload.title} is added to the cart!`)
+            
         }
         else{
             state.cartItems=[...state.cartItems,{productId:action.payload,quantity:1}] 
@@ -63,12 +65,12 @@ const slice=createSlice({
        localStorage.setItem("cartitems",JSON.stringify(state.cartItems))  
     },
     incareaseCartQuantity(state,action){
-        console.log(action.payload.productId._id +"payload hai sdn sj")
+        // console.log(action.payload.productId._id +"payload hai sdn sj")
         const itemIndex= state.cartItems.findIndex(
             cartItem => cartItem.productId._id === action.payload.productId._id
         )
         
-            console.log(state.cartItems[itemIndex].productId.id)       
+            // console.log(state.cartItems[itemIndex].productId.id)       
             state.cartItems[itemIndex].quantity+= 1;
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))            
     },
@@ -81,12 +83,12 @@ const slice=createSlice({
     getTotal(state) {
 
         let {total,quantities} = state.cartItems.reduce((cartTotal, cartItem)=>{
-            console.log(cartItem+"knadkjasndankajn")
+            // console.log(cartItem+"knadkjasndankajn")
             const {price,quantity} = {price:cartItem.productId.price,quantity:cartItem.quantity}
             const itemTotal = price * quantity;
             cartTotal.total += itemTotal;
             cartTotal.quantities += quantity
-            console.log(cartTotal.quantities+"carttotal")
+            // console.log(cartTotal.quantities+"carttotal")
             return cartTotal;
         }, {
             total:0,
