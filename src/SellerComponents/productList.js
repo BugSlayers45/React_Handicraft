@@ -8,6 +8,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import { Spinner } from "react-bootstrap";
 import "../SellerComponents/sellerHome.css";
 import { ToastContainer } from "react-toastify";
+import SideNav from "./sideNav";
 
 function ProductList() {
     const [data, setData] = useState([]);
@@ -34,7 +35,6 @@ function ProductList() {
             console.log(err);
         }
     }
-
 
 
     const deleteProduct = async (id) => {
@@ -85,12 +85,15 @@ function ProductList() {
     }, [data])
 
     return <>
-    <ToastContainer/>
+        <ToastContainer />
         <SellerNavigation />
-        <div className="container mt-5">
+        <div className="container-fluid mt-5">
             <div className="row">
-
-                <div className="col-12" >
+                <div className="col-1 me-2"><SideNav /></div>
+                <div className="col-8 offset-3">
+                    <div className="text-center mb-4">
+                        <h3>Our Products</h3>
+                    </div>
                     <table className="table table-responsive table-hover">
                         <thead className="text-center bg-light" style={{ boxShadow: "1px 1px 3px gray" }}>
                             <tr>
@@ -117,7 +120,7 @@ function ProductList() {
                                                     <td ><img className="img-fluid" src={product.thumbnail} style={{ height: "80px", width: "100px", borderRadius: "50%", boxShadow: "1px 2px 10px gray" }} /></td>
 
                                                     <td>{product.title.substring(0, 15)}</td>
-                                                    <td>{product.description.substring(0, 40)}<button className="btn btn-sm btn-light" onClick={() => productsDescription(product)}>View More</button></td>
+                                                    <td>{product.description.substring(0, 35)}<button className="btn btn-sm btn-light" onClick={() => productsDescription(product)}>View More</button></td>
                                                     <td>{product.price}</td>
                                                     <td>{product.discountPercentage}</td>
                                                     <td>{product.rating}</td>
@@ -152,7 +155,7 @@ function ProductList() {
 
             </div>
         </div >
-        <Footer />
+
     </>
 }
 
