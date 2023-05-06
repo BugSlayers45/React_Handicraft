@@ -46,7 +46,7 @@ const slice=createSlice({
         const inCartItem=state.cartItems.filter(cartItems=>cartItems.productId._id!==action.payload.productId._id)
         state.cartItems=inCartItem
         localStorage.setItem("cartItem",JSON.stringify(state.cartItems))
-        toast.error(`${action.payload.name} is removed from the cart`)
+        toast.error(`item is removed from the cart`)
        },
        decreaseCartQuantity(state,action){
         const itemIndex=state.cartItems.findIndex(
@@ -60,17 +60,15 @@ const slice=createSlice({
                 cartItem => cartItem.productId._id!==action.payload.productId._id
             )
             state.cartItems=inCartItems;
-            toast.error(`${action.payload.title} is removed from the cart!`)
+            console.log(action.payload+"sdkjnfsknfmsn")
+            toast.error(`item is removed from the cart!`)
        }
        localStorage.setItem("cartitems",JSON.stringify(state.cartItems))  
     },
     incareaseCartQuantity(state,action){
-        // console.log(action.payload.productId._id +"payload hai sdn sj")
         const itemIndex= state.cartItems.findIndex(
             cartItem => cartItem.productId._id === action.payload.productId._id
-        )
-        
-            // console.log(state.cartItems[itemIndex].productId.id)       
+        )      
             state.cartItems[itemIndex].quantity+= 1;
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))            
     },
@@ -83,12 +81,12 @@ const slice=createSlice({
     getTotal(state) {
 
         let {total,quantities} = state.cartItems.reduce((cartTotal, cartItem)=>{
-            // console.log(cartItem+"knadkjasndankajn")
+          
             const {price,quantity} = {price:cartItem.productId.price,quantity:cartItem.quantity}
             const itemTotal = price * quantity;
             cartTotal.total += itemTotal;
             cartTotal.quantities += quantity
-            // console.log(cartTotal.quantities+"carttotal")
+        
             return cartTotal;
         }, {
             total:0,

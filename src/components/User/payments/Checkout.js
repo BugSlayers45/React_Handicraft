@@ -42,7 +42,7 @@ export default function Checkout() {
   return (<>    
   <Navigation/>
 
-<Link to={"/cart"}> <button type="button"  className="btn btn-primary mb-4 ml-2">Back To  Cart</button></Link>
+<Link to={"/cart"}> <a>Back To  Cart</a></Link>
 
     <div className='container'>
     <form onSubmit={personDetail}>
