@@ -152,7 +152,7 @@ function SellerSignIn() {
                                     onChange={(event) => setEmail(event.target.value)}
                                 /> <small id="emailside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
 
-                            </div><br />
+                            </div>
                             <div className="user-box ml-4 mr-4">
                                 <input
                                     type="password"

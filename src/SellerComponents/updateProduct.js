@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SideNav from "./sideNav";
 
 
 function UpdateProduct() {
@@ -36,6 +37,8 @@ function UpdateProduct() {
         <SellerNavigation />
         <div className="container mb-3 mt-3" style={{ marginLeft: "22vw", marginTop: "5px" }} >
             <div className=" row">
+
+                <div className="col-1 me-2"><SideNav /></div>
                 <div className="login-box col-lg-8" style={{ boxShadow: "1px 3px 15px  gray" }}><br />
                     <h2 className="text-center">Product Detail Update</h2>
                     <p className="text-center">Fill the field you want to update</p><hr />

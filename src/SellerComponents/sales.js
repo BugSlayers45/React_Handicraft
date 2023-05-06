@@ -31,8 +31,11 @@ function Sales() {
             <div className="row">
                 <div className="col-1"><SideNav /></div>
                 <div className="col-8 offset-2 mt-5">
+                    <div className="text-center mb-4">
+                        <h3>Sold Products</h3>
+                    </div>
                     <table className="table table-responsive table-hover">
-                        <thead className="bg-light me-5" style={{ boxShadow: "1px 1px 3px gray" }}>
+                        <thead className="bg-light me-5 text-center" style={{ boxShadow: "1px 1px 3px gray" }}>
                             <th>S.No</th>
                             <th>Product</th>
                             <th>Quantity</th>
@@ -41,10 +44,12 @@ function Sales() {
                         <tbody>
                             {product.map((item, index) =>
 
-                                <tr>
-                                    {console.log(item.productDetails)}
+                                <tr style={{ boxShadow: "1px 1px 3px gray" }} >
+                                    {/* {console.log(item.productDetails)} */}
                                     <td>{index + 1}</td>
-                                    <td></td>
+                                    <td>{item.productDetails.title}</td>
+                                    <td>{item.OrderItems.quantity}</td>
+                                    <td>{item.date.substring(0, 10)}</td>
                                 </tr>
                             )}
                         </tbody>

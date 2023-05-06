@@ -91,6 +91,9 @@ function ProductList() {
             <div className="row">
                 <div className="col-1 me-2"><SideNav /></div>
                 <div className="col-8 offset-3">
+                    <div className="text-center mb-4">
+                        <h3>Our Products</h3>
+                    </div>
                     <table className="table table-responsive table-hover">
                         <thead className="text-center bg-light" style={{ boxShadow: "1px 1px 3px gray" }}>
                             <tr>

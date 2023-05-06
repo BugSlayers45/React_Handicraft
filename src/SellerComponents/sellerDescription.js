@@ -8,7 +8,7 @@ function SellerProduct() {
 
 
     return <>
-        <SellerNavigation />
+
         <div className="container-fluid mt-5">
             <div className="row col-lg-12">
                 <div className="col-lg-12 d-flex" >

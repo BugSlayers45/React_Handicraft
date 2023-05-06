@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { addItemIntoCart, updateCartItems } from "../../redux-config/CartSlice";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../WebApi/api";
+import CircularStatic from "../../SellerComponents/spinner/Spinner";
+import { Rating } from "@mui/material";
 
 export default function Products() {
   const location = useLocation();
@@ -59,11 +61,11 @@ export default function Products() {
     } else {
       productList();
     }
-  };
+  }
 
   const categroyFilterFromHome = async () => {
     let result = await axios.get(
-      api.PRODUCT_BY_HOME_CATEGORY + `${categoryid}`
+      api.PRODUCT_BY_HOME_CATEGORY +`${categoryid}`
     );
     setProducts(result.data.products);
   };
@@ -76,12 +78,6 @@ export default function Products() {
   const addToCart = (products) => {
     if (!currentCustomer) toast.warning("Please Login For cart");
     else {
-      let status = true;
-      if (cartItems.length != 0)
-        status = cartItems.some((item) => item.productId._id == products._id);
-      else status = false;
-      if (status) toast.info("Item is already added in cart");
-      else {
         dispatch(
           addItemIntoCart({
             customerId: currentCustomer._id,
@@ -90,13 +86,12 @@ export default function Products() {
         );
         if (!cartError) {
           dispatch(updateCartItems(products));
-          toast.success("Item Successfuly Added in Cart");
+          // toast.success("Item Successfuly Added in Cart");
         } else {
           toast.error("!Oop somthing went wrong");
         }
-      }
-    }
   };
+}
   useEffect(() => {
     if (categoryid) {
       categroyFilterFromHome();
@@ -104,12 +99,13 @@ export default function Products() {
       productList();
     }
   }, []);
-  return (
-    <>
+
+  return (<>
       {/* Start Content */}
       <Header />
       <Navigation />
       <ToastContainer />
+      
       <div className="container py-5">
         <div className="row">
           <div className="col-lg-3">
@@ -170,10 +166,11 @@ export default function Products() {
                     style={{ height: "500px" }}
                   >
                     <div className="card rounded-0">
+                    
                       <img
                         className="card-img rounded-1  img-fluid"
                         style={{ height: "300px" }}
-                        src={products.thumbnail}
+                        src={products.thumbnail} alt={<CircularStatic/>}
                       />
                       <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                         <ul className="list-unstyled">
@@ -209,16 +206,10 @@ export default function Products() {
                         href="shop-single.html"
                         className="h3 text-decoration-none"
                       >
-                        {products.title}
+                        {products.title.substring(0,60)}
                       </a>
                       <ul className="list-unstyled d-flex justify-content-center mb-1">
-                        <li>
-                          <i className="text-warning fa fa-star" />
-                          <i className="text-warning fa fa-star" />
-                          <i className="text-warning fa fa-star" />
-                          <i className="text-muted fa fa-star" />
-                          <i className="text-muted fa fa-star" />
-                        </li>
+                      <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly /><small className="disabled">{products.rating}</small>
                       </ul>
                       <p className="text-center mb-0">₹{products.price}</p>
                     </div>
@@ -259,6 +250,5 @@ export default function Products() {
         </div>
       </div>
       {/* End Content */}
-    </>
-  );
-}
+    </>)
+    }

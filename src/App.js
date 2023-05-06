@@ -18,44 +18,37 @@ import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css';
 import SideNav from './SellerComponents/sideNav';
 import OrderDetail from './SellerComponents/orderDetail';
+import Checkout from './components/User/payments/Checkout';
 import FileUpload from './components/test/FileUpload';
 import Sales from './SellerComponents/sales';
 
 
 function App() {
+  
   return <>
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/products' element={<Products />} />
-      <Route path='/signIn' element={<SignIn />} />
-      <Route path='/signUp' element={<SignUp />} />
-      <Route path='/productdescription' element={<ProductDescription />} />
-      <Route path='/cart' element={<Cart />} />
-    </Routes>
-
-    <Routes>
-      <Route path='/signIn' element={<SignIn />} />
-    </Routes>
-    <Routes>
-      <Route path='/signUp' element={<SignUp />} />
-    </Routes>
-    <Routes>
-      <Route path='/sellerHome' element={<SellerHome />} />
-      <Route path='/sellersignup' element={<SellerSignUp />} />
-      <Route path='/sellersignin' element={<SellerSignIn />} />
-      <Route path='/productList' element={<ProductList />} />
-      <Route path='/updateproduct' element={<UpdateProduct />} />
-      <Route path='/addproduct' element={<AddProduct />} />
+  <Routes> 
+    <Route path='/' element={ <Home/>} />
+    <Route path='/products' element={<Products/>} />
+    <Route path='/signIn' element={<SignIn/>} />
+    <Route path='/signUp' element={<SignUp/>} />
+    <Route path='/productdescription' element={<ProductDescription/>}/>
+    <Route path='/cart' element={<Cart/>}/>
+    <Route path='/sellerHome' element={<SellerHome />} />
+    <Route path='/sellersignup' element={<SellerSignUp />} />
+    <Route path='/sellersignin' element={<SellerSignIn />} />
+    <Route path='/productList' element={<ProductList />} />
+    <Route path='/updateproduct' element={<UpdateProduct />} />
+    <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
       <Route path='/sidenav' element={<SideNav />} />
       <Route path='/orderdetail' element={<OrderDetail />} />
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
-
-
-
+      <Route path='/checkout' element={<Checkout/>}/>
+      <Route path='/image' element={<FileUpload/>} /> 
     </Routes>
+   
   </>
 }
 export default App;
