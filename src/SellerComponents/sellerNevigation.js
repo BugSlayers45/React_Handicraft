@@ -21,8 +21,8 @@ export default function SellerNavigation() {
         currentSeller = null;
     }
     return (
-        <><nav className="navbar navbar-expand-lg navbar-light shadow">
-            <div className="container d-flex justify-content-between align-items-center">
+        <><nav className="navbar navbar-expand-lg navbar-light shadow" style={{ width: "80vw", marginLeft: "20vw" }}>
+            <div className="container-fluid d-flex justify-content-between align-items-center">
                 <a
                     className="navbar-brand text-success logo h2 align-self-center"
                     href="index.html"

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import SideNav from "./sideNav";
 function Order() {
     const { currentSeller } = useSelector(state => state.seller);
     const [sellerOrder, setOrders] = useState([]);
@@ -20,12 +21,26 @@ function Order() {
             let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
             if (response.data.status)
                 setOrders(response.data.sellerOrder);
-            console.log(response.data.sellerOrder);
+            // console.log(response.data.sellerOrder);
 
         } catch (err) {
             console.log(err);
         }
     }
+
+    let count = 0;
+    let unique = [];
+    let uniquecus = [];
+    const uniqueorder = sellerOrder.filter((item) => {
+        const isDuplicate = unique.includes(item._id);
+        if (!isDuplicate) {
+            unique.push(item._id);
+
+            return true;
+        }
+        return false;
+    })
+
 
     useEffect(() => {
         orderlist();
@@ -35,45 +50,50 @@ function Order() {
         <SellerNavigation />
 
         <div id="project" class="project" style={{ marginBottom: "5vh", marginTop: "5vh" }}>
-            <div className="text-center">
-                <h3>OrderList</h3>
-            </div>
-            <div class="container">
 
-                <table class="table table-hover table-inverse p-2">
-                    <thead className="text-center bg-light" style={{ boxShadow: "1px 1px 3px gray" }}>
-                        <tr>
-                            <th>S.No</th>
-                            <th>OrderId</th>
-                            <th>Date</th>
-                            <th>Bill Amount</th>
-                            <th>Contact Person</th>
-                            <th>Address</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {console.log(sellerOrder)}
-                        {sellerOrder.map((item, index) =>
+            <div class="container-fluid">
+                <div className="row">
+                    <div className="col-1 me-2"><SideNav /></div>
+                    <div className="col-9 offset-2" style={{ marginLeft: "13vw" }}>
+                        <div className="text-center">
+                            <h3>OrderList</h3>
+                        </div>
+                        <table class="table table-hover table-inverse p-5">
+                            <thead className="text-center bg-light" style={{ boxShadow: "1px 1px 3px gray" }}>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>OrderId</th>
+                                    <th>Date</th>
+                                    <th>Bill Amount</th>
 
-                            <tr className="text-center" style={{ boxShadow: "1px 1px 3px gray" }} >
-                                <td>{index + 1}</td>
-                                <td ><button onClick={() => (orderdetails(item))} style={{ border: "none", backgroundColor: "whitesmoke" }}>{item._id}</button></td>
-                                <td>{item.date.substring(0, 10)}</td>
-                                <td>{item.billAmount}</td>
-                                <td>{item.contactPerson}</td>
-                                <td>{item.deliveryAddress}</td>
-                                <td>{item.status}</td>
-                            </tr>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {console.log(sellerOrder)}
+                                {uniqueorder.map((item, index) =>
 
-                        )}
+                                    <tr className="text-center" style={{ boxShadow: "1px 1px 3px gray" }} >
+                                        <td>{index + 1}</td>
+                                        <td ><button onClick={() => (orderdetails(item))} style={{ border: "none", backgroundColor: "whitesmoke" }}>{item._id}</button></td>
+                                        <td>{item.date.substring(0, 10)}</td>
+                                        <td>{item.billAmount}</td>
+                                        {/* <td>{item.contactPerson}</td> */}
+                                        <td>{item.deliveryAddress}</td>
+                                        <td>{item.status}</td>
+                                    </tr>
+
+                                )}
 
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div >
-        <Footer />
+
     </>
 }
 export default Order;

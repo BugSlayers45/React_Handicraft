@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "../SellerComponents/sidebar.css";
 
 function SideNav() {
 
@@ -9,61 +10,69 @@ function SideNav() {
     }
 
     return <>
-        <nav id="sidebarMenu" className=" collapse d-lg-block sidebar collapse" style={{ marginTop: "8rem" }}>
-            <div className="position-sticky">
+        <div class="s-layout">
 
-                <div className="list-group list-group-flush mx-3 mt-4">
+            <div class="s-layout__sidebar">
+                <a class="s-sidebar__trigger" href="#0">
+                    <i class="fa fa-bars"></i>
+                </a>
 
-                    <Link href="#" className="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-                        <i className="fas fa-tachometer-alt fa-fw me-3" /><span>Main dashboard</span>
-                    </Link>
-                    {currentSeller &&
-                        <Link to="/productList" className="list-group-item list-group-item-action py-2 ripple">
-                            <i className="fas fa-chart-area fa-fw me-3" /><span>ProductList</span>
-                        </Link>}
-                    {currentSeller &&
-                        <Link to="/order" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-chart-bar fa-fw me-3" /><span>Orders</span></Link>}
+                <nav class="s-sidebar__nav">
+                    <ul>
+                        <li>
+                            <Link class="s-sidebar__nav-link" to="/sellerHome">
+                                <i class="fa fa-home"></i><em>Home</em>
+                            </Link>
+                        </li>
+                        {currentSeller &&
+                            <Link to="/productList" className="s-sidebar__nav-link">
+                                <i className="fas fa-chart-area fa-fw me-3" /><em>ProductList</em>
+                            </Link>}
+                        {currentSeller &&
+                            <Link to="/order" className="s-sidebar__nav-link"><i className="fas fa-chart-bar fa-fw me-3" /><em>Orders</em></Link>}
+                        {currentSeller &&
+                            <Link to="/addproduct" className="s-sidebar__nav-link"><i class="fas fa-edit me-3"></i><em>Add Product</em></Link>}
+                        {currentSeller &&
+                            <Link to="/sales" className="s-sidebar__nav-link"><i className="fas fa-money-bill fa-fw me-3" /><em>Sales</em></Link>}
+                        {currentSeller &&
+                            <Link
+                                className="s-sidebar__nav-link"
+                                to="/sellersignin"
+                                onClick={signout}
 
-                    {currentSeller &&
-                        <Link to="/customerList" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-users fa-fw me-3" /><span>CustomerList</span></Link>}
-                    {currentSeller &&
-                        <Link to="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-chart-line fa-fw me-3" /><span>Earning</span></Link>
-                    }
-                    {currentSeller &&
-                        <Link to="/addproduct" className="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-edit me-3"></i><span>Add Product</span></Link>}
-                    {currentSeller &&
-                        <Link href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-money-bill fa-fw me-3" /><span>Sales</span></Link>}
-                    {currentSeller &&
-                        <Link
-                            className="list-group-item list-group-item-action py-2 ripple"
-                            to="/sellersignin"
-                            tabIndex={-1} onClick={signout}
+                            ><i class="fa fa-user me-3" aria-hidden="true"></i>
+                                <em> SignOut</em>
+                            </Link>}
+                        {!currentSeller &&
+                            <Link
+                                className="s-sidebar__nav-link"
+                                to="/sellersignin"
 
-                        ><i class="fa fa-user me-3" aria-hidden="true"></i>
-                            SignOut
-                        </Link>}
-                    {!currentSeller &&
-                        <Link
-                            className="list-group-item list-group-item-action py-2 ripple"
-                            to="/sellersignin"
-                            tabIndex={-1}
 
-                        ><i class="fa fa-user-circle me-3" aria-hidden="true"></i>
-                            SignIn
-                        </Link>}
-                    {!currentSeller &&
+                            ><i class="fa fa-user-circle me-3" aria-hidden="true"></i>
+                                <em>SignIn</em>
+                            </Link>}
+                        {!currentSeller &&
 
-                        <Link
-                            className="list-group-item list-group-item-action py-2 ripple"
-                            to="/sellersignup"
-                            tabIndex={-1}
+                            <Link
+                                className="s-sidebar__nav-link"
+                                to="/sellersignup"
+                                tabIndex={-1}
 
-                        ><i class="fa fa-user me-3" aria-hidden="true" />
-                            SignUp
-                        </Link>}
-                </div>
+                            ><i class="fa fa-user me-3" aria-hidden="true" />
+                                <em> SignUp</em>
+                            </Link>}
+
+                    </ul>
+                </nav>
             </div>
-        </nav>
+
+
+
+        </div>
     </>
 }
 export default SideNav;
+
+
+

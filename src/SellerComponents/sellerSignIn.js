@@ -7,6 +7,7 @@ import axios from "axios";
 import { setSeller } from "../redux-config/sellerSignInSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
+import SideNav from "./sideNav";
 
 function SellerSignIn() {
 
@@ -133,40 +134,43 @@ function SellerSignIn() {
     return <><SellerNavigation />
         <div className="container mt-5 mb-5" style={{ marginLeft: "17vw", }}>
             <div className=" row">
-                <div className="col-4 ml-4" >
-                    <img className="img-fluid ml-5" src="assets/img/potter1.jpg" />
-                </div>
-                <div className="login-box col-lg-4 ml-4" style={{ boxShadow: "3px 5px 25px gray" }}><br />
-                    <h2 className="text-center" >Login</h2><hr /><br />
-                    <form method="post" action="/signin" onSubmit={signin}>
+                <div className="col-1 me-2"><SideNav /></div>
+                <div className="col-9 d-flex">
+                    <div className=" col-sm-12 col-lg-5 col-md-12 bg-primary p-0" >
+                        <img className="img-fluid img-responsive w-100" src="assets/img/potter1.jpg" style={{ height: "70vh" }} />
+                    </div>
+                    <div className="login-boxcol-sm-12 col-lg-6 col-md-12 " style={{ boxShadow: "3px 5px 25px gray" }}><br />
+                        <h2 className="text-center" >Login</h2><hr /><br />
+                        <form method="post" action="/signin" onSubmit={signin}>
 
-                        <div className="user-box ml-4 mr-4 ">
+                            <div className="user-box ml-4 mr-4 ">
 
 
-                            <input
-                                type="email" onKeyUp={emailValidation}
-                                className="form-control" name="email" id="email" placeholder="Enter Email"
-                                onChange={(event) => setEmail(event.target.value)}
-                            /> <small id="emailside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
+                                <input
+                                    type="email" onKeyUp={emailValidation}
+                                    className="form-control" name="email" id="email" placeholder="Enter Email"
+                                    onChange={(event) => setEmail(event.target.value)}
+                                /> <small id="emailside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
 
-                        </div>
-                        <div className="user-box ml-4">
-                            <input
-                                type="password"
-                                className="form-control" onKeyUp={pswdValidation} id="pid" name="password"
-                                onChange={(event) => setPassword(event.target.value)} placeholder="Enter password"
-                            /><small id="pswdside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
-                        </div>
-                        <button type="submit" className="btn btn-dark mt-4 ml-4" style={{ borderRadius: "5%", width: "94%" }}>
-                            SignIn
-                        </button>
-                        <div className="mt-2 text-right mb-4">
-                            <Link to="/sellersignUp">New User ?</Link>
-                        </div>
+                            </div><br />
+                            <div className="user-box ml-4 mr-4">
+                                <input
+                                    type="password"
+                                    className="form-control" onKeyUp={pswdValidation} id="pid" name="password"
+                                    onChange={(event) => setPassword(event.target.value)} placeholder="Enter password"
+                                /><small id="pswdside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
+                            </div>
+                            <button type="submit" className="btn btn-dark mt-4 ml-4 mr-4" style={{ borderRadius: "5%", width: "88%" }}>
+                                SignIn
+                            </button>
+                            <div className="mt-2 text-right mb-4 mr-4">
+                                <Link to="/sellersignUp">New User ?</Link>
+                            </div>
 
-                    </form>
-                </div>
-            </div >
+                        </form>
+                    </div>
+                </div >
+            </div>
         </div >
 
 

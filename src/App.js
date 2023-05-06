@@ -16,10 +16,10 @@ import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css';
-import SellerProduct from './SellerComponents/sellerDescription';
 import SideNav from './SellerComponents/sideNav';
 import OrderDetail from './SellerComponents/orderDetail';
 import FileUpload from './components/test/FileUpload';
+import Sales from './SellerComponents/sales';
 
 
 function App() {
@@ -51,6 +51,7 @@ function App() {
       <Route path='/sidenav' element={<SideNav />} />
       <Route path='/orderdetail' element={<OrderDetail />} />
       <Route path='/image' element={<FileUpload />} />
+      <Route path='/sales' element={<Sales />} />
 
 
 

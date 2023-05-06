@@ -110,11 +110,7 @@ export default function Footer() {
                 Customer
               </Link>
             </li>
-            <li>
-              <Link className="text-decoration-none" to="/dashboard">
-                dashboard
-              </Link>
-            </li>
+
           </ul>
         </div>
       </div>

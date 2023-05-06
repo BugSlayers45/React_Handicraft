@@ -5,8 +5,8 @@ function SellerProduct() {
     const location = useLocation();
     let productData = location.state.productData;
     const imageArray = productData.images;
-    
-    
+
+
     return <>
         <SellerNavigation />
         <div className="container-fluid mt-5">

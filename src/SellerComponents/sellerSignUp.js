@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SellerNavigation from "./sellerNevigation";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SideNav from "./sideNav";
 
 
 function SellerSignUp() {
@@ -172,65 +173,68 @@ function SellerSignUp() {
         <SellerNavigation />
         <div className="container mb-3 mt-5" style={{ marginLeft: "12vw", marginTop: "5px" }} >
             <div className=" row">
-                <div className="col-5" >
-                    <img className="img-fluid ml-5" src="assets/img/potter2.jpg" />
-                </div>
-                <div className="login-box col-5" style={{ boxShadow: "3px 5px 25px  gray" }}><br />
-                    <h2 className="text-center">SignUp</h2><hr />
-                    <form onSubmit={signup} className="mt-5">
-                        <div className="user-box form-group ml-4">
+                <div className="col-1 me-2"><SideNav /></div>
+                <div className="col-9 d-flex" style={{ marginLeft: "7vw" }}>
+                    <div className="col-5 me-5" >
+                        <img className="img-fluid ml-5" src="assets/img/potter2.jpg" />
+                    </div>
+                    <div className="login-box col-6" style={{ boxShadow: "3px 5px 25px  gray" }}><br />
+                        <h2 className="text-center">SignUp</h2><hr />
+                        <form onSubmit={signup} className=" me-4">
+                            <div className="user-box form-group ml-4 ">
 
 
-                            <input
-                                onChange={(event) => setName(event.target.value)} onKeyUp={unameValidation}
-                                type="text" className="form-control" name="name" id="name" placeholder="Enter Name"
+                                <input
+                                    onChange={(event) => setName(event.target.value)} onKeyUp={unameValidation}
+                                    type="text" className="form-control" name="name" id="name" placeholder="Enter Name"
 
-                            /> <small id="nameside" style={{ color: "red" }}>*</small>
+                                /> <small id="nameside" style={{ color: "red" }}>*</small>
 
-                        </div>
-                        <div className="user-box ml-4">
+                            </div>
+                            <div className="user-box ml-4">
 
-                            <input placeholder="Enter Email"
-                                onChange={(event) => setEmail(event.target.value)} onKeyUp={emailValidation}
-                                type="email" className="form-control" name="email" id="email"
+                                <input placeholder="Enter Email"
+                                    onChange={(event) => setEmail(event.target.value)} onKeyUp={emailValidation}
+                                    type="email" className="form-control" name="email" id="email"
 
-                            /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
+                                /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
 
-                        </div>
-                        <div className="user-box ml-4">
-                            <input placeholder="Enter Password"
-                                onChange={(event) => setPassword(event.target.value)} onKeyUp={pswdValidation}
-                                type="password" className="form-control" name="password" id="pid"
+                            </div>
+                            <div className="user-box ml-4">
+                                <input placeholder="Enter Password"
+                                    onChange={(event) => setPassword(event.target.value)} onKeyUp={pswdValidation}
+                                    type="password" className="form-control" name="password" id="pid"
 
-                            /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
+                                /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
 
-                        </div>
-                        <div className="user-box ml-4">
-                            <input placeholder="Enter Contact No" onKeyUp={contactValidation} id="contact" name="contact" onChange={(event) => setContact(event.target.value)} type="text" className="form-control" name="contact" required="" />
-                            <small id="conside" style={{ color: "red", marginBottom: "2px" }}>*</small>
-                        </div>
+                            </div>
+                            <div className="user-box ml-4">
+                                <input placeholder="Enter Contact No" onKeyUp={contactValidation} id="contact" name="contact" onChange={(event) => setContact(event.target.value)} type="text" className="form-control" name="contact" required="" />
+                                <small id="conside" style={{ color: "red", marginBottom: "2px" }}>*</small>
+                            </div>
 
-                        <div className="user-box ml-4">
+                            <div className="user-box ml-4">
 
-                            <label>Address</label><br />
-                            <input
-                                onChange={(event) => setAddress(event.target.value)}
-                                type="text" className="form-control"
+                                <label>Address</label><br />
+                                <input
+                                    onChange={(event) => setAddress(event.target.value)}
+                                    type="text" className="form-control"
 
-                            />
+                                />
 
-                        </div>
-                        <button type="submit" className="btn btn-dark mt-4 ml-4 mb-2" style={{
-                            borderRadius: "5%", width: "95%"
-                        }}>
-                            SignUp
-                        </button>
+                            </div>
+                            <button type="submit" className="btn btn-dark mt-2 ml-4 mb-2" style={{
+                                borderRadius: "5%", width: "95%"
+                            }}>
+                                SignUp
+                            </button>
 
-                        <div className="mb-4 text-right mt-2 ">
-                            <Link to='/sellersignin'>Already an acount ?</Link>
-                        </div>
+                            <div className=" text-right">
+                                <Link to='/sellersignin'><small>Already an acount ?</small></Link>
+                            </div>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div >
