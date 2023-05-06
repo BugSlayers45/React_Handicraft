@@ -2,12 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../redux-config/CustomerSlice";
+
+
 export default function Navigation() {
-  const {currentCustomer}=useSelector(state=>state.customer)
+  const { currentCustomer } = useSelector(state => state.customer)
   // window.alert(currentCustomer)
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const customerSignOut=()=>{
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const customerSignOut = () => {
     dispatch(signOut())
   }
 
@@ -68,64 +70,46 @@ export default function Navigation() {
               </ul>
             </div>
             <div className="navbar align-self-center d-flex ml-5">
-             
-            
-                {currentCustomer&&<Link
-                  to="/cart"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
-                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                    1
-                  </span>VIew Cart
-                </Link>}
-                {!currentCustomer&&<Link
-                  to="/signin"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
-                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                    1
-                  </span>VIew Cart
-                </Link>}
-            
-            
-                {!currentCustomer&&<Link
-                  to="/signIn"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  Signin
-                </Link>}
-             
-                {currentCustomer&&<Link 
-                  onClick={customerSignOut}
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  SignOut
-                </Link>
-                }
-                {currentCustomer&&<Link
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  View Orders
-                </Link>}
-                {!currentCustomer&&<Link
-                  to="/signUp"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  SignUp
-                </Link>}
+              <Link
+                to="/cart"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
+                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                  1
+                </span>VIew Cart
+              </Link>
+
+
+              {!currentCustomer && <Link
+                to="/signIn"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-user text-dark mr-3" />
+                Signin
+              </Link>}
+
+              {currentCustomer && <Link
+                onClick={customerSignOut}
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-user text-dark mr-3" />
+                SignOut
+              </Link>}
+              <Link
+                to="/signUp"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-user text-dark mr-3" />
+                SignUp
+              </Link>
             </div>
           </div>
         </div>
       </nav>
       <div className="align-self-center d-flex mt-3 offset-2 col-8 text-centre">
         {" "}
-     
+
       </div>
 
       {/* Close Header */}

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../redux-config/sellerSignInSlice";
-import { Divider } from "@mui/material";
+
 
 
 export default function SellerNavigation() {
@@ -52,36 +52,54 @@ export default function SellerNavigation() {
                                 Home
                             </Link>
                         </li>
-                        {currentSeller &&
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/order">
-                                    Order
-                                </Link>
-                            </li>}
-                        {currentSeller &&
-                            <li className="nav-item dropdown">
-                                <a
-                                    className="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Shop
-                                </a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <Link className="dropdown-item" to="/addproduct">
-                                            Add Product
-                                        </Link>
-                                    </li>
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/order">
+                                Order
+                            </Link>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Shop
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <Link className="dropdown-item" to="/addproduct">
+                                        Add Product
+                                    </Link>
+                                </li>
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Shop
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <Link to="/addproduct" class="dropdown-item" >Add Product</Link>
+                                        <Link class="dropdown-item" to="/productList">ProductList</Link>
+
+                                    </div>
+                                </div>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="contact.html">
+                                        Contact
+                                    </a>
+
                                     <hr />
                                     <li>
                                         <Link className="dropdown-item" to="/productList">
                                             ProductList
                                         </Link>
                                     </li>
+
+
+                                </li>
+
 
                                 </ul>
                             </li>}
