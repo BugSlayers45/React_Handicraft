@@ -13,9 +13,9 @@ function OrderDetail() {
     return <>
 
         <div className="container">
-            
-                <h1>Order-History</h1>
-            </div>
+            <div className="text-center" style={{ boxShadow: "2px 5px 15px" }}><h1>Order-History</h1></div>
+
+
             <div className="row">
                 <div className="col-md-12">
 
@@ -29,13 +29,13 @@ function OrderDetail() {
                                 <div className="media-body my-auto text-right">
                                     <div className="row  my-auto flex-column flex-md-row ">
                                         <div className="col" style={{ textAlign: "center" }}><small>
-                                            {detail.productDetails?.description}
+                                            {detail.productDetails?.description.substring(0, 30)}
                                         </small>
                                         </div>
                                         <div className="col-md-2">Qty : {detail.OrderItems?.quantity}</div>
                                         <div className="col my-auto">
                                             <h6 className="mb-0">
-                                                Total BillAmount : {detail.OrderItems?.billAmount}
+                                                Total BillAmount : {detail.billAmount}
                                             </h6>
                                         </div>
                                     </div>
@@ -43,10 +43,8 @@ function OrderDetail() {
                             </div>
                             <hr className="my-3 " />
                             <div className="row">
-                                <div className="col-lg-3 ">
-                                    <h6 className="mb-0">Title : {detail.productDetails?.title}</h6>
-                                </div>
-                                <div className="col-auto my-auto">
+
+                                <div className="col-auto ">
 
                                 </div>
                                 <div className="col mt-auto offset-2">
@@ -64,7 +62,7 @@ function OrderDetail() {
 
                 </div>
             </div>
-        </div >
+        </div>
 
     </>
 }
