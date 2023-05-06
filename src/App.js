@@ -14,6 +14,10 @@ import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
+import UserProfile from './components/User/UserProfile/UserProfile';
+
+
+
 function App() {
   return <>
   <Routes> 
@@ -28,10 +32,12 @@ function App() {
      <Route path='/sellersignin' element={<SellerSignIn />} />
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
-    </Routes>
+    <Route path='/products' element={<Products />} />
+    <Route path='/profile' element={<UserProfile/>} />
 
   </Routes>
   </>
+
 }
 
 export default App;
