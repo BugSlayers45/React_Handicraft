@@ -26,6 +26,7 @@ function SellerHome() {
     }
 
 
+
     const totalOrders = async () => {
         try {
             let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
@@ -182,14 +183,6 @@ function SellerHome() {
                 </div>
             </div>
         </main>
-
-
-
-
-
-
-
-
     </>
 }
 export default SellerHome;

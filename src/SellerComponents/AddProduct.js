@@ -29,6 +29,7 @@ function AddProduct() {
     const handleFileChange1 = (event) => {
         setThumb(event.target.files[0])
     }
+    console.log(thumb)
     const handleUpload = async (event) => {
         try {
             event.preventDefault()
@@ -37,6 +38,7 @@ function AddProduct() {
             file.map((f) => {
                 formData.append('files', f);
             })
+            console.log(formData);
             formData.append('file', thumb);
             formData.append('title', title);
             formData.append('description', description);
