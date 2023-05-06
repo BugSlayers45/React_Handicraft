@@ -19,7 +19,8 @@ import Button from "@mui/material/Button";
 import { IconButton, TableCell, TableRow } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import CircularStatic from "../../../SellerComponents/spinner/Spinner";
-import axios from "axios";
+import "../Cart/cart.css"
+import { ToastContainer } from "react-toastify";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ export default function Cart() {
 
   return (
     <>
+    <ToastContainer/>
       <Header />
       <Navigation />
       {cartItems.length&&(<div>
@@ -211,6 +213,7 @@ export default function Cart() {
               onClick={() => clearCart()}
               variant="contained"
               color="warning"
+              className="ml-3"
             >
               ClearCart
             </Button>

@@ -13,6 +13,7 @@ export default function Navigation() {
   const navigate = useNavigate()
   const customerSignOut = () => {
     dispatch(signOut())
+
   }
 
   return (

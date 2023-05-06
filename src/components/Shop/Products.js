@@ -10,6 +10,7 @@ import { addItemIntoCart, updateCartItems } from "../../redux-config/CartSlice";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../WebApi/api";
 import CircularStatic from "../../SellerComponents/spinner/Spinner";
+import { Rating } from "@mui/material";
 
 export default function Products() {
   const location = useLocation();
@@ -205,16 +206,10 @@ export default function Products() {
                         href="shop-single.html"
                         className="h3 text-decoration-none"
                       >
-                        {products.title}
+                        {products.title.substring(0,60)}
                       </a>
                       <ul className="list-unstyled d-flex justify-content-center mb-1">
-                        <li>
-                          <i className="text-warning fa fa-star" />
-                          <i className="text-warning fa fa-star" />
-                          <i className="text-warning fa fa-star" />
-                          <i className="text-muted fa fa-star" />
-                          <i className="text-muted fa fa-star" />
-                        </li>
+                      <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly /><small className="disabled">{products.rating}</small>
                       </ul>
                       <p className="text-center mb-0">₹{products.price}</p>
                     </div>
