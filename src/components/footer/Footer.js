@@ -101,7 +101,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <Link className="text-decoration-none" to="/SellerHome">
+              <Link className="text-decoration-none" to="/sellersignin">
                 Seller
               </Link>
             </li>
@@ -110,6 +110,7 @@ export default function Footer() {
                 Customer
               </Link>
             </li>
+
           </ul>
         </div>
       </div>

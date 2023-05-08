@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../redux-config/CustomerSlice";
 export default function Navigation() {
   const {currentCustomer}=useSelector(state=>state.customer)
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const customerSignOut=()=>{
+  const{cartItems}=useSelector(state=>state.cart)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const customerSignOut = () => {
     dispatch(signOut())
+
   }
 
   return (
@@ -79,16 +81,24 @@ export default function Navigation() {
             <div className="navbar align-self-center d-flex ml-5">
              
             
-                <Link
+                {currentCustomer&&<Link
                   to="/cart"
                   className="nav-icon position-relative text-decoration-none"
-                 
                 >
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
                   <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                    1
-                  </span>VIew Cart
-                </Link>
+                    {cartItems.length}
+                  </span>View Cart
+                </Link>}
+                {!currentCustomer&&<Link
+                  to="/signin"
+                  className="nav-icon position-relative text-decoration-none"
+                >
+                  <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
+                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                    {cartItems.length}
+                  </span>View Cart
+                </Link>}
             
             
                 {!currentCustomer&&<Link
@@ -99,20 +109,27 @@ export default function Navigation() {
                   Signin
                 </Link>}
              
-                {currentCustomer&&<Link
+                {currentCustomer&&<Link 
                   onClick={customerSignOut}
                   className="nav-icon position-relative text-decoration-none"
                 >
                   <i className="fa fa-fw fa-user text-dark mr-3" />
                   SignOut
+                </Link>
+                }
+                {currentCustomer&&<Link
+                  className="nav-icon position-relative text-decoration-none"
+                >
+                  <i className="fa fa-fw fa-user text-dark mr-3" />
+                  View Orders
                 </Link>}
-                <Link
+                {!currentCustomer&&<Link
                   to="/signUp"
                   className="nav-icon position-relative text-decoration-none"
                 >
                   <i className="fa fa-fw fa-user text-dark mr-3" />
                   SignUp
-                </Link>
+                </Link>}
             </div>
           </div>
         </div>
