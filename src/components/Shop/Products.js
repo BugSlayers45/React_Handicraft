@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { addItemIntoCart, updateCartItems } from "../../redux-config/CartSlice";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../WebApi/api";
-
+import { addItemInWishlist, updateWishlistItems } from "../../redux-config/wishlistSlice";
 export default function Products() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ export default function Products() {
 
   ///Cart COde:
   const addToCart = (products) => {
-    if (!currentCustomer) toast.warning("Please Login For cart");
+    if (!currentCustomer) toast.warning("Please Login first");
     else {
       let status = true;
       if (cartItems.length != 0)
@@ -97,6 +97,35 @@ export default function Products() {
       }
     }
   };
+
+  const addWishlist = (products) =>{
+    console.log(products + "product sdkjfnjkn");
+    if (!currentCustomer) toast.warning("Please Login First");
+    else {
+      let status = true;
+      if (cartItems.length != 0)
+        status = cartItems.some((item) => item.productId._id == products._id);
+      else status = false;
+      if (status) toast.info("Item is already added in wishlist");
+      else {
+        dispatch(
+          addItemInWishlist({
+            customerId: currentCustomer._id,
+            productId: products._id,
+          })
+        );
+        if (!cartError) {
+          dispatch(updateWishlistItems(products));
+          toast.success("Item Successfuly Added in wishlist");
+          }
+         else {
+          toast.error("!Oop somthing went wrong");
+        }
+      }
+    }
+  }
+
+
   useEffect(() => {
     if (categoryid) {
       categroyFilterFromHome();
@@ -179,8 +208,8 @@ export default function Products() {
                         <ul className="list-unstyled">
                           <li>
                             <a
+                             onClick = {()=>addWishlist(products)}
                               className="btn btn-success text-white"
-                              href="shop-single.html"
                             >
                               <i className="far fa-heart" />
                             </a>

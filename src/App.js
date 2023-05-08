@@ -18,6 +18,8 @@ import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
 
 import FileUpload from './components/test/FileUpload';
+import Wishlist from './components/Wishlist/wishlist';
+import CustomerOrders from './components/order/Orders';
 
   
 function App() {
@@ -49,6 +51,10 @@ function App() {
       <Route path='/image' element={<FileUpload/>} /> 
 
 
+    </Routes>
+    <Routes>
+      <Route path='/wishlist' element = {<Wishlist/>}/>
+      <Route path='/orders' element = {<CustomerOrders/>}/>
     </Routes>
   </>
 }
