@@ -8,6 +8,8 @@ export default {
    REMOVE_FROM_CART:"/cart/deleteproduct",
    VIEW_CART_ITEMS:"/cart/viewCartItems",
    ADD_TO_CART:"/cart/add-to-cart",
-   PRODUCT_ADD: "/product/save"
+   PRODUCT_ADD: "/product/save",
+   
+   CUSTOMER_SAVE: "/customer/save"
 
 }

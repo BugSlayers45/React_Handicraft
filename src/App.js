@@ -15,7 +15,9 @@ import AddProduct from './SellerComponents/AddProduct';
 import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
+import UserProfile from './components/User/UserProfile/UserProfile';
+
 import SideNav from './SellerComponents/sideNav';
 import OrderDetail from './SellerComponents/orderDetail';
 import Checkout from './components/User/payments/Checkout';
@@ -40,6 +42,10 @@ function App() {
     <Route path='/sellersignin' element={<SellerSignIn />} />
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
+
+    <Route path='/products' element={<Products />} />
+    <Route path='/profile' element={<UserProfile/>} />
+
     <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
@@ -48,6 +54,7 @@ function App() {
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
       <Route path='/checkout' element={<Checkout/>}/>
+
       <Route path='/image' element={<FileUpload/>} />
       <Route path="/wishlist" element= {<Wishlist/>}/> 
       <Route path="/orders" element= {<CustomerOrders/>}/>
