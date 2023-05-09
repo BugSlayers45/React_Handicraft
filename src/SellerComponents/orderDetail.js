@@ -12,9 +12,6 @@ function OrderDetail() {
     useEffect(() => {
         setDetail(totalOrders);
     });
-
-
-
     return <>
         <div className="container">
             <div
