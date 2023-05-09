@@ -7,14 +7,15 @@ function OrderDetail() {
     const location = useLocation([]);
     const { totalOrders } = location.state;
     console.log(totalOrders);
-    console.log(detail);
+
 
     useEffect(() => {
         setDetail(totalOrders);
     });
 
-    return <>
 
+
+    return <>
         <div className="container">
             <div
                 style={{
@@ -45,7 +46,7 @@ function OrderDetail() {
                                         <div className="col-md-2">Qty : {detail.OrderItems?.quantity}</div>
                                         <div className="col my-auto">
                                             <h6 className="mb-0">
-                                                Total BillAmount : {detail.billAmount}
+                                                Total BillAmount : {detail.productDetails?.price}
                                             </h6>
                                         </div>
                                     </div>
@@ -63,7 +64,7 @@ function OrderDetail() {
 
                                 </div>
                                 <div>
-                                    <div>Address : {detail.deliveryAddress} </div>
+                                    <div>Address : {detail?.deliveryAddress} </div>
 
                                 </div>
                             </div>
