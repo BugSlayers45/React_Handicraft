@@ -55,7 +55,6 @@ export default function Checkout() {
       displayRazorpay()
     }
     else {
-
       const data = { name, deliveryaddress, contactPerson, contactNumber }
       dispatch(setDeliveryDetail(data))
       const response = await axios.post("http://localhost:3000/order/buynow", {
@@ -64,13 +63,10 @@ export default function Checkout() {
         "contactNumber": contactNumber,
         "contactPerson": contactPerson,
         "orderItems": products
-
       }
       )
-
       toast.success("Order Placed Successfully")
       console.log(response)
-
     }
 
     // --------------------------------------------------------
