@@ -21,6 +21,8 @@ import OrderDetail from './SellerComponents/orderDetail';
 import Checkout from './components/User/payments/Checkout';
 import FileUpload from './components/test/FileUpload';
 import Sales from './SellerComponents/sales';
+import Wishlist from './components/Wishlist/wishlist';
+import CustomerOrders from './components/order/Orders';
 
 
 function App() {
@@ -46,9 +48,10 @@ function App() {
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
       <Route path='/checkout' element={<Checkout/>}/>
-      <Route path='/image' element={<FileUpload/>} /> 
+      <Route path='/image' element={<FileUpload/>} />
+      <Route path="/wishlist" element= {<Wishlist/>}/> 
+      <Route path="/orders" element= {<CustomerOrders/>}/>
     </Routes>
-   
   </>
 }
 export default App;
