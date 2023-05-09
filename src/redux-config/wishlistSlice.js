@@ -28,16 +28,16 @@ const slice=createSlice({
     },
     reducers:{
        updateWishlistItems:(state,action)=>{
-        state.wishlistItem=[...state.wishlistItem,{productId:action.payload}]
+        state.wishlistData=[...state.wishlistData,{productId:action.payload}]
        }
     },
     extraReducers:(builder)=>{
         builder.addCase(fetchWishlist.pending,(state,action)=>{
             console.log(action.payload);
-            state.wishlistItem=action.payload
+            state.wishlistData=action.payload
         }).addCase(fetchWishlist.fulfilled,(state,action)=>{
             console.log(action.payload);
-            state.wishlistItem=action.payload
+            state.wishlistData=action.payload
         }).addCase(fetchWishlist.rejected,(state,action)=>{
             console.log(action.payload);
             state.wishlistError="Something went wrong"

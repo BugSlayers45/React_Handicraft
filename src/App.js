@@ -48,7 +48,9 @@ function App() {
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
       <Route path='/checkout' element={<Checkout/>}/>
-      <Route path='/image' element={<FileUpload/>} /> 
+      <Route path='/image' element={<FileUpload/>} />
+      <Route path="/wishlist" element= {<Wishlist/>}/> 
+      <Route path="/orders" element= {<CustomerOrders/>}/>
     </Routes>
   </>
 }

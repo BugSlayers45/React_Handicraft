@@ -13,8 +13,8 @@ import "./wishlist.css";
 export default function Wishlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { wishlistItem, wishlistError, flag } = useSelector((state) => state.wishlist);
-  console.log(wishlistItem?.wishlistItems)
+  const { wishlistData, wishlistError, flag } = useSelector((state) => state.wishlist);
+  console.log(wishlistData?.wishlistItems)
   const { currentCustomer } = useSelector((state) => state.customer);
   const { cartItems, cartError } = useSelector((state) => state.cart);
  
@@ -133,7 +133,7 @@ export default function Wishlist() {
         <div className="row">
               <div className="container">
               <div className="row">
-                {currentCustomer && wishlistItem?.wishlistItems?.map((products, index) => (
+                {currentCustomer && wishlistData?.wishlistItems?.map((products, index) => (
                   <div key={index} className="col-md-4">
                     <div
                       className="card mb-4 product-wap rounded-0"
