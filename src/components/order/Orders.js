@@ -22,7 +22,7 @@ export default function CustomerOrders() {
       const response = await axios.post("http://localhost:3000/order/orderdetails", { id: currentCustomer._id })
       setOrders(response.data.order)
     } catch (err) {
-      response.send("Something went wrong")
+      console.log("Something went wrong")
     }
   }
   useEffect(() => {
