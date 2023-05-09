@@ -6,19 +6,29 @@ function OrderDetail() {
     const [detail, setDetail] = useState([])
     const location = useLocation([]);
     const { totalOrders } = location.state;
+    console.log(totalOrders);
+    console.log(detail);
+
     useEffect(() => {
         setDetail(totalOrders);
-    }, []);
+    });
 
     return <>
 
         <div className="container">
-            <div className="text-center" style={{ boxShadow: "2px 5px 15px" }}><h1>Order-History</h1></div>
-
-
+            <div
+                style={{
+                    textAlign: "center",
+                    boxShadow: "2px 2px 10px",
+                    width: "60%",
+                    marginLeft: "16vw",
+                    marginBottom: "3vh"
+                }}
+            >
+                <h1>Order-History</h1>
+            </div>
             <div className="row">
                 <div className="col-md-12">
-
                     < div className="card card-2 mt-3">
                         <div className="card-body">
                             <div className="media d-flex">
@@ -29,7 +39,7 @@ function OrderDetail() {
                                 <div className="media-body my-auto text-right">
                                     <div className="row  my-auto flex-column flex-md-row ">
                                         <div className="col" style={{ textAlign: "center" }}><small>
-                                            {detail.productDetails?.description.substring(0, 30)}
+                                            {detail.productDetails?.title}
                                         </small>
                                         </div>
                                         <div className="col-md-2">Qty : {detail.OrderItems?.quantity}</div>
@@ -44,16 +54,16 @@ function OrderDetail() {
                             <hr className="my-3 " />
                             <div className="row">
 
-                                <div className="col-auto ">
+                                <div className="col-auto my-auto">
 
                                 </div>
-                                <div className="col mt-auto offset-2">
+                                <div className="col mt-auto offset-2" style={{ marginLeft: "35vw" }}>
                                     <div>Order Placed Date : {detail.OrderItems?.date}</div>
                                     <div>OrderID : {detail.OrderItems?._id} </div>
 
                                 </div>
                                 <div>
-                                    <div>Address : {detail.OrderItems?.deliveryAddress} </div>
+                                    <div>Address : {detail.deliveryAddress} </div>
 
                                 </div>
                             </div>
@@ -62,8 +72,7 @@ function OrderDetail() {
 
                 </div>
             </div>
-        </div>
-
+        </div >
     </>
 }
 export default OrderDetail;

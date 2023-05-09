@@ -26,6 +26,7 @@ function SellerHome() {
     }
 
 
+
     const totalOrders = async () => {
         try {
             let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
@@ -99,8 +100,7 @@ function SellerHome() {
                                             <div class="card-body d-flex">
                                                 <span class="fw-semibold d-block mb-1 ">Products</span>
                                                 <span><div class="dropdown " style={{ marginLeft: "7vw" }}>
-                                                    {/* <i class="fa-solid fa-user" style={{ color: "#fdf162;" }}></i> */}
-                                                    {/* <img className="img-fluid" src='assets/img/product.png' style={{ height: "8vh", width: "30vw", backgroundColor: "white" }} /> */}
+
                                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                                                         <a class="dropdown-item" href="javascript:void(0);">View More</a>
 
@@ -182,14 +182,6 @@ function SellerHome() {
                 </div>
             </div>
         </main>
-
-
-
-
-
-
-
-
     </>
 }
 export default SellerHome;
