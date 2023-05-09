@@ -9,11 +9,9 @@ import { useSelector } from "react-redux";
 
 export default function CustomerOrders() {
   const { currentCustomer } = useSelector((state) => state.customer);
-  console.log(currentCustomer);
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const orderDetail = (order) => {
-    console.log(order);
     navigate("/orderdetail", {
       state: { order: order }
     })
@@ -24,14 +22,13 @@ export default function CustomerOrders() {
       const response = await axios.post("http://localhost:3000/order/orderdetails", { id: currentCustomer._id })
       setOrders(response.data.order)
     } catch (err) {
-      console.log(err)
+      response.send("Something went wrong")
     }
   }
   useEffect(() => {
     orderList();
 
   }, [])
-  console.log(orders);
   return <>
     <div className="hero_area">
       {/* header section strats */}

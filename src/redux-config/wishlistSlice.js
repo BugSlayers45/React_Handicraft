@@ -3,8 +3,6 @@ import axios from "axios";
  
 export const fetchWishlist=createAsyncThunk("fetchwishlist",async(obj)=>{
     let response=await axios.post("http://localhost:3000/wishlist/viewwishlist",{customerId : obj.customerId})
-    console.log("after response");
-    console.log(response.data);
     return response.data.wishlist
 })
   
@@ -33,13 +31,10 @@ const slice=createSlice({
     },
     extraReducers:(builder)=>{
         builder.addCase(fetchWishlist.pending,(state,action)=>{
-            console.log(action.payload);
             state.wishlistData=action.payload
         }).addCase(fetchWishlist.fulfilled,(state,action)=>{
-            console.log(action.payload);
             state.wishlistData=action.payload
         }).addCase(fetchWishlist.rejected,(state,action)=>{
-            console.log(action.payload);
             state.wishlistError="Something went wrong"
         }).addCase(addItemInWishlist.fulfilled,(state,action)=>{
             state.flag=true;

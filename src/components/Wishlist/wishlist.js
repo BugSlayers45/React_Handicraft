@@ -14,12 +14,10 @@ export default function Wishlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { wishlistData, wishlistError, flag } = useSelector((state) => state.wishlist);
-  console.log(wishlistData?.wishlistItems)
   const { currentCustomer } = useSelector((state) => state.customer);
   const { cartItems, cartError } = useSelector((state) => state.cart);
  
   const addToCart = (products) => {
-    console.log(products + "product sdkjfnjkn");
     if (!currentCustomer) toast.warning("Please Login For cart");
     else {
       let status = true;
@@ -53,7 +51,6 @@ export default function Wishlist() {
 
   const deletefromWishlist = async(product)=>{
     let response=await axios.post("http://localhost:3000/wishlist/delete",{customerId:currentCustomer._id,productId:product._id})
-    console.log(response.data);
     if(response.data.status){
       wishList();
     }
