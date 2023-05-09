@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './UserProfile.css';
 import axios from 'axios';
+import api from '../../../WebApi/api';
 
 
 
@@ -10,6 +11,7 @@ export default function UserProfile()
   //const [img, setImg] = useState(null)
   const { currentCustomer } = useSelector(state => (state.customer));
   let image = useRef("");
+
   const handleFileChange = (event) => 
   {
     image = event.target.files[0];
@@ -23,7 +25,7 @@ export default function UserProfile()
       const formData = new FormData();
       formData.append('file', image);
       formData.set("customerId",currentCustomer?._id);
-      const response = await axios.post("http://localhost:3000/customer/save",formData)
+      const response = await axios.post(api.CUSTOMER_SAVE ,formData)
       
     }
     catch (err) {
@@ -33,6 +35,7 @@ export default function UserProfile()
   }
 
     // return response.data.formData
+ 
 
     return <>
       <section className="h-100 gradient-custom-2">
