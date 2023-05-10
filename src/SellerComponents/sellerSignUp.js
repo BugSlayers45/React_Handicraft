@@ -69,17 +69,17 @@ function SellerSignUp() {
             if (atTheRateIndex == -1) {
                 status = false;
                 emailside.innerHTML = "Invalid email(@ missing)";
-                // emailside.style.color = "red";
+
             }
             else if (secondAtTheReateIndex != atTheRateIndex) {
                 status = false;
                 emailside.innerHTML = "Invalid email";
-                // emailside.style.color = "red";
+
             }
             else if (dotIndex == -1) {
                 status = false;
                 emailside.innerHTML = "Invalid email(. missing)";
-                // emailside.style.color = "red";
+
             }
             else {
                 var stringAfterAtTheRate = email.substring(atTheRateIndex);
@@ -87,21 +87,21 @@ function SellerSignUp() {
                 if (lastDotIndex == -1) {
                     status = false;
                     emailside.innerHTML = "Invalid email(. missing in domain)";
-                    // emailside.style.color = "red";
+
                 }
                 else {
                     var inOrCom = stringAfterAtTheRate.substring(lastDotIndex + 1);
                     if (inOrCom.length < 2) {
                         status = false;
                         emailside.innerHTML = "Invalid email";
-                        // emailside.style.color = "red";
+
                     }
                     else {
 
                         if (stringAfterAtTheRate.substring(1, lastDotIndex).length == 0) {
                             status = false;
                             emailside.innerHTML = "Invalid Email";
-                            // emailside.style.color = "red";
+
                         }
                         else
                             emailside.innerHTML = "";
@@ -121,28 +121,14 @@ function SellerSignUp() {
         if (password.length == 0) {
             status = false;
             pswdside.innerHTML = "password is required";
-            // pswdside.style.color = "red";
+
         }
         else if (password.length < 6) {
             status = false;
             pswdside.innerHTML = "password must be at least 6 letter.";
-            // pswdside.style.color = "red";
+
         }
-        // else if (!checkForSpecificLetter(password, 'A', 'Z')) {
-        //     status = false;
-        //     pswdside.innerHTML = "password must have 1 uppercase letter";
-        //     // pswdside.style.color = "red";
-        // }
-        // else if (!checkForSpecificLetter(password, '0', '9')) {
-        //     status = false;
-        //     pswdside.innerHTML = "password must have 1 digit";
-        //     // pswdside.style.color = "red";
-        // }
-        // else if (!checkForSpecialSymbol(password)) {
-        //     status = false;
-        //     pswdside.innerHTML = "password must have 1 special symbol($,#,@)";
-        //     // pswdside.style.color = "red";
-        // }
+
         else
             pswdside.innerHTML = "";
         return status;
