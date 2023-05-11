@@ -18,9 +18,11 @@ import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from './components/User/payments/Checkout';
 import FileUpload from './components/test/FileUpload';
+// import SignUp2 from './components/User/SignUp/SignUp2';
 
   
 function App() {
+  
   
   return <>
   <Routes> 
@@ -39,7 +41,8 @@ function App() {
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
       <Route path='/checkout' element={<Checkout/>}/>
-      <Route path='/image' element={<FileUpload/>} /> 
+      <Route path='/image' element={<FileUpload/>} />
+      {/* <Route path='/signup2' element={<SignUp2/>}/>  */}
     </Routes>
    
   </>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Search from "../search/SearchModal";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Navigation from "../navigation/Navigation";
 import Header from "../header/Header";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,12 +26,15 @@ export default function Products() {
 
 
   const [products, setProducts] = useState([]);
+  const [page,setPage] = useState(1);
   const productList = async () => {
     try {
-      let response = await axios.get(api.VIEW_ALL_PRODUCT);
-      // window.alert(response)
-      console.log(response.data);
-      setProducts(response.data.products);
+      let response = await axios.get(api.VIEW_ALL_PRODUCT+`?page=${page}`);
+    if(response.data.status){
+      setProducts([...products,...response.data.products]);
+      setPage(page+1);
+    
+    }
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +72,6 @@ export default function Products() {
     );
     setProducts(result.data.products);
   };
-
   const productDescriptionId = (productDid) => {
     navigate("/productdescription", { state: { productDetail: productDid } });
   };
@@ -105,7 +107,6 @@ export default function Products() {
       <Header />
       <Navigation />
       <ToastContainer />
-      
       <div className="container py-5">
         <div className="row">
           <div className="col-lg-3">
@@ -158,8 +159,13 @@ export default function Products() {
                 </ul>
               </div>
             </div>
+            <InfiniteScroll 
+        dataLength={products.length}
+        next={productList}
+        hasMore={products.length<100}
+        endMessage={<p>Data End...</p>}>
             <div className="row">
-              {products.map((products, index) => (
+              {products?.map((products, index) => (
                 <div key={index} className="col-md-4">
                   <div
                     className="card mb-4 product-wap rounded-0"
@@ -217,38 +223,9 @@ export default function Products() {
                 </div>
               ))}
             </div>
-            <div div="row">
-              <ul className="pagination pagination-lg justify-content-end">
-                <li className="page-item disabled">
-                  <a
-                    className="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
-                    href="#"
-                    tabIndex={-1}
-                  >
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a
-                    className="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                    href="#"
-                  >
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a
-                    className="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                    href="#"
-                  >
-                    3
-                  </a>
-                </li>
-              </ul>
-            </div>
+            </InfiniteScroll>
           </div>
         </div>
-      </div>
-      {/* End Content */}
+      </div> 
     </>)
     }

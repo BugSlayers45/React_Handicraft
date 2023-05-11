@@ -85,7 +85,7 @@ export default function Navigation() {
                   </span>View Cart
                 </Link>}
                 {!currentCustomer&&<Link
-                  to="/signin"
+                  to="/signIn"
                   className="nav-icon position-relative text-decoration-none"
                 >
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
