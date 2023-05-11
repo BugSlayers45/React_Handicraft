@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import api from "../WebApi/api";
+import SideNav from "./sideNav";
 
 function AddProduct() {
     const [title, setTitle] = useState("");
@@ -28,6 +29,7 @@ function AddProduct() {
     const handleFileChange1 = (event) => {
         setThumb(event.target.files[0])
     }
+    console.log(thumb)
     const handleUpload = async (event) => {
         try {
             event.preventDefault()
@@ -36,6 +38,7 @@ function AddProduct() {
             file.map((f) => {
                 formData.append('files', f);
             })
+            console.log(formData);
             formData.append('file', thumb);
             formData.append('title', title);
             formData.append('description', description);
@@ -68,7 +71,9 @@ function AddProduct() {
         <SellerNavigation />
         <div className="container mb-3 mt-5" style={{ marginLeft: "22vw", marginTop: "5px", height: "100vh" }} >
             <div className=" row">
-                <div className="login-box col-lg-8" style={{ boxShadow: "1px 3px 15px  gray" }}><br />
+                <div className="col-1 me-2"><SideNav /></div>
+
+                <div className="login-box col-8" style={{ boxShadow: "1px 3px 15px  gray" }}><br />
                     <h2 className="text-center">Add Product</h2><hr />
 
 
@@ -84,7 +89,6 @@ function AddProduct() {
 
                             <label>Description</label><br />
                             <input type="text" onChange={(event) => setDescription(event.target.value)} className="form-control" /><br />
-
                         </div>
                         <div className="user-box">
 
@@ -121,7 +125,8 @@ function AddProduct() {
                         <div className="user-box">
 
                             <label>Thumbnail</label><br />
-                            <input type="file" name='thum' onChange={handleFileChange1} />                        </div>
+                            <input type="file" name='thum' onChange={handleFileChange1} />
+                        </div><br />
                         <div className="user-box">
 
                             <label>Images</label><br />

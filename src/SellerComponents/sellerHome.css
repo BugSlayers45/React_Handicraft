@@ -1,16 +1,17 @@
-/* #home {
-    background-color: #bedebe;
-    height: "20vh";
-    box-shadow: 2px 5px 15px gray;
+#home {
+  background-color: #bedebe;
+  height: "20vh";
+  box-shadow: 2px 5px 15px gray;
 }
 
 .line {
-    border: 1px solid brown;
+  border: 1px solid blue;
+
 }
 
 .td {
-    border: "1px solid black";
-} */
+  border: "1px solid black";
+}
 
 body {
   background-color: #fbfbfb;
@@ -18,13 +19,13 @@ body {
 
 @media (min-width: 991.98px) {
   main {
-    padding-left: 240px;
+      padding-left: 240px;
   }
 }
 
 /* Sidebar */
 .sidebar {
-  position:absolute;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -37,7 +38,7 @@ body {
 
 @media (max-width: 991.98px) {
   .sidebar {
-    width: 100%;
+      width: 100%;
   }
 }
 

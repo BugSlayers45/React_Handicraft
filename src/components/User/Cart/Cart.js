@@ -22,6 +22,8 @@ import CircularStatic from "../../../SellerComponents/spinner/Spinner";
 import "../Cart/cart.css"
 import { ToastContainer } from "react-toastify";
 
+
+
 export default function Cart() {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);

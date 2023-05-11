@@ -16,9 +16,13 @@ export default function SellerNavigation() {
         dispatch(signOut());
         navigate("/sellersignin")
     }
+
+    const signout = () => {
+        currentSeller = null;
+    }
     return (
-        <><nav className="navbar navbar-expand-lg navbar-light shadow">
-            <div className="container d-flex justify-content-between align-items-center">
+        <><nav className="navbar navbar-expand-lg navbar-light shadow" style={{ width: "80vw", marginLeft: "20vw" }}>
+            <div className="container-fluid d-flex justify-content-between align-items-center">
                 <a
                     className="navbar-brand text-success logo h2 align-self-center"
                     href="index.html"
@@ -42,12 +46,13 @@ export default function SellerNavigation() {
                     <span className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/sellerHome">
                                 Home
                             </Link>
                         </li>
+
                         <li className="nav-item">
                             <Link className="nav-link" to="/order">
                                 Order
@@ -84,22 +89,26 @@ export default function SellerNavigation() {
                                     <a className="nav-link" href="contact.html">
                                         Contact
                                     </a>
+
                                     <hr />
                                     <li>
                                         <Link className="dropdown-item" to="/productList">
                                             ProductList
                                         </Link>
                                     </li>
+
+
                                 </li>
 
-                            </ul>
-                        </li>
+
+                                </ul>
+                            </li>}
                         {currentSeller &&
                             <li className="nav-item">
                                 <Link
                                     className="nav-link"
                                     to="/sellersignin"
-                                    tabIndex={-1}
+                                    tabIndex={-1} onClick={signout}
 
                                 >
                                     SignOut
@@ -128,7 +137,7 @@ export default function SellerNavigation() {
                                     SignUp
                                 </Link>
                             </li>}
-                    </ul>
+                    </ul> */}
                     {currentSeller &&
                         <div>
                             <p><i class="fa fa-user-circle" aria-hidden="true" >{currentSeller.sellerEmail}</i></p>

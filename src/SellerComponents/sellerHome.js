@@ -4,11 +4,14 @@ import "../SellerComponents/sellerHome.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SideNav from "./sideNav";
+import { ToastContainer } from "react-toastify";
 
 
 function SellerHome() {
     const { currentSeller } = useSelector(state => state.seller);
     const [products, setData] = useState([]);
+    const [sellerOrder, setOrders] = useState([]);
 
 
     const sellerproduct = async () => {
@@ -23,91 +26,162 @@ function SellerHome() {
     }
 
 
+
+    const totalOrders = async () => {
+        try {
+            let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
+            if (response.data.status)
+                setOrders(response.data.sellerOrder);
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    let count = 0;
+    let unique = [];
+    let uniquecus = [];
+
+    const uniqueorder = sellerOrder.filter((item) => {
+        const isDuplicate = unique.includes(item._id);
+        if (!isDuplicate) {
+            unique.push(item._id);
+
+            return true;
+        }
+        return false;
+    })
+
+
+    const uniqueCustomer = uniqueorder.filter((item) => {
+        const isDuplicate = uniquecus.includes(item.customerid);
+        if (!isDuplicate) {
+            uniquecus.push(item.customerid);
+            return true;
+        }
+        return false;
+    })
+
+    let totalEarning = 0;
+    {
+        sellerOrder.forEach((item) => {
+            totalEarning += item.billAmount
+        })
+    }
+
     useEffect(() => {
         sellerproduct();
+        totalOrders();
+
 
     }, []);
 
     return <>
+        <ToastContainer />
 
-       
+        <header>
+            {/* <SellerNavigation /> */}
 
-  <header>
-  <SellerNavigation />
-    <nav id="sidebarMenu" className=" collapse d-lg-block sidebar collapse bg-white" style={{marginTop:"9rem"}}>
-      <div className="position-sticky">
-     
-        <div className="list-group list-group-flush mx-3 mt-4">
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-            <i className="fas fa-tachometer-alt fa-fw me-3" /><span>Main dashboard</span>
-          </a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple active">
-            <i className="fas fa-chart-area fa-fw me-3" /><span>Webiste traffic</span>
-          </a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-lock fa-fw me-3" /><span>Password</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-chart-line fa-fw me-3" /><span>Analytics</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-            <i className="fas fa-chart-pie fa-fw me-3" /><span>SEO</span>
-          </a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-chart-bar fa-fw me-3" /><span>Orders</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-globe fa-fw me-3" /><span>International</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-building fa-fw me-3" /><span>Partners</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-calendar fa-fw me-3" /><span>Calendar</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-users fa-fw me-3" /><span>Users</span></a>
-          <a href="#" className="list-group-item list-group-item-action py-2 ripple"><i className="fas fa-money-bill fa-fw me-3" /><span>Sales</span></a>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <main style={{minHeight: 'calc(100vh - 58px)'}}>
-    <div className="container pt-4">
-    <div className="container-fluid">
-            <div className="row ">
-                <div className="col-9">
-                    <div className="mt-5 ml">
-                        <h2 className="display-6">Service Details</h2>
-                        <hr className="line" />
-                    </div>
-                    <div className="d-flex">
-                        <div className="col-2 ml-5 mt-5" id="home" >
-                            <h5 className="mt-2 text-center">Products</h5>
-                            <hr />
-                            <h6 className="text-center" >total : {products.length}</h6>
-                        </div>
-                        <div className="col-2 ml-5 mt-5" id="home" >
-                            <h5 className="mt-2 text-center">Customers</h5>
-                            <hr />
-                            <h6 className="text-center">total : 0</h6>
-                        </div>
-                        <div className="col-2 ml-5 mt-5" id="home">
-                            <h5 className="mt-2 text-center">Earning</h5>
-                            <hr />
-                            <h6 className="text-center" >total : 0</h6>
-                        </div>
-                        <div className="col-2 ml-5 mt-5" id="home">
-                            <h5 className="mt-2 text-center">Orders</h5>
-                            <hr />
-                            <h6 className="text-center" >total : 0</h6>
-                        </div>
+        </header>
+        <main>
+            <div className="container">
+                <div className="container-fluid">
+                    <div className="row ">
+                        <SideNav />
+                        <div className="col-9 mt-5">
+                            <div className=" ml-3">
+                                <h2 className="display-6">Service Details</h2>
+                                <hr className="line" />
+                            </div>
+                            <div className="d-flex mt-5  ">
+
+                                <div class="col-lg-4 col-md-12 col-4 mb-3 ml-5" style={{ boxShadow: "2px 5px 10px gray" }}>
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="card-body d-flex">
+                                                <span class="fw-semibold d-block mb-1 ">Products</span>
+                                                <span><div class="dropdown " style={{ marginLeft: "7vw" }}>
+
+                                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+
+                                                    </div>
+                                                </div></span>
+                                            </div>
+                                            <h3 class="card-title mb-2"> <i className="fas fa-chart-area fa-fw me-3" />{products.length}</h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12 col-4 mb-4 ml-5" style={{ boxShadow: "2px 5px 10px gray" }}>
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="card-body d-flex">
+                                                <span class="fw-semibold d-block mb-1 ">Orders</span>
+                                                <span><div class="dropdown " style={{ marginLeft: "9vw" }}>
+                                                    {/* <img className="img-fluid" src='assets/img/orders.png' style={{ height: "8vh", width: "50vw", backgroundColor: "white" }} /> */}
+                                                </div></span>
+                                            </div>
+                                            <h3 class="card-title mb-2"><i className="fas fa-chart-bar fa-fw me-3" />{uniqueorder.length}</h3>
 
 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12 col-4 mb-4 ml-5" style={{ boxShadow: "2px 5px 10px gray" }}>
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="card-body d-flex">
+                                                <span class="fw-semibold d-block mb-1">Customers</span>
+                                                <span><div class="dropdown " style={{ marginLeft: "7vw" }}>
+                                                    {/* <img className="img-fluid" src='assets/img/user.png' style={{ height: "8vh", width: "5opx", backgroundColor: "white" }} /> */}
+                                                </div></span>
+                                            </div>
+                                            <h3 class="card-title mb-2"> <i class="fa fa-users me-4" aria-hidden="true" />{uniqueCustomer.length}</h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="d-flex">
+                                <div class="col-lg-4 col-md-12 col-4 mb-4 ml-5 mt-4" style={{ boxShadow: "2px 5px 10px gray" }}>
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <div class="card-body d-flex">
+                                                <span class="fw-semibold d-block mb-1 ">Earning</span>
+                                                <span><div class="dropdown " style={{ marginLeft: "9vw" }}>
+                                                    <button
+                                                        class="btn p-0"
+                                                        type="button"
+                                                        id="cardOpt3"
+                                                        data-bs-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false"
+                                                    >
+                                                        <i class="fas fa-grip-vertical"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+
+                                                    </div>
+                                                </div></span>
+                                            </div>
+                                            <h3 class="card-title mb-2"><i class="fas fa-rupee-sign me-3"></i>{totalEarning}</h3>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
-
-        </div>
-    </div>
-  </main>
-  {/*Main layout*/}
-  <Footer />
-
-
-
-
-
-      
-       
+        </main>
     </>
 }
 export default SellerHome;

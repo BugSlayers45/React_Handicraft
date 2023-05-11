@@ -15,12 +15,18 @@ import AddProduct from './SellerComponents/AddProduct';
 import ProductDescription from './components/ProductPage/ProductDescription';
 import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
+import UserProfile from './components/User/UserProfile/UserProfile';
+
+import SideNav from './SellerComponents/sideNav';
+import OrderDetail from './SellerComponents/orderDetail';
 import Checkout from './components/User/payments/Checkout';
 import FileUpload from './components/test/FileUpload';
-// import SignUp2 from './components/User/SignUp/SignUp2';
+import Sales from './SellerComponents/sales';
+import Wishlist from './components/Wishlist/wishlist';
+import CustomerOrders from './components/order/Orders';
 
-  
+
 function App() {
   
   
@@ -37,14 +43,21 @@ function App() {
     <Route path='/sellersignin' element={<SellerSignIn />} />
     <Route path='/productList' element={<ProductList />} />
     <Route path='/updateproduct' element={<UpdateProduct />} />
+    <Route path='/products' element={<Products />} />
+    <Route path='/profile' element={<UserProfile/>} />
     <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
+      <Route path='/sidenav' element={<SideNav />} />
+      <Route path='/orderdetail' element={<OrderDetail />} />
+      <Route path='/image' element={<FileUpload />} />
+      <Route path='/sales' element={<Sales />} />
       <Route path='/checkout' element={<Checkout/>}/>
       <Route path='/image' element={<FileUpload/>} />
-      {/* <Route path='/signup2' element={<SignUp2/>}/>  */}
+      <Route path='/image' element={<FileUpload/>} />
+      <Route path="/wishlist" element= {<Wishlist/>}/> 
+      <Route path="/orders" element= {<CustomerOrders/>}/>
     </Routes>
-   
   </>
 }
 export default App;
