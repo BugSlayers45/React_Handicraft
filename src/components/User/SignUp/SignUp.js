@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../SignUp/signup.css'
+import "../SignUp/login.css"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
@@ -13,6 +13,7 @@ export default function SignUp() {
     const navigate=useNavigate()
     const handleSubmit =async(event)=>{
         try{
+          window.alert("agya")
           event.preventDefault()
           var response=await axios.post(api.USER_SIGNUP,{customerName,customerEmail,customerPassword,customerContact})
           if(response.data.status)
@@ -26,150 +27,50 @@ export default function SignUp() {
             toast.error("Server Error !")
         }
     }
-  return (
-    <>
-     <ToastContainer />
-
-    <div  className="container-fluid" style={{
-      backgroundImage: 'url("./assets/img/banner_img_04.jpg")',
-      backgroundSize: "cover"
-    }}>
-       {/* <Headers/> */}
-    <div className="container" >
-    <div className="container form bg-white pt-5 mt-4 mb-3">
-    <form onSubmit={handleSubmit}>
-    <p className="text-center login-heading">sign up</p>
-   
-    <div className="row">
-      <div className="col mt-4 pl-5 pr-5">
-        <p className="username">Full Name</p>
-        <div className="row mt-4">
-          <div className="col-2 text-center pt-1 pr-0">
-            <i className="fa fa-user-o" aria-hidden="true" id="user" />
-          </div>
-          <div className="col-10 pl-0">
-            <input
-             onChange={(event)=>setName(event.target.value)} 
-              type="text"
-              placeholder="Type your name"
-              className="first-name"
-            />
-          </div>
-        </div>
-        <hr className="hr-1" />
-        <div className="first-name-hide" />
-      </div>
-    </div>
-    <div className="row">
-      <div className="col mt-4 pl-5 pr-5">
-        <p className="username">Email-id</p>
-        <div className="row mt-4">
-          <div className="col-2 text-center pt-1 pr-0">
-            <i className="fa fa-envelope-o" aria-hidden="true" id="user" />
-          </div>
-          <div className="col-10 pl-0">
-            <input 
-             
-              onChange={(event)=>setEmail(event.target.value)}
-              type="text"
-              placeholder="Type your username"
-              className="email"
-            />
-          </div>
-        </div>
-        <hr className="hr-1" />
-        <div className="email-hide" />
-      </div>
-    </div>
-    <div className="row">
-      <div className="col mt-4 pl-5 pr-5">
-        <p className="username">Password</p>
-        <div className="row mt-4">
-          <div className="col-2 text-center pt-1 pr-0">
-            <i className="fa fa-lock" aria-hidden="true" id="lock" />
-          </div>
-          <div className="col-10 pl-0">
-            <input
-            onChange={(event)=>setPassword(event.target.value)}
-              type="password"
-              placeholder="Type your password"
-              className="password-signup"
-            />
-          </div>
-        </div>
-        <hr className="hr-2" />
-        <div className="password-signup-hide" />
-      </div>
-    </div>
-    <div className="row">
-      <div className="col mt-4 pl-5 pr-5">
-        <p className="username">Contact</p>
-        <div className="row mt-4">
-          <div className="col-2 text-center pt-1 pr-0">
-            <i className="fa fa-lock" aria-hidden="true" id="lock" />
-          </div>
-          <div className="col-10 pl-0">
-            <input
-             onChange={(event)=>setCOntact(event.target.value)}
-              type="text"
-              placeholder="Type your contact number"
-              className="contact-signup"
-            />
-          </div>
-        </div>
-        <hr className="hr-2" />
-        <div className="confirm-password-signup-hide" />
-      </div>
-    </div>
-    <div className="row">
-      <div className="col pl-5">
-        <a href="#">
-          <span className="forget-password">
-            I accept the{" "}
-            <span style={{ textTransform: "capitalize", color: "blue" }}>
-              terms of use
-            </span>
-            &amp;
-            <span style={{ textTransform: "capitalize", color: "blue" }}>
-              privacy policy
-            </span>{" "}
-          </span>
-        </a>
-      </div>
-    </div>
-    <div className="row mt-4">
-      <div className="col pl-5 pr-5">
+return<>
+      <h2 className="tip">Register yourself</h2>
+      <ToastContainer/>
+<div className="cont">
+  <form onsubmit={handleSubmit}>
+    <div className="form sign-up">
+      <label className="labellogin">
+        <span>Name</span>
+        <input type="text" className="logininput" onChange={(event)=>setName(event.target.value)}  />
+        <small id="nameHelpId" class="form-text text-muted"></small>
+      </label>
+      <label className="labellogin">
+        <span>Contact</span>
+        <input type="text" className="logininput"  onChange={(event)=>setCOntact(event.target.value)} />
         
-          <button type='submit' className="btn btn-block text-white signup-button">SignUp</button>
-       
+      </label>
+      <label className="labellogin">
+        <span>Email</span>
+        <input type="email" className="logininput" onChange={(event)=>setEmail(event.target.value)}  />
+        <small id="emailHelpId" class="form-text text-muted"></small>
+      </label>
+      <label className="labellogin">
+        <span>Password</span>
+        <input type="password" className="logininput" onChange={(event)=>setPassword(event.target.value)}  />
+        <small id="passwordHelpId" class="form-text text-muted"></small>
+      </label>
+        <button type="submit" className="submit loginbtn">Sign Up</button>
+        <button type="button" className="fb-btn loginbtn">Join with <span>Google</span></button>
+    </div>
+  </form>
+  <div className="sub-cont">
+    <div className="img">
+      <div className="img__text m--up">
+        <h2>One of us?</h2>
+        <p>Sign In and discover great amount of new opportunities!</p>
       </div>
+      <Link to="/signIn">
+      <div className="img__btn">
+              <span className="m--up">Sign In</span>
+            </div>
+      </Link>
     </div>
-    <div className="row mt-5">
-      <div className="col text-center">
-        <span
-          style={{
-            textTransform: "capitalize",
-            fontFamily: "Arial, Helvetica, sans-serif",
-            fontSize: 15,
-            fontWeight: 600,
-            color: "rgb(148, 141, 141)"
-          }}
-        >
-          already have an account
-        </span>
-      </div>
-      <div className="col-12 text-center pt-3">
-        <Link to="/signIn">
-          <span className="login-page">login</span>
-        </Link>
-      </div>
-    </div>
-    </form>
-    </div>
-    
-    </div>
-    </div>
+  </div>
+</div>
+
   </>
-  
-  )
 }
