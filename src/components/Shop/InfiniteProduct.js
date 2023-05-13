@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Search from "../search/SearchModal";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Navigation from "../navigation/Navigation";
 import Header from "../header/Header";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,27 +11,25 @@ import "react-toastify/dist/ReactToastify.css";
 import api from "../../WebApi/api";
 import { addItemInWishlist, updateWishlistItems } from "../../redux-config/wishlistSlice";
 import CircularStatic from "../../SellerComponents/spinner/Spinner";
-import { Rating } from "@mui/material";
+import { CircularProgress, Rating } from "@mui/material";
 export default function Products() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentCustomer } = useSelector((state) => state.customer);
-  const { categoryList, error, isLoading } = useSelector(
-    (state) => state.category
-  );
   const { cartItems, cartError } = useSelector((state) => state.cart);
-  const categoryDetail = location.state?.category;
-  const categoryid = categoryDetail?._id;
 
 
   const [products, setProducts] = useState([]);
+  const [page,setPage] = useState(1);
   const productList = async () => {
     try {
-      let response = await axios.get(api.VIEW_ALL_PRODUCT);
-      // window.alert(response)
-      console.log(response.data);
-      setProducts(response.data.products);
+      let response = await axios.get(api.VIEW_ALL_PRODUCT_ON_SCROLL+`?page=${page}`);
+    if(response.data.status){
+      setProducts([...products,...response.data.products]);
+      setPage(page+1);
+    
+    }
     } catch (err) {
       console.log(err);
     }
@@ -49,25 +47,6 @@ export default function Products() {
     } else {
       productList();
     }
-  };
-
-
-  const categroyFilter = async (key) => {
-    console.log(key);
-    let result = await axios.get(api.PRODUCT_BY_CATEGORY + `${key}`);
-    console.log(result);
-    if (!result.data.products.length == 0) {
-      setProducts(result.data.products);
-    } else {
-      productList();
-    }
-  }
-
-  const categroyFilterFromHome = async () => {
-    let result = await axios.get(
-      api.PRODUCT_BY_HOME_CATEGORY + `${categoryid}`
-    );
-    setProducts(result.data.products);
   };
 
   const productDescriptionId = (productDid) => {
@@ -119,68 +98,45 @@ export default function Products() {
   }
 
   useEffect(() => {
-    if (categoryid) {
-      categroyFilterFromHome();
-    } else {
       productList();
-    }
-  }, []);
+    }, []);
   
   return (<>
-    {/* Start Content */}
-    <Header />
-    <Navigation />
-    <ToastContainer />
-
-    <div className="container py-5">
-      <div className="row">
-        <div className="col-lg-3">
-          <h1 className="h2 pb-4">Categories</h1>
-          <ul className="list-unstyled templatemo-accordion">
-            <Link to={"/infinitProduct"}
-              className="h3 text-dark text-decoration-none mr-3"
-            >
-              <li className="pb-3">All</li>
-            </Link>
-            {categoryList.map((category) => (
-              <Link
-                onClick={() => categroyFilter(category._id)}
-                className="h3 text-dark text-decoration-none mr-3"
-              >
-                <li className="pb-3">{category.categoryName}</li>
-              </Link>
-            ))}
-          </ul>
-        </div>
-        <div className="col-lg-9">
-          <div className="row">
-            <div className="col-md-6">
-              <ul className="list-inline shop-top-menu pb-3 pt-1">
-                <li className="list-inline-item">
-                  <form
-                    action=""
-                    method="get"
-                    className="modal-content modal-body border-0 p-0"
-                  >
-                    <div className="input-group mb-2">
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="inputModalSearch"
-                        name="q"
-                        placeholder="Search ..."
-                        onChange={searchFilter}
-                      />
-                      <button
-                        type="submit"
-                        className="input-group-text bg-success text-light"
-                      >
-                        <i className="fa fa-fw fa-search text-white" />
-                      </button>
-                    </div>
-                  </form>
-                </li>
-              </ul>
+      <Header />
+      <Navigation />
+      <ToastContainer />
+      <div className="container py-5">
+        <div className="row">
+          <div className="col-lg-9">
+            <div className="row">
+              <div className="col-md-6">
+                <ul className="list-inline shop-top-menu pb-3 pt-1">
+                  <li className="list-inline-item">
+                    <form
+                      action=""
+                      method="get"
+                      className="modal-content modal-body border-0 p-0"
+                    >
+                      <div className="input-group mb-2">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputModalSearch"
+                          name="q"
+                          placeholder="Search ..."
+                          onChange={searchFilter}
+                        />
+                        <button
+                          type="submit"
+                          className="input-group-text bg-success text-light"
+                        >
+                          <i className="fa fa-fw fa-search text-white" />
+                        </button>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="row">
@@ -243,8 +199,16 @@ export default function Products() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
-    {/* End Content */}
-  </>)
-}
+      </div> 
+      <InfiniteScroll 
+        dataLength={products.length}
+        next={productList}
+        hasMore={products.length<100}
+        endMessage={<p>Data End...
+          <CircularProgress color="secondary" />
+<CircularProgress color="success" />
+<CircularProgress color="inherit" />
+        </p>}>
+            </InfiniteScroll>
+    </>)
+    }

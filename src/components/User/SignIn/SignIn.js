@@ -47,7 +47,7 @@ export default function SignIn() {
       <input type="password" className="form-control logininput"  onChange={(event)=>setPassword(event.target.value)} />
     </label>
     <p className="forgot-pass">Forgot password?</p>
-    <button type="submit"  className="submit form-control loginbtn">Sign In</button>
+    <button type="submit"  className="submit loginbtn">Sign In</button>
     <button type="submit" className="fb-btn form-control loginbtn">Connect with <span>Google</span></button>
     </form>
   </div>

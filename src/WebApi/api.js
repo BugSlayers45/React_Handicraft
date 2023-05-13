@@ -1,8 +1,9 @@
 export default {
    USER_SIGNIN:"/customer/signIn",
    USER_SIGNUP:"/customer/signup",
-   VIEW_ALL_PRODUCT:"/product/limitLoadproduct",
-   VIEW_ALL_PRODUCTS:"/product/viewproduct",
+   // VIEW_ALL_PRODUCT:"/product/limitLoadproduct",
+   VIEW_ALL_PRODUCT_ON_SCROLL:"/product/limitLoadproduct",
+   VIEW_ALL_PRODUCT:"/product/viewproduct",
    SERACH_FILTER:"/product/search/",
    PRODUCT_BY_CATEGORY:"/product/products/",
    PRODUCT_BY_HOME_CATEGORY:"/product/products/",

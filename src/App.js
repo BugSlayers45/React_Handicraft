@@ -25,6 +25,7 @@ import FileUpload from './components/test/FileUpload';
 import Sales from './SellerComponents/sales';
 import Wishlist from './components/Wishlist/wishlist';
 import CustomerOrders from './components/order/Orders';
+import InfiniteProduct from './components/Shop/InfiniteProduct';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
       <Route path='/image' element={<FileUpload/>} />
       <Route path="/wishlist" element= {<Wishlist/>}/> 
       <Route path="/orders" element= {<CustomerOrders/>}/>
+      <Route path="/infinitProduct" element= {<InfiniteProduct/>}/>
     </Routes>
   </>
 }
