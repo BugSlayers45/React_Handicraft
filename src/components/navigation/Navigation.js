@@ -2,13 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../redux-config/CustomerSlice";
-
-
 export default function Navigation() {
   const {currentCustomer}=useSelector(state=>state.customer)
   const{cartItems}=useSelector(state=>state.cart)
-
-  // window.alert(currentCustomer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const customerSignOut = () => {
@@ -70,6 +66,16 @@ export default function Navigation() {
                     Contact
                   </a>
                 </li>
+                <li className="nav-item">
+                  <Link to="/orders" className="nav-link">
+                    Orders
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/wishlist" className="nav-link">
+                    wishlist
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="navbar align-self-center d-flex ml-5">
@@ -85,7 +91,7 @@ export default function Navigation() {
                   </span>View Cart
                 </Link>}
                 {!currentCustomer&&<Link
-                  to="/signin"
+                  to="/signIn"
                   className="nav-icon position-relative text-decoration-none"
                 >
                   <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
@@ -128,7 +134,7 @@ export default function Navigation() {
       </nav>
       <div className="align-self-center d-flex mt-3 offset-2 col-8 text-centre">
         {" "}
-
+     
       </div>
 
       {/* Close Header */}

@@ -36,16 +36,21 @@ function Sales() {
                             <th>S.No</th>
                             <th>Product</th>
                             <th>Quantity</th>
+                            <th>Price</th>
                             <th>Date</th>
                         </thead>
                         <tbody>
+                         
+                           
                             {product.map((item, index) =>
-
+                                  
+                              
                                 <tr style={{ boxShadow: "1px 1px 3px gray" }} >
                                     {/* {console.log(item.productDetails)} */}
                                     <td>{index + 1}</td>
                                     <td>{item.productDetails.title}</td>
                                     <td>{item.OrderItems.quantity}</td>
+                                    <td>{item.productDetails.price * item.OrderItems.quantity}</td>
                                     <td>{item.date.substring(0, 10)}</td>
                                 </tr>
                             )}

@@ -89,7 +89,6 @@ function AddProduct() {
 
                             <label>Description</label><br />
                             <input type="text" onChange={(event) => setDescription(event.target.value)} className="form-control" /><br />
-
                         </div>
                         <div className="user-box">
 

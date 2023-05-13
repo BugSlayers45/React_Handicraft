@@ -1,6 +1,8 @@
 export default {
    USER_SIGNIN:"/customer/signIn",
    USER_SIGNUP:"/customer/signup",
+   // VIEW_ALL_PRODUCT:"/product/limitLoadproduct",
+   VIEW_ALL_PRODUCT_ON_SCROLL:"/product/limitLoadproduct",
    VIEW_ALL_PRODUCT:"/product/viewproduct",
    SERACH_FILTER:"/product/search/",
    PRODUCT_BY_CATEGORY:"/product/products/",
@@ -8,6 +10,8 @@ export default {
    REMOVE_FROM_CART:"/cart/deleteproduct",
    VIEW_CART_ITEMS:"/cart/viewCartItems",
    ADD_TO_CART:"/cart/add-to-cart",
-   PRODUCT_ADD: "/product/save"
+   PRODUCT_ADD: "/product/save",
+   
+   CUSTOMER_SAVE: "/customer/save"
 
 }
