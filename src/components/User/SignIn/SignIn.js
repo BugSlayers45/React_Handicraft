@@ -1,7 +1,5 @@
-
 import { Link } from "react-router-dom"
-import "../SignIn/sigin.css"
-import Header from "../../header/Header"
+import "../SignUp/login.css"
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -10,127 +8,151 @@ import { ToastContainer, toast } from "react-toastify";
 import { setCustomer } from "../../../redux-config/CustomerSlice";
 import 'react-toastify/dist/ReactToastify.css'
 import api from "../../../WebApi/api";
+import Navigation from "../../navigation/Navigation";
 
 
 export default function SignIn() {
-    const [customerEmail,setEmail]=useState("")
-    const [customerPassword,setPassword]=useState("")
-    const navigate=useNavigate()
-    const dispatch =useDispatch()
-    const handleSubmit=async (event)=>{
-        try{
-       event.preventDefault()
-       const response=await axios.post(api.USER_SIGNIN,{customerEmail,customerPassword})
-        dispatch(setCustomer(response.data.customer))
-        console.log(response.data.customer)
-       
-         navigate("/")
-         toast.success("Sign in sucessful")
+  const [customerEmail, setEmail] = useState("")
+  const [customerPassword, setPassword] = useState("")
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault()
+      const response = await axios.post(api.USER_SIGNIN, { customerEmail, customerPassword })
+      dispatch(setCustomer(response.data.customer))
+      if (response.data.status) {
+        navigate("/")
+        toast.success("Sign in sucessful")
+      } else {
+        toast.error("Invalid email,password")
+      }
+    } catch (err) {
+      toast.error("Something went Wrong")
+      console.log(err)
+    }
+  }
+  // ---------------------------------------------------------------------------------------------------
+  // email
+  function emailValidation() {
+    var status = true;
+    var email = document.getElementById("email").value;
+    var emailside = document.getElementById("emailside");
+    email = email.trim();
+    if (email.length == 0) {
+      status = false;
+      emailside.innerHTML = "email is required";
 
-        }catch(err){
-           toast.error("Something went Wrong")
-           console.log(err)
+    }
+    else {
+      var atTheRateIndex = email.indexOf('@');
+      var secondAtTheReateIndex = email.lastIndexOf('@');
+      var dotIndex = email.indexOf('.');
+      if (atTheRateIndex == -1) {
+        status = false;
+        emailside.innerHTML = "Invalid email(@ missing)";
+
+      }
+      else if (secondAtTheReateIndex != atTheRateIndex) {
+        status = false;
+        emailside.innerHTML = "Invalid email";
+
+      }
+      else if (dotIndex == -1) {
+        status = false;
+        emailside.innerHTML = "Invalid email(. missing)";
+
+      }
+      else {
+        var stringAfterAtTheRate = email.substring(atTheRateIndex);
+        var lastDotIndex = stringAfterAtTheRate.indexOf(".");
+        if (lastDotIndex == -1) {
+          status = false;
+          emailside.innerHTML = "Invalid email(. missing in domain)";
+
         }
+        else {
+          var inOrCom = stringAfterAtTheRate.substring(lastDotIndex + 1);
+          if (inOrCom.length < 2) {
+            status = false;
+            emailside.innerHTML = "Invalid email";
+
+          }
+          else {
+
+            if (stringAfterAtTheRate.substring(1, lastDotIndex).length == 0) {
+              status = false;
+              emailside.innerHTML = "Invalid Email";
+
+            }
+            else
+              emailside.innerHTML = "";
+          }
+        }
+      }
+    }
+    return status;
+  }
+  // ---------------------------------------------------------------------------------------------
+  // password
+
+
+  function pswdValidation() {
+    var status = true;
+    var password = document.getElementById("pid").value;
+    var pswdside = document.getElementById("pswdside");
+    if (password.length == 0) {
+      status = false;
+      pswdside.innerHTML = "password is required";
+
+    }
+    else if (password.length < 8) {
+      status = false;
+      pswdside.innerHTML = "password must be at least 8 letter.";
+
     }
 
-  return (<>
-<ToastContainer/>
-  <div  className="container-fluid" style={{
-      backgroundImage: 'url("https://as2.ftcdn.net/v2/jpg/05/85/57/95/1000_F_585579596_GrtWWqQT0zivZldjc34hTSs4h1khWzS9.jpg")',
-      backgroundSize: "cover"
-    }}>
-       
-       <Header/>
-    <div className="container" >
-    <div className="container form bg-white pt-5 mt-4 mb-3">
-      {/*change after click on sign up*/}
-     
-      <p className="text-center login-heading hide-me">login</p>
-      <div className="container hide-me">
-      <form  onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col mt-4 pl-5 pr-5">
-            <p className="username">username</p>
-            <div className="row mt-4">
-              <div className="col-2 text-center pt-1 pr-0">
-                <i className="fa fa-user-o" aria-hidden="true" id="user" />
-              </div>
-              <div className="col-10 pl-0">
-                <input
-                onChange={(event)=>setEmail(event.target.value)}
-                  type="text"
-                  placeholder="Type your username"
-                  className="input-1"
-                />
-              </div>
-            </div>
-            <hr className="hr-1" />
-            <div className="hide" />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col mt-4 pl-5 pr-5">
-            <p className="username">Password</p>
-            <div className="row mt-4">
-              <div className="col-2 text-center pt-1 pr-0">
-                <i className="fa fa-lock" aria-hidden="true" id="lock" />
-              </div>
-              <div className="col-10 pl-0">
-                <input
-                onChange={(event)=>setPassword(event.target.value)}
-                  type="password"
-                  placeholder="Type your password"
-                  className="input-2"
-                />
-              </div>
-            </div>
-            <hr className="hr-2" />
-           
-          </div>
-        </div>
-        <div className="row">
-          <div className="col text-right pr-5">
-            <a href="#">
-              <span className="forget-password" >Forget password?</span>
-            </a>
-          </div>
-        </div>
-        <div className="row mt-4">
-          <div className="col pl-5 pr-5">
-              <button type="submit"  className="btn btn-block text-white login-button form-control">login</button>
-          </div>
-        </div>
-        <div className="row mt-5">
-        </div>
-        <div className="row mt-5">
-          <div className="col text-center">
-            <span
-              style={{
-                textTransform: "capitalize",
-                fontFamily: "Arial, Helvetica, sans-serif",
-                fontSize: 15,
-                fontWeight: 600,
-                color: "rgb(148, 141, 141)"
-              }}
-            >
-              or sign up using
-            </span>
-          </div>
-          <div className="col-12 text-center pt-3">
-            <Link to="/signUp">
-              <span className="sign-up">sign up</span>
-            </Link>
-          </div>
-        </div>
+    else
+      pswdside.innerHTML = "";
+    return status;
+  }
+
+  return <>
+    <ToastContainer />
+    <Navigation />
+    <h2 className="tip">Login</h2>
+    <div className="cont">
+      <div className="form sign-in">
+        <form onSubmit={handleSubmit}>
+          <h2>Welcome back,</h2>
+          <label className="labellogin">
+            <span>Email</span>
+            <input type="email" id="email" name="email" onKeyUp={emailValidation} className="form-control logininput" onChange={(event) => setEmail(event.target.value)} /><small id="emailside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
+          </label>
+          <label className="labellogin">
+            <span>Password</span>
+            <input type="password" onKeyUp={pswdValidation} id="pid" name="password" className="form-control logininput" onChange={(event) => setPassword(event.target.value)} /><small id="pswdside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
+          </label>
+          <p className="forgot-pass">Forgot password?</p>
+          <button type="submit" className="submit loginbtn">Sign In</button>
+          <button type="submit" className="fb-btn form-control loginbtn">Connect with <span>Google</span></button>
         </form>
       </div>
-      
-    </div>
-   
-  </div>
-  </div>
-    </>
-    
-    )
-}
 
+      <div className="sub-cont">
+        <div className="img">
+          <div className="img__text m--up">
+            <h2>New here?</h2>
+            <p>Sign up and discover great amount of new opportunities!</p>
+          </div>
+          <Link to={'/signUp'}>
+            <div className="img__btn">
+              <span className="m--up">Sign Up</span>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+    </div>
+  </>
+}

@@ -51,7 +51,7 @@ export default function Cart() {
     dispatch(removeCartItem(cartItem));
   }
 
-  const orderpackage = { cartitems: cartItems, billamount: totalAmount,SHIPPING_FEES:SHIPPING_FEES };
+  const orderpackage = { cartitems: cartItems, billamount: totalAmount, SHIPPING_FEES: SHIPPING_FEES };
 
   const checkout = async (orderpackage) => {
     navigate("/checkout", { state: { orderpackage: orderpackage } });
@@ -64,11 +64,11 @@ export default function Cart() {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <Header />
       <Navigation />
-      {cartItems.length&&(<div>
-      
+      {cartItems.length && (<div>
+
         <section className="auto" style={{ backgroundColor: "whitesmoke" }}>
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col">
@@ -173,66 +173,66 @@ export default function Cart() {
             </div>
           </div>
         </section>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Summary</h5>
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                Products
-                <span> ₹{parseFloat(totalAmount).toFixed(2)}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                Shipping
-                <span> ₹{SHIPPING_FEES}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                <div>
-                  <strong>Total amount</strong>
-                  <strong>
-                    <p class="mb-0">(including VAT)</p>
-                  </strong>
-                </div>
-                <span>
-                  <strong>
-                    {" "}
-                    ₹{parseFloat(SHIPPING_FEES + totalAmount).toFixed(2)}
-                  </strong>
-                </span>
-              </li>
-            </ul>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0">Summary</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                  Products
+                  <span> ₹{parseFloat(totalAmount).toFixed(2)}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                  Shipping
+                  <span> ₹{SHIPPING_FEES}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                  <div>
+                    <strong>Total amount</strong>
+                    <strong>
+                      <p class="mb-0">(including VAT)</p>
+                    </strong>
+                  </div>
+                  <span>
+                    <strong>
+                      {" "}
+                      ₹{parseFloat(SHIPPING_FEES + totalAmount).toFixed(2)}
+                    </strong>
+                  </span>
+                </li>
+              </ul>
 
-            <Button
-              onClick={() => checkout(orderpackage)}
-              variant="contained"
-              color="info"
-            >
-              Checkout
-            </Button>
-            <Button
-              onClick={() => clearCart()}
-              variant="contained"
-              color="warning"
-              className="ml-3"
-            >
-              ClearCart
-            </Button>
+              <Button
+                onClick={() => checkout(orderpackage)}
+                variant="contained"
+                color="success"
+              >
+                Checkout
+              </Button>
+              <Button
+                onClick={() => clearCart()}
+                variant="contained"
+                color="warning"
+                className="ml-3"
+              >
+                ClearCart
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
       </div>)}
       {!cartItems.length && (
-       <div>
-  <h1 classname="display-5 ml-5">Your Cart Empty</h1>
-  <button type="button" className="btn btn-outline-warning">Continue Shoping</button>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-</div>
+        <div>
+          <h1 classname="display-5 ml-5">Your Cart Empty</h1>
+          <button type="button" className="btn btn-outline-warning">Continue Shoping</button>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
 
       )}
 

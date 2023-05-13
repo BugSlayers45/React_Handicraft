@@ -1,32 +1,37 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SellerNavigation from "./sellerNevigation";
+import SideNav from "./sideNav";
 
 function OrderDetail() {
     const [detail, setDetail] = useState([])
     const location = useLocation([]);
     const { totalOrders } = location.state;
-    console.log(totalOrders);
+    // console.log(totalOrders);
 
 
     useEffect(() => {
         setDetail(totalOrders);
     });
+
     return <>
-        <div className="container">
-            <div
-                style={{
-                    textAlign: "center",
-                    boxShadow: "2px 2px 10px",
-                    width: "60%",
-                    marginLeft: "16vw",
-                    marginBottom: "3vh"
-                }}
-            >
-                <h1>Order-History</h1>
-            </div>
+        <div className="container-fluid">
+
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-1"><SideNav /></div>
+                <div
+                    style={{
+                        textAlign: "center",
+                        boxShadow: "2px 2px 10px",
+                        width: "60%",
+                        marginLeft: "20vw",
+                        marginBottom: "3vh"
+                    }}
+                >
+                    <h1>Order-History</h1>
+                </div>
+                <div className="col-md-8" style={{ marginLeft: "25vw" }}>
+
                     < div className="card card-2 mt-3">
                         <div className="card-body">
                             <div className="media d-flex">

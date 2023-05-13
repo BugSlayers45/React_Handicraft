@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import SideNav from "./sideNav";
+import api from "../WebApi/api";
 function Order() {
     const { currentSeller } = useSelector(state => state.seller);
     const [sellerOrder, setOrders] = useState([]);
@@ -18,10 +19,10 @@ function Order() {
 
     const orderlist = async () => {
         try {
-            let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
+            let response = await axios.get(api.ORDER_BY_SELLER + `/${currentSeller._id}`);
             if (response.data.status)
                 setOrders(response.data.sellerOrder);
-            // console.log(response.data.sellerOrder);
+             console.log(response.data.sellerOrder);
 
         } catch (err) {
             console.log(err);
@@ -31,6 +32,7 @@ function Order() {
     let count = 0;
     let unique = [];
     let uniquecus = [];
+
     const uniqueorder = sellerOrder.filter((item) => {
         const isDuplicate = unique.includes(item._id);
         if (!isDuplicate) {

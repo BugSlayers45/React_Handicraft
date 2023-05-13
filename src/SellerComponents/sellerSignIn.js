@@ -8,6 +8,7 @@ import { setSeller } from "../redux-config/sellerSignInSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import SideNav from "./sideNav";
+import api from "../WebApi/api";
 
 function SellerSignIn() {
 
@@ -19,7 +20,7 @@ function SellerSignIn() {
     const signin = async (event) => {
         try {
             event.preventDefault();
-            let response = await axios.post("http://localhost:3000/seller/signin", { sellerEmail, sellerPassword });
+            let response = await axios.post(api.SELLER_SIGNIN, { sellerEmail, sellerPassword });
             dispatch(setSeller(response.data.seller));
             toast.success("SingIn Successful..");
             navigate("/sellerHome");
