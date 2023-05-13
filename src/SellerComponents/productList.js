@@ -9,6 +9,7 @@ import { Spinner } from "react-bootstrap";
 import "../SellerComponents/sellerHome.css";
 import { ToastContainer } from "react-toastify";
 import SideNav from "./sideNav";
+import api from "../WebApi/api";
 
 function ProductList() {
     const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ function ProductList() {
 
     const productlist = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
+            const response = await axios.get(api.PRODUCT_LIST_BY_SELLER + `/${currentSeller._id}`)
 
             if (response.data.status)
 

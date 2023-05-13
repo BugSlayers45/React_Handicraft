@@ -3,14 +3,17 @@ import SellerNavigation from "./sellerNevigation";
 import SideNav from "./sideNav";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import api from "../WebApi/api";
 
 function Sales() {
     const { currentSeller } = useSelector(state => state.seller);
     const [product, setProducts] = useState([]);
+    const [sales, setSales] = useState([]);
+    let elementCounts = {};
 
     const buiedProduct = async () => {
         try {
-            let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
+            let response = await axios.get(api.ORDER_BY_SELLER + `/${currentSeller._id}`);
             if (response.data.status)
                 setProducts(response.data.sellerOrder);
             // console.log(response.data.sellerOrder);
@@ -20,8 +23,21 @@ function Sales() {
             console.log(err);
         }
     }
+
+
+    product.forEach(element => {
+        (element.OrderItems?.quantity >= 1) ?
+
+            elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1 * element.OrderItems?.quantity
+            : elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1;
+
+    })
+    console.log(elementCounts);
+
+
     useEffect(() => {
         buiedProduct();
+        setSales(elementCounts);
 
     }, []);
 
@@ -43,11 +59,10 @@ function Sales() {
                             <th>Date</th>
                         </thead>
                         <tbody>
-                         
-                           
+
                             {product.map((item, index) =>
-                                  
-                              
+
+
                                 <tr style={{ boxShadow: "1px 1px 3px gray" }} >
                                     {/* {console.log(item.productDetails)} */}
                                     <td>{index + 1}</td>

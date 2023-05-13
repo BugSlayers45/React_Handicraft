@@ -21,15 +21,15 @@ export default function Products() {
 
 
   const [products, setProducts] = useState([]);
-  const [page,setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const productList = async () => {
     try {
-      let response = await axios.get(api.VIEW_ALL_PRODUCT_ON_SCROLL+`?page=${page}`);
-    if(response.data.status){
-      setProducts([...products,...response.data.products]);
-      setPage(page+1);
-    
-    }
+      let response = await axios.get(api.VIEW_ALL_PRODUCT_ON_SCROLL + `?page=${page}`);
+      if (response.data.status) {
+        setProducts([...products, ...response.data.products]);
+        setPage(page + 1);
+
+      }
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +71,7 @@ export default function Products() {
       }
     };
   }
-  const addWishlistdata= (products) => {
+  const addWishlistdata = (products) => {
     if (!currentCustomer) toast.warning("Please Login First");
     else {
       let status = true;
@@ -98,117 +98,117 @@ export default function Products() {
   }
 
   useEffect(() => {
-      productList();
-    }, []);
-  
+    productList();
+  }, []);
+
   return (<>
-      <Header />
-      <Navigation />
-      <ToastContainer />
-      <div className="container py-5">
-        <div className="row">
-          <div className="col-lg-9">
-            <div className="row">
-              <div className="col-md-6">
-                <ul className="list-inline shop-top-menu pb-3 pt-1">
-                  <li className="list-inline-item">
-                    <form
-                      action=""
-                      method="get"
-                      className="modal-content modal-body border-0 p-0"
-                    >
-                      <div className="input-group mb-2">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="inputModalSearch"
-                          name="q"
-                          placeholder="Search ..."
-                          onChange={searchFilter}
-                        />
-                        <button
-                          type="submit"
-                          className="input-group-text bg-success text-light"
-                        >
-                          <i className="fa fa-fw fa-search text-white" />
-                        </button>
-                      </div>
-                    </form>
-                  </li>
-                </ul>
-              </div>
+    <Header />
+    <Navigation />
+    <ToastContainer />
+    <div className="container py-5">
+      <div className="row">
+        <div className="col-lg-9">
+          <div className="row">
+            <div className="col-md-6">
+              <ul className="list-inline shop-top-menu pb-3 pt-1">
+                <li className="list-inline-item">
+                  <form
+                    action=""
+                    method="get"
+                    className="modal-content modal-body border-0 p-0"
+                  >
+                    <div className="input-group mb-2">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="inputModalSearch"
+                        name="q"
+                        placeholder="Search ..."
+                        onChange={searchFilter}
+                      />
+                      <button
+                        type="submit"
+                        className="input-group-text bg-success text-light"
+                      >
+                        <i className="fa fa-fw fa-search text-white" />
+                      </button>
+                    </div>
+                  </form>
+                </li>
+              </ul>
             </div>
           </div>
-          <div className="row">
-            {products.map((products, index) => (
-              <div key={index} className="col-md-4">
-                <div
-                  className="card mb-4 product-wap rounded-0"
-                  style={{ height: "500px" }}
-                >
-                  <div className="card rounded-0">
+        </div>
+        <div className="row">
+          {products.map((products, index) => (
+            <div key={index} className="col-md-4">
+              <div
+                className="card mb-4 product-wap rounded-0"
+                style={{ height: "500px" }}
+              >
+                <div className="card rounded-0">
 
-                    <img
-                      className="card-img rounded-1  img-fluid"
-                      style={{ height: "300px" }}
-                      src={products.thumbnail} alt={<CircularStatic />}
-                    />
-                    <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                      <ul className="list-unstyled">
-                        <li>
-                          <a
-                            onClick={() =>addWishlistdata(products)}
-                            className="btn btn-success text-white"
-                          >
-                            <i className="far fa-heart" />
-                          </a>
-                        </li>
-                        <li>
-                          <button
-                            className="btn btn-success text-white mt-2"
-                            onClick={() => productDescriptionId(products)}
-                          >
-                            <i className="far fa-eye" />
-                          </button>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={() => addToCart(products)}
-                            className="btn btn-success text-white mt-2"
-                          >
-                            <i className="fas fa-cart-plus" />
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    <a
-                      href="shop-single.html"
-                      className="h3 text-decoration-none"
-                    >
-                      {products.title.substring(0, 60)}
-                    </a>
-                    <ul className="list-unstyled d-flex justify-content-center mb-1">
-                      <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly /><small className="disabled">{products.rating}</small>
+                  <img
+                    className="card-img rounded-1  img-fluid"
+                    style={{ height: "300px" }}
+                    src={products.thumbnail} alt={<CircularStatic />}
+                  />
+                  <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                    <ul className="list-unstyled">
+                      <li>
+                        <a
+                          onClick={() => addWishlistdata(products)}
+                          className="btn btn-success text-white"
+                        >
+                          <i className="far fa-heart" />
+                        </a>
+                      </li>
+                      <li>
+                        <button
+                          className="btn btn-success text-white mt-2"
+                          onClick={() => productDescriptionId(products)}
+                        >
+                          <i className="far fa-eye" />
+                        </button>
+                      </li>
+                      <li>
+                        <Link
+                          onClick={() => addToCart(products)}
+                          className="btn btn-success text-white mt-2"
+                        >
+                          <i className="fas fa-cart-plus" />
+                        </Link>
+                      </li>
                     </ul>
-                    <p className="text-center mb-0">₹{products.price}</p>
                   </div>
                 </div>
+                <div className="card-body">
+                  <a
+                    href="shop-single.html"
+                    className="h3 text-decoration-none"
+                  >
+                    {products.title.substring(0, 60)}
+                  </a>
+                  <ul className="list-unstyled d-flex justify-content-center mb-1">
+                    <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly />
+                  </ul>
+                  <p className="text-center mb-0">₹{products.price}</p>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </div> 
-      <InfiniteScroll 
-        dataLength={products.length}
-        next={productList}
-        hasMore={products.length<100}
-        endMessage={<p>Data End...
-          <CircularProgress color="secondary" />
-<CircularProgress color="success" />
-<CircularProgress color="inherit" />
-        </p>}>
-            </InfiniteScroll>
-    </>)
-    }
+      </div>
+    </div>
+    <InfiniteScroll
+      dataLength={products.length}
+      next={productList}
+      hasMore={products.length < 100}
+      endMessage={<p>Data End...
+        <CircularProgress color="secondary" />
+        <CircularProgress color="success" />
+        <CircularProgress color="inherit" />
+      </p>}>
+    </InfiniteScroll>
+  </>)
+}

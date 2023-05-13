@@ -8,7 +8,6 @@ import { addItemIntoCart } from "../../redux-config/CartSlice";
 import { updateCartItems } from "../../redux-config/CartSlice";
 import Navigation from "../navigation/Navigation";
 import ReactImageMagnify from "react-image-magnify";
-import "../ProductPage/thumbnail.css";
 
 export default function ProductDescription() {
   const location = useLocation();
@@ -104,7 +103,7 @@ export default function ProductDescription() {
                     {(
                       productDetail.price -
                       (productDetail.price * productDetail.discountPercentage) /
-                        100
+                      100
                     ).toFixed(1)}
                   </h5>
                   <del>

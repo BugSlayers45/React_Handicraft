@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SideNav from "./sideNav";
+import api from "../WebApi/api";
 
 
 function UpdateProduct() {
@@ -22,10 +23,9 @@ function UpdateProduct() {
 
 
     const update = async (event) => {
-        // console.log(title + "  " + description)
         try {
             event.preventDefault(location.state._id);
-            let response = await axios.post(`http://localhost:3000/product/updated/${productdetail._id}`, { title, description, price, stock, discountPercentage });
+            let response = await axios.post(api.UPDATE_PRODUCT + `/${productdetail._id}`, { title, description, price, stock, discountPercentage });
             toast.info("Product update successfully");
         } catch (err) {
             console.log(err);

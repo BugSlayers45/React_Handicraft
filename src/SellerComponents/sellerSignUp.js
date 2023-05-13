@@ -5,6 +5,7 @@ import SellerNavigation from "./sellerNevigation";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SideNav from "./sideNav";
+import api from "../WebApi/api";
 
 
 function SellerSignUp() {
@@ -21,7 +22,7 @@ function SellerSignUp() {
         try {
             event.preventDefault();
             console.log(sellerName + " " + sellerEmail + "" + sellerPassword + "" + sellerContact + "" + sellerAddress)
-            let response = await axios.post("http://localhost:3000/seller/signup", { sellerName, sellerEmail, sellerPassword, sellerContact, sellerAddress });
+            let response = await axios.post(api.SELLER_SIGNUP, { sellerName, sellerEmail, sellerPassword, sellerContact, sellerAddress });
             console.log(response.data);
             if (response.data.status) {
                 toast.success("SignUp Successful");
@@ -176,7 +177,7 @@ function SellerSignUp() {
 
                                 /> <small id="nameside" style={{ color: "red" }}>*</small>
 
-                            </div>
+                            </div><br />
                             <div className="user-box ml-4">
 
                                 <input placeholder="Enter Email"
@@ -185,15 +186,15 @@ function SellerSignUp() {
 
                                 /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
 
-                            </div>
+                            </div><br />
                             <div className="user-box ml-4">
                                 <input placeholder="Enter Password"
                                     onChange={(event) => setPassword(event.target.value)} onKeyUp={pswdValidation}
                                     type="password" className="form-control" name="password" id="pid"
 
-                                /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
+                                /><small id="pswdside" style={{ color: "red", marginBottom: "2px" }}>*</small>
 
-                            </div>
+                            </div><br />
                             <div className="user-box ml-4">
                                 <input placeholder="Enter Contact No" onKeyUp={contactValidation} id="contact" name="contact" onChange={(event) => setContact(event.target.value)} type="text" className="form-control" name="contact" required="" />
                                 <small id="conside" style={{ color: "red", marginBottom: "2px" }}>*</small>
@@ -208,7 +209,7 @@ function SellerSignUp() {
 
                                 />
 
-                            </div>
+                            </div><br />
                             <button type="submit" className="btn btn-dark mt-2 ml-4 mb-2" style={{
                                 borderRadius: "5%", width: "95%"
                             }}>

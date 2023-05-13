@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import SideNav from "./sideNav";
 import { ToastContainer } from "react-toastify";
+import api from "../WebApi/api";
 
 
 function SellerHome() {
@@ -16,7 +17,7 @@ function SellerHome() {
 
     const sellerproduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
+            const response = await axios.get(api.PRODUCT_LIST_BY_SELLER + `/${currentSeller._id}`)
             if (response.data.status)
                 setData(response.data.productsList);
 
@@ -29,7 +30,7 @@ function SellerHome() {
 
     const totalOrders = async () => {
         try {
-            let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
+            let response = await axios.get(api.ORDER_BY_SELLER + `/${currentSeller._id}`);
             if (response.data.status)
                 setOrders(response.data.sellerOrder);
 
@@ -80,7 +81,7 @@ function SellerHome() {
 
         <header>
             {/* <SellerNavigation /> */}
-
+            <SellerNavigation />
         </header>
         <main>
             <div className="container">

@@ -92,7 +92,7 @@ export default function Products() {
       }
     };
   }
-  const addWishlistdata= (products) => {
+  const addWishlistdata = (products) => {
     if (!currentCustomer) toast.warning("Please Login First");
     else {
       let status = true;
@@ -125,7 +125,7 @@ export default function Products() {
       productList();
     }
   }, []);
-  
+
   return (<>
     {/* Start Content */}
     <Header />
@@ -201,7 +201,7 @@ export default function Products() {
                       <ul className="list-unstyled">
                         <li>
                           <a
-                            onClick={() =>addWishlistdata(products)}
+                            onClick={() => addWishlistdata(products)}
                             className="btn btn-success text-white"
                           >
                             <i className="far fa-heart" />
@@ -234,7 +234,7 @@ export default function Products() {
                       {products.title.substring(0, 60)}
                     </a>
                     <ul className="list-unstyled d-flex justify-content-center mb-1">
-                      <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly /><small className="disabled">{products.rating}</small>
+                      <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly />
                     </ul>
                     <p className="text-center mb-0">₹{products.price}</p>
                   </div>

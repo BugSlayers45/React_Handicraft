@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import "../featuresProduct/features.css"
+import { Rating } from '@mui/material'
 
 
 export default function FeatureProducts() {
@@ -111,13 +112,8 @@ export default function FeatureProducts() {
                     {products.title}
                   </a>
                   <ul className="list-unstyled d-flex justify-content-center mb-1">
-                    <li>
-                      <i className="text-warning fa fa-star" />
-                      <i className="text-warning fa fa-star" />
-                      <i className="text-warning fa fa-star" />
-                      <i className="text-muted fa fa-star" />
-                      <i className="text-muted fa fa-star" />
-                    </li>
+                    <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly />
+
                   </ul>
                   <p className="text-center mb-0">{products.price}</p>
                 </div>

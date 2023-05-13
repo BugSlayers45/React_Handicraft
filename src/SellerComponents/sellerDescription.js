@@ -14,10 +14,10 @@ function SellerProduct() {
                 <div className="col-lg-12 d-flex" >
                     <div className="col-lg-1 " >
                         <div className="col-lg-3 col-md-2">
-                            {imageArray.map((singleImage, index) => (
+                            {/* {imageArray.map((singleImage, index) => (
                                 <img
                                     src={singleImage} id="smallimage" style={{ height: 70, width: 70 }} className="mb-3 mt-3" />
-                            ))}
+                            ))} */}
                         </div>
                         <div id="lens" />
                     </div>
@@ -52,9 +52,6 @@ function SellerProduct() {
                                 <i class="fa fa-check-circle" aria-hidden="true"></i> Made in India<br />
                                 <small><i class="fas fa-dot-circle    " style={{ color: "green" }}></i>In Stock({productData.stock})</small>
                             </small>
-                            <h5>Quantitiy:</h5>
-                            <input type="number" name="quantity" id="inputquantity" defaultValue={1} className="form-control" min={1} style={{ width: "90px" }} title /> <br />
-                            <h5>Our Cutomers : 0</h5>
 
                         </div>
 
