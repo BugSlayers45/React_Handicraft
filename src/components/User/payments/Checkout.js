@@ -50,12 +50,11 @@ export default function Checkout() {
 
   const personDetail = async (event) => {
     event.preventDefault()
-      window.alert(payment)
+    window.alert(payment)
     if (payment == 'rozarpay') {
       displayRazorpay()
     }
     else {
-        
       const data = { name, deliveryaddress, contactPerson, contactNumber }
       dispatch(setDeliveryDetail(data))
       const response = await axios.post("http://localhost:3000/order/buynow", {
@@ -64,19 +63,16 @@ export default function Checkout() {
         "contactNumber": contactNumber,
         "contactPerson": contactPerson,
         "orderItems": products
-        
       }
       )
-      
       toast.success("Order Placed Successfully")
       console.log(response)
-
     }
 
     // --------------------------------------------------------
   }
   const displayRazorpay = async () => {
-    let response = await axios.post("http://localhost:3000/api/razorpay",{totalBill})
+    let response = await axios.post("http://localhost:3000/api/razorpay", { totalBill })
 
     let data = response.data
     const options = {
@@ -87,29 +83,28 @@ export default function Checkout() {
       description: "Test Wallet Transaction",
       image: "https://tse2.mm.bing.net/th?id=OIP.4p7ztcUW4gAM6_1VGZ1EVwHaIj&pid=Api&P=0",
       order_id: data.id,
-      handler:  async (response)=> {
+      handler: async (response) => {
         console.log(response.razorpay_payment_id);
         console.log(response.razorpay_order_id);
         console.log(response.razorpay_signature);
         toast.success("Order Success")
-      
-      const data = { name, deliveryaddress, contactPerson, contactNumber }
-      dispatch(setDeliveryDetail(data))
-      const res = await axios.post("http://localhost:3000/order/buynow", {
-        "_id": currentCustomer._id,
-        "deliveryAddress": deliveryaddress,
-        "contactNumber": contactNumber,
-        "contactPerson": contactPerson,
-        "orderItems": products
-      }
-      )
-      console.log(res)
-        
+        const data = { name, deliveryaddress, contactPerson, contactNumber }
+        dispatch(setDeliveryDetail(data))
+        const res = await axios.post("http://localhost:3000/order/buynow", {
+          "_id": currentCustomer._id,
+          "deliveryAddress": deliveryaddress,
+          "contactNumber": contactNumber,
+          "contactPerson": contactPerson,
+          "orderItems": products
+        }
+        )
+        console.log(res)
+
       },
       prefill: {
-        name: contactPerson,
+        name: "vikram",
         email: "vikrampratapsingh628@gmail.com",
-        contact: contactNumber,
+        contact: "9131662204",
       },
     };
     const paymentObject = new window.Razorpay(options);
@@ -118,13 +113,9 @@ export default function Checkout() {
 
   return (<>
     <Navigation />
-    <ToastContainer/>
+    <ToastContainer />
 
     <Link to={"/cart"}> <button type="button" className="btn btn-primary mb-4 ml-2">Back To  Cart</button></Link>
-
-<Link to={"/cart"}> <a>Back To  Cart</a></Link>
-
-
     <div className='container'>
       <form onSubmit={personDetail}>
         <div className="row">
@@ -202,15 +193,9 @@ export default function Checkout() {
                   </div>
                 </ul>
 
-                <button type="submit"  className="btn btn-primary btn-lg btn-block">
+                <button type="submit" className="btn btn-primary btn-lg btn-block">
                   Make purchase
                 </button>
-                {/* <button
-                  style={{ position: "absolute", top: "50%", left: "50%" }} type="button" onClick={displayRazorpay}
-                  className="course-payment-button">
-                  Buy Now
-                </button> */}
-
               </div>
             </div>
           </div>

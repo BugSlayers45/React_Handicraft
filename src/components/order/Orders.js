@@ -19,7 +19,8 @@ export default function CustomerOrders() {
 
   const orderList = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/order/orderdetails", { id: currentCustomer._id })
+      const response = await axios.post("http://localhost:3000/order/orderdetail", { id: currentCustomer._id })
+      console.log(response.data);
       setOrders(response.data.order)
     } catch (err) {
       console.log("Something went wrong")
@@ -36,6 +37,7 @@ export default function CustomerOrders() {
       <Navigation />
       {/* end header section */}
       {orders?.map((order, index) =>
+
         <div id="accordion" class="panel-group container col-8 mt-5">
           <div class="panel panel-primary">
             <div class="panel-heading">
@@ -92,7 +94,9 @@ export default function CustomerOrders() {
                     <div class="col-12 col-md-3">
                       <a href="" class="btn btn-secondary w-90 mb-2">Track Shipment</a>
                     </div>
-                    {order.orderItem.map((item) =>
+                    {order.orderItem?.filter((filterItem) => filterItem.product).map((item) =>
+
+
                       <div class="row no-gutters mt-3">
 
                         <div class="col-3 col-md-1">
@@ -113,13 +117,14 @@ export default function CustomerOrders() {
                           <h6 class="text-charcoal text-left mb-0 mb-md-2"><b>Total Price : {item.product.price * item.quantity}</b></h6>
                         </div>
                         <div class="col-12 col-md-3 hidden-sm-down">
-                          <a href="" class="btn btn-secondary w-90 mb-2">Buy It Again</a>
-                          <a href="" class="btn btn-secondary w-90">Request a Return</a>
+                          <a href="" class="btn btn-secondary w-90 mb-2">Buy Again</a>
+                          <a href="" class="btn btn-secondary w-90">Give Review</a>
                         </div>
 
 
                       </div>
                     )}
+                    <div className="something went wrong"></div>
                   </div>
 
                 </div>

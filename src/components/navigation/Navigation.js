@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../redux-config/CustomerSlice";
 export default function Navigation() {
-  const {currentCustomer}=useSelector(state=>state.customer)
-  const{cartItems}=useSelector(state=>state.cart)
+  const { currentCustomer } = useSelector(state => state.customer)
+  const { cartItems } = useSelector(state => state.cart)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const customerSignOut = () => {
@@ -18,9 +18,8 @@ export default function Navigation() {
 
       <nav className="navbar navbar-expand-lg navbar-light shadow">
         <div className="container d-flex justify-content-between align-items-center">
-          <a
+          <Link to={"/"}
             className="navbar-brand text-success logo h2 align-self-center"
-            href="index.html"
           >
             <img
               src="./assets/img/logo1.png"
@@ -28,7 +27,7 @@ export default function Navigation() {
               className=""
               alt=""
             />
-          </a>
+          </Link>
           <button
             className="navbar-toggler border-0"
             type="button"
@@ -51,11 +50,7 @@ export default function Navigation() {
                     Home
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="about.html">
-                    About
-                  </a>
-                </li>
+
                 <li className="nav-item">
                   <Link to="/products" className="nav-link">
                     Shop
@@ -66,78 +61,73 @@ export default function Navigation() {
                     Contact
                   </a>
                 </li>
-                {/* <li className="nav-item">
+                <li className="nav-item">
                   <Link to="/orders" className="nav-link">
                     Orders
                   </Link>
-                </li> */}
-                {/* <li className="nav-item">
+                </li>
+                <li className="nav-item">
                   <Link to="/wishlist" className="nav-link">
                     wishlist
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </div>
             <div className="navbar align-self-center d-flex ml-5">
-             
-            
-                {currentCustomer&&<Link
-                  to="/cart"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
-                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                    {cartItems.length}
-                  </span>View Cart
-                </Link>}
-                {!currentCustomer&&<Link
-                  to="/signin"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
-                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                    {cartItems.length}
-                  </span>View Cart
-                </Link>}
-            
-            
-                {!currentCustomer&&<Link
-                  to="/signIn"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  Signin
-                </Link>}
-             
-              
-                {currentCustomer&&<Link
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  View Orders
-                </Link>}
-                {!currentCustomer&&<Link
-                  to="/signUp"
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  SignUp
-                </Link>}
-                {currentCustomer&&<Link 
-                  onClick={customerSignOut}
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  SignOut
-                </Link>
-                }
+
+
+              {currentCustomer && <Link
+                to="/cart"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
+                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                  {cartItems.length}
+                </span>View Cart
+              </Link>}
+              {!currentCustomer && <Link
+                to="/signin"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1" />
+                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                  {cartItems.length}
+                </span>View Cart
+              </Link>}
+
+
+              {!currentCustomer && <Link
+                to="/signIn"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-user text-dark mr-3" />
+                Signin
+              </Link>}
+
+              {currentCustomer && <Link
+                onClick={customerSignOut}
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-user text-dark mr-3" />
+                SignOut
+              </Link>
+              }
+
+
+              {!currentCustomer && <Link
+                to="/signUp"
+                className="nav-icon position-relative text-decoration-none"
+              >
+                <i className="fa fa-fw fa-user text-dark mr-3" />
+                SignUp
+              </Link>}
             </div>
           </div>
         </div>
       </nav>
       <div className="align-self-center d-flex mt-3 offset-2 col-8 text-centre">
         {" "}
-     
+
       </div>
 
       {/* Close Header */}

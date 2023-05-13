@@ -25,43 +25,38 @@ import FileUpload from './components/test/FileUpload';
 import Sales from './SellerComponents/sales';
 import Wishlist from './components/Wishlist/wishlist';
 import CustomerOrders from './components/order/Orders';
-
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteProduct from "./components/Shop/InfiniteProduct";
 
 
 function App() {
-  
-  
+
   return <>
-  <Routes> 
-    <Route path='/' element={ <Home/>} />
-    <Route path='/products' element={<Products/>} />
-    <Route path='/signIn' element={<SignIn/>} />
-    <Route path='/signUp' element={<SignUp/>} />
-    <Route path='/productdescription' element={<ProductDescription/>}/>
-    <Route path='/cart' element={<Cart/>}/>
-    <Route path='/sellerHome' element={<SellerHome />} />
-    <Route path='/sellersignup' element={<SellerSignUp />} />
-    <Route path='/sellersignin' element={<SellerSignIn />} />
-    <Route path='/productList' element={<ProductList />} />
-    <Route path='/updateproduct' element={<UpdateProduct />} />
-
-    <Route path='/products' element={<Products />} />
-    <Route path='/profile' element={<UserProfile/>} />
-
-    <Route path='/addproduct' element={<AddProduct />} />
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/products' element={<Products />} />
+      <Route path='/signIn' element={<SignIn />} />
+      <Route path='/signUp' element={<SignUp />} />
+      <Route path='/productdescription' element={<ProductDescription />} />
+      <Route path='/cart' element={<Cart />} />
+      <Route path='/sellerHome' element={<SellerHome />} />
+      <Route path='/sellersignup' element={<SellerSignUp />} />
+      <Route path='/sellersignin' element={<SellerSignIn />} />
+      <Route path='/productList' element={<ProductList />} />
+      <Route path='/updateproduct' element={<UpdateProduct />} />
+      <Route path='/products' element={<Products />} />
+      <Route path='/profile' element={<UserProfile />} />
+      <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
       <Route path='/sidenav' element={<SideNav />} />
       <Route path='/orderdetail' element={<OrderDetail />} />
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
-      <Route path='/checkout' element={<Checkout/>}/>
-
-
-      <Route path='/image' element={<FileUpload/>} />
-      <Route path="/wishlist" element= {<Wishlist/>}/> 
-      <Route path="/orders" element= {<CustomerOrders/>}/>
+      <Route path='/checkout' element={<Checkout />} />
+      <Route path='/image' element={<FileUpload />} />
+      <Route path="/wishlist" element={<Wishlist />} />
+      <Route path="/orders" element={<CustomerOrders />} />
+      <Route path="/infinitProduct" element={<InfiniteProduct />} />
     </Routes>
   </>
 }

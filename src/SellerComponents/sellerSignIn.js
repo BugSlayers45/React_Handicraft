@@ -8,6 +8,7 @@ import { setSeller } from "../redux-config/sellerSignInSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import SideNav from "./sideNav";
+import api from "../WebApi/api";
 
 function SellerSignIn() {
 
@@ -19,7 +20,7 @@ function SellerSignIn() {
     const signin = async (event) => {
         try {
             event.preventDefault();
-            let response = await axios.post("http://localhost:3000/seller/signin", { sellerEmail, sellerPassword });
+            let response = await axios.post(api.SELLER_SIGNIN, { sellerEmail, sellerPassword });
             dispatch(setSeller(response.data.seller));
             toast.success("SingIn Successful..");
             navigate("/sellerHome");
@@ -40,7 +41,7 @@ function SellerSignIn() {
         if (email.length == 0) {
             status = false;
             emailside.innerHTML = "email is required";
-            // emailside.style.color = "red";
+
         }
         else {
             var atTheRateIndex = email.indexOf('@');
@@ -49,17 +50,17 @@ function SellerSignIn() {
             if (atTheRateIndex == -1) {
                 status = false;
                 emailside.innerHTML = "Invalid email(@ missing)";
-                // emailside.style.color = "red";
+
             }
             else if (secondAtTheReateIndex != atTheRateIndex) {
                 status = false;
                 emailside.innerHTML = "Invalid email";
-                // emailside.style.color = "red";
+
             }
             else if (dotIndex == -1) {
                 status = false;
                 emailside.innerHTML = "Invalid email(. missing)";
-                // emailside.style.color = "red";
+
             }
             else {
                 var stringAfterAtTheRate = email.substring(atTheRateIndex);
@@ -67,21 +68,21 @@ function SellerSignIn() {
                 if (lastDotIndex == -1) {
                     status = false;
                     emailside.innerHTML = "Invalid email(. missing in domain)";
-                    // emailside.style.color = "red";
+
                 }
                 else {
                     var inOrCom = stringAfterAtTheRate.substring(lastDotIndex + 1);
                     if (inOrCom.length < 2) {
                         status = false;
                         emailside.innerHTML = "Invalid email";
-                        // emailside.style.color = "red";
+
                     }
                     else {
 
                         if (stringAfterAtTheRate.substring(1, lastDotIndex).length == 0) {
                             status = false;
                             emailside.innerHTML = "Invalid Email";
-                            // emailside.style.color = "red";
+
                         }
                         else
                             emailside.innerHTML = "";
@@ -101,28 +102,14 @@ function SellerSignIn() {
         if (password.length == 0) {
             status = false;
             pswdside.innerHTML = "password is required";
-            // pswdside.style.color = "red";
+
         }
         else if (password.length < 6) {
             status = false;
             pswdside.innerHTML = "password must be at least 6 letter.";
-            // pswdside.style.color = "red";
+
         }
-        // else if (!checkForSpecificLetter(password, 'A', 'Z')) {
-        //     status = false;
-        //     pswdside.innerHTML = "password must have 1 uppercase letter";
-        //     // pswdside.style.color = "red";
-        // }
-        // else if (!checkForSpecificLetter(password, '0', '9')) {
-        //     status = false;
-        //     pswdside.innerHTML = "password must have 1 digit";
-        //     // pswdside.style.color = "red";
-        // }
-        // else if (!checkForSpecialSymbol(password)) {
-        //     status = false;
-        //     pswdside.innerHTML = "password must have 1 special symbol($,#,@)";
-        //     // pswdside.style.color = "red";
-        // }
+
         else
             pswdside.innerHTML = "";
         return status;

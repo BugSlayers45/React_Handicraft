@@ -20,7 +20,7 @@ export const addItemInWishlist = createAsyncThunk("addtowishlist", async (obj) =
 const slice = createSlice({
     name: "wishlistData",
     initialState: {
-        wishlistItem: [],
+        wishlistData: [],
         wishlistError: null,
         flag: false
     },

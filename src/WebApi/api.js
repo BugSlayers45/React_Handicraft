@@ -9,7 +9,12 @@ export default {
    VIEW_CART_ITEMS:"/cart/viewCartItems",
    ADD_TO_CART:"/cart/add-to-cart",
    PRODUCT_ADD: "/product/save",
-   
-   CUSTOMER_SAVE: "/customer/save"
+   CUSTOMER_SAVE: "/customer/save",
+   SELLER_SIGNIN: "/seller/signin",
+   SELLER_SIGNUP: "/seller/signup",
+   PRODUCT_LIST_BY_SELLER: "/product/productList",
+   ORDER_BY_SELLER: "/order/getorderbyseller",
+   UPDATE_PRODUCT: "/product/updated",
+   VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct"
 
 }
