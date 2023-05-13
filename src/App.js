@@ -26,8 +26,11 @@ import Sales from './SellerComponents/sales';
 import Wishlist from './components/Wishlist/wishlist';
 import CustomerOrders from './components/order/Orders';
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
 
 function App() {
+  
   
   return <>
   <Routes> 
@@ -54,6 +57,7 @@ function App() {
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
       <Route path='/checkout' element={<Checkout/>}/>
+
 
       <Route path='/image' element={<FileUpload/>} />
       <Route path="/wishlist" element= {<Wishlist/>}/> 

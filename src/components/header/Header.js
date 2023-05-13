@@ -1,7 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 export default function Header() {
+  const {currentCustomer}=useSelector(state=>state.customer)
   return<>  <nav
     className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
     id="templatemo_nav_top"
@@ -10,18 +12,22 @@ export default function Header() {
       <div className="w-100 d-flex justify-content-between">
         <div>
           {/* <i className="fa fa-envelope mx-2" /> */}
-          <Link
+          {currentCustomer&&<Link
             className="navbar-sm-brand text-light text-decoration-none"
             to="/profile">
             View Profile
-          </Link>
-          <i className="fa fa-phone mx-2" />
+            <i className=" mx-2" />
           <a
             className="navbar-sm-brand text-light text-decoration-none"
             href="tel:010-020-0340"
           >
-            010-020-0340
+            {currentCustomer.customerName}
+            
           </a>
+          </Link>
+          
+          }
+          {!currentCustomer&&<p>Please Login First</p>}
         </div>
         <div>
           <a

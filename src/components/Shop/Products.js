@@ -2,16 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Search from "../search/SearchModal";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Navigation from "../navigation/Navigation";
 import Header from "../header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import { addItemIntoCart, updateCartItems } from "../../redux-config/CartSlice";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../WebApi/api";
-import { addItemInWishlist, updateWishlistItems } from "../../redux-config/wishlistSlice";
 import CircularStatic from "../../SellerComponents/spinner/Spinner";
 import { Rating } from "@mui/material";
+
 export default function Products() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,12 +26,15 @@ export default function Products() {
 
 
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
   const productList = async () => {
     try {
-      let response = await axios.get(api.VIEW_ALL_PRODUCT);
-      // window.alert(response)
-      console.log(response.data);
-      setProducts(response.data.products);
+      let response = await axios.get(api.VIEW_ALL_PRODUCT + `?page=${page}`);
+      if (response.data.status) {
+        setProducts([...products, ...response.data.products]);
+        setPage(page + 1);
+
+      }
     } catch (err) {
       console.log(err);
     }
@@ -69,14 +72,13 @@ export default function Products() {
     );
     setProducts(result.data.products);
   };
-
   const productDescriptionId = (productDid) => {
     navigate("/productdescription", { state: { productDetail: productDid } });
   };
 
   ///Cart COde:
   const addToCart = (products) => {
-    if (!currentCustomer) toast.warning("Please Login first");
+    if (!currentCustomer) toast.warning("Please Login For cart");
     else {
       dispatch(
         addItemIntoCart({
@@ -92,46 +94,20 @@ export default function Products() {
       }
     };
   }
-  const addWishlistdata= (products) => {
-    if (!currentCustomer) toast.warning("Please Login First");
-    else {
-      let status = true;
-      if (cartItems.length != 0)
-        status = cartItems?.some((item) => item?.productId?._id == products._id);
-      else status = false;
-      if (status) toast.info("Item is already added in wishlist");
-      else {
-        dispatch(
-          addItemInWishlist({
-            customerId: currentCustomer._id,
-            productId: products._id,
-          })
-        );
-        if (!cartError) {
-          dispatch(updateWishlistItems(products));
-          toast.success("Item Successfuly Added in wishlist");
-        }
-        else {
-          toast.error("!Oop somthing went wrong");
-        }
-      }
-    }
-  }
-
   useEffect(() => {
     if (categoryid) {
+      
       categroyFilterFromHome();
     } else {
       productList();
     }
   }, []);
-  
+
   return (<>
     {/* Start Content */}
     <Header />
     <Navigation />
     <ToastContainer />
-
     <div className="container py-5">
       <div className="row">
         <div className="col-lg-3">
@@ -184,97 +160,73 @@ export default function Products() {
               </ul>
             </div>
           </div>
-          <div className="row">
-            {products.map((products, index) => (
-              <div key={index} className="col-md-4">
-                <div
-                  className="card mb-4 product-wap rounded-0"
-                  style={{ height: "500px" }}
-                >
-                  <div className="card rounded-0">
+          <InfiniteScroll
+            dataLength={products.length}
+            next={productList}
+            hasMore={products.length < 90}
+            endMessage={<p>Data End...</p>}>
+            <div className="row">
+              {products?.map((products, index) => (
+                <div key={index} className="col-md-4">
+                  <div
+                    className="card mb-4 product-wap rounded-0"
+                    style={{ height: "500px" }}
+                  >
+                    <div className="card rounded-0">
 
-                    <img
-                      className="card-img rounded-1  img-fluid"
-                      style={{ height: "300px" }}
-                      src={products.thumbnail} alt={<CircularStatic />}
-                    />
-                    <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                      <ul className="list-unstyled">
-                        <li>
-                          <a
-                            onClick={() =>addWishlistdata(products)}
-                            className="btn btn-success text-white"
-                          >
-                            <i className="far fa-heart" />
-                          </a>
-                        </li>
-                        <li>
-                          <button
-                            className="btn btn-success text-white mt-2"
-                            onClick={() => productDescriptionId(products)}
-                          >
-                            <i className="far fa-eye" />
-                          </button>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={() => addToCart(products)}
-                            className="btn btn-success text-white mt-2"
-                          >
-                            <i className="fas fa-cart-plus" />
-                          </Link>
-                        </li>
+                      <img
+                        className="card-img rounded-1  img-fluid"
+                        style={{ height: "300px" }}
+                        src={products.thumbnail} alt={<CircularStatic />}
+                      />
+                      <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                        <ul className="list-unstyled">
+                          <li>
+                            <a
+                              className="btn btn-success text-white"
+                              href="shop-single.html"
+                            >
+                              <i className="far fa-heart" />
+                            </a>
+                          </li>
+                          <li>
+                            <button
+                              className="btn btn-success text-white mt-2"
+                              onClick={() => productDescriptionId(products)}
+                            >
+                              <i className="far fa-eye" />
+                            </button>
+                          </li>
+                          <li>
+                            <Link
+                              onClick={() => addToCart(products)}
+                              className="btn btn-success text-white mt-2"
+                            >
+                              <i className="fas fa-cart-plus" />
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <a
+                        href="shop-single.html"
+                        className="h3 text-decoration-none"
+                      >
+                        {products.title.substring(0, 60)}
+                      </a>
+                      <ul className="list-unstyled d-flex justify-content-center mb-1">
+                        <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly /><small className="disabled">{products.rating}</small>
                       </ul>
+                      <p className="text-center mb-0">₹{products.price}</p>
                     </div>
                   </div>
-                  <div className="card-body">
-                    <a
-                      href="shop-single.html"
-                      className="h3 text-decoration-none"
-                    >
-                      {products.title.substring(0, 60)}
-                    </a>
-                    <ul className="list-unstyled d-flex justify-content-center mb-1">
-                      <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly /><small className="disabled">{products.rating}</small>
-                    </ul>
-                    <p className="text-center mb-0">₹{products.price}</p>
-                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div div="row">
-            <ul className="pagination pagination-lg justify-content-end">
-              <li className="page-item disabled">
-                <a
-                  className="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
-                  href="#"
-                  tabIndex={-1}
-                >
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a
-                  className="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                  href="#"
-                >
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a
-                  className="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                  href="#"
-                >
-                  3
-                </a>
-              </li>
-            </ul>
-          </div>
+              ))}
+            </div>
+          </InfiniteScroll>
         </div>
       </div>
     </div>
-    {/* End Content */}
   </>)
 }

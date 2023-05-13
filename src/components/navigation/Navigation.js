@@ -66,16 +66,16 @@ export default function Navigation() {
                     Contact
                   </a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link to="/orders" className="nav-link">
                     Orders
                   </Link>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                   <Link to="/wishlist" className="nav-link">
                     wishlist
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="navbar align-self-center d-flex ml-5">
@@ -109,14 +109,7 @@ export default function Navigation() {
                   Signin
                 </Link>}
              
-                {currentCustomer&&<Link 
-                  onClick={customerSignOut}
-                  className="nav-icon position-relative text-decoration-none"
-                >
-                  <i className="fa fa-fw fa-user text-dark mr-3" />
-                  SignOut
-                </Link>
-                }
+              
                 {currentCustomer&&<Link
                   className="nav-icon position-relative text-decoration-none"
                 >
@@ -130,6 +123,14 @@ export default function Navigation() {
                   <i className="fa fa-fw fa-user text-dark mr-3" />
                   SignUp
                 </Link>}
+                {currentCustomer&&<Link 
+                  onClick={customerSignOut}
+                  className="nav-icon position-relative text-decoration-none"
+                >
+                  <i className="fa fa-fw fa-user text-dark mr-3" />
+                  SignOut
+                </Link>
+                }
             </div>
           </div>
         </div>

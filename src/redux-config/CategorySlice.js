@@ -22,7 +22,7 @@ const slice=createSlice({
         })
         builder.addCase(fetchCategory.rejected,(state,action)=>{
             state.isLoading=true
-            state.error="SOmethin wrong"
+            state.error="Something went wrong"
         })
     }
 })  

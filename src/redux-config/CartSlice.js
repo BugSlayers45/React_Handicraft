@@ -9,7 +9,7 @@ export const fetchCart=createAsyncThunk("fetch cart",async(customerId)=>{
     return response.data[0].cartItems
     
 })
-export const addItemIntoCart=createAsyncThunk("cart/addItemcart",async(obj)=>{
+export const addItemIntoCart = createAsyncThunk("cart/addItemcart",async(obj)=>{
     console.log(obj)
     let response=await axios.post(api.ADD_TO_CART,{customerId:obj.customerId,productId:obj.productId})
     if(response.data.status)
