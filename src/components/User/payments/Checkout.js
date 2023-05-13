@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react'
 import Navigation from '../../navigation/Navigation'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDeliveryDetail } from '../../../redux-config/DeliveryDetailSlice'
 import "../payments/payments.css"
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
+import { clearAllCart } from '../../../redux-config/CartSlice'
 
 export default function Checkout() {
   const [payment, setPayment] = useState("");
   const { currentCustomer } = useSelector(state => state.customer)
   const data = useSelector(state => state.deliveryDetail)
   const location = useLocation()
-  console.log(location)
   const totalBill = location.state.orderpackage.billamount + location.state.orderpackage.SHIPPING_FEES
 
   const products = location.state.orderpackage.cartitems
-  console.log(products)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const [name, setName] = useState()
   const [deliveryaddress, setdeliveryAddress] = useState()
   const [contactPerson, setContactPerson] = useState()
@@ -44,18 +44,13 @@ export default function Checkout() {
   });
 
   // --------------------------------------------------------
-
-
-  // console.log(location.state.orderpackage)
-
   const personDetail = async (event) => {
     event.preventDefault()
       window.alert(payment)
     if (payment == 'rozarpay') {
       displayRazorpay()
     }
-    else {
-        
+    else {   
       const data = { name, deliveryaddress, contactPerson, contactNumber }
       dispatch(setDeliveryDetail(data))
       const response = await axios.post("http://localhost:3000/order/buynow", {
@@ -64,15 +59,13 @@ export default function Checkout() {
         "contactNumber": contactNumber,
         "contactPerson": contactPerson,
         "orderItems": products
-        
       }
       )
-      
+      if(response.data.status)
+      dispatch(clearAllCart());
+      navigate("/");
       toast.success("Order Placed Successfully")
-      console.log(response)
-
     }
-
     // --------------------------------------------------------
   }
   const displayRazorpay = async () => {
@@ -103,8 +96,9 @@ export default function Checkout() {
         "orderItems": products
       }
       )
-      console.log(res)
-        
+      if(res.data.status==200)
+      dispatch(clearAllCart());
+      navigate("/");
       },
       prefill: {
         name: contactPerson,
@@ -119,12 +113,7 @@ export default function Checkout() {
   return (<>
     <Navigation />
     <ToastContainer/>
-
     <Link to={"/cart"}> <button type="button" className="btn btn-primary mb-4 ml-2">Back To  Cart</button></Link>
-
-<Link to={"/cart"}> <a>Back To  Cart</a></Link>
-
-
     <div className='container'>
       <form onSubmit={personDetail}>
         <div className="row">
@@ -159,8 +148,6 @@ export default function Checkout() {
                   <input type="text" onChange={(e) => setContactNumber(e.target.value)} id="form7Example5" className="form-control" />
                   <label className="form-label" htmlFor="form7Example5">Contact Number</label>
                 </div>
-
-
               </div>
             </div>
           </div>

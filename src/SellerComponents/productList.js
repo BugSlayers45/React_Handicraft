@@ -15,28 +15,19 @@ function ProductList() {
     const [pageData, setPageData] = useState([]);
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(0);
-
     const { currentSeller } = useSelector(state => state.seller);
-
     const [products, setProductList] = useState([]);
     const navigate = useNavigate();
-
 
     const productlist = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/product/productList/${currentSeller._id}`)
-
             if (response.data.status)
-
                 setData(response.data.productsList)
-
-
         } catch (err) {
             console.log(err);
         }
     }
-
-
     const deleteProduct = async (id) => {
         try {
             let response = await axios.post(`http://localhost:3000/product/delete/${id}`)

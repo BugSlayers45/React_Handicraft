@@ -16,11 +16,7 @@ function UpdateProduct() {
     const [stock, setStock] = useState("");
     const [discountPercentage, setDiscount] = useState("");
     const location = useLocation();
-
     const productdetail = location.state.productdetail
-
-
-
     const update = async (event) => {
         // console.log(title + "  " + description)
         try {
@@ -80,8 +76,6 @@ function UpdateProduct() {
                 </div>
             </div>
         </div >
-
-
     </>
 }
 

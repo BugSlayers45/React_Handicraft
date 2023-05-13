@@ -13,18 +13,15 @@ function Sales() {
             let response = await axios.get(`http://localhost:3000/order/getorderbyseller/${currentSeller._id}`);
             if (response.data.status)
                 setProducts(response.data.sellerOrder);
-            // console.log(response.data.sellerOrder);
-            console.log(response.data.sellerOrder);
-
         } catch (err) {
             console.log(err);
         }
     }
+    
     useEffect(() => {
         buiedProduct();
 
     }, []);
-
     return <>
         <SellerNavigation />
         <div className="container-fluid" >
