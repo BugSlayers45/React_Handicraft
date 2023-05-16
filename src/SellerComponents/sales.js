@@ -24,12 +24,11 @@ function Sales() {
         }
     }
 
-
     product.forEach(element => {
         (element.OrderItems?.quantity >= 1) ?
 
-            elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1 * element.OrderItems?.quantity
-            : elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1;
+            elementCounts[element.productDetails] = (elementCounts[element.productDetails.title] || 0) + 1 * element.OrderItems?.quantity
+            : elementCounts[element.productDetails] = (elementCounts[element.productDetails.title] || 0) + 1;
 
     })
     console.log(elementCounts);
