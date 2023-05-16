@@ -88,7 +88,6 @@ export default function Checkout() {
         console.log(response.razorpay_order_id);
         console.log(response.razorpay_signature);
         toast.success("Order Success")
-
         const data = { name, deliveryaddress, contactPerson, contactNumber }
         dispatch(setDeliveryDetail(data))
         const res = await axios.post("http://localhost:3000/order/buynow", {
@@ -197,12 +196,6 @@ export default function Checkout() {
                 <button type="submit" className="btn btn-primary btn-lg btn-block">
                   Make purchase
                 </button>
-                {/* <button
-                  style={{ position: "absolute", top: "50%", left: "50%" }} type="button" onClick={displayRazorpay}
-                  className="course-payment-button">
-                  Buy Now
-                </button> */}
-
               </div>
             </div>
           </div>

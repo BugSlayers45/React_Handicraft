@@ -43,10 +43,8 @@ function App() {
       <Route path='/sellersignin' element={<SellerSignIn />} />
       <Route path='/productList' element={<ProductList />} />
       <Route path='/updateproduct' element={<UpdateProduct />} />
-
       <Route path='/products' element={<Products />} />
       <Route path='/profile' element={<UserProfile />} />
-
       <Route path='/addproduct' element={<AddProduct />} />
       <Route path='/order' element={<Order />} />
       <Route path='/sellerProductDescription' element={<SellerProduct />} />
@@ -55,7 +53,6 @@ function App() {
       <Route path='/image' element={<FileUpload />} />
       <Route path='/sales' element={<Sales />} />
       <Route path='/checkout' element={<Checkout />} />
-
       <Route path='/image' element={<FileUpload />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/orders" element={<CustomerOrders />} />
