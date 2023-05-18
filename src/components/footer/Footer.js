@@ -26,6 +26,16 @@ export default function Footer() {
                 info@company.com
               </a>
             </li>
+            <li>
+              <Link className="text-decoration-none" to="/sellersignin"><i class="fa fa-user-circle me-1" aria-hidden="true"></i>
+                Seller
+              </Link>
+            </li>
+            <li>
+              <Link className="text-decoration-none" to="/"><i class="fa fa-user me-1" aria-hidden="true"></i>
+                Customer
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="col-md-4 pt-5">
@@ -35,38 +45,37 @@ export default function Footer() {
           <ul className="list-unstyled text-light footer-link-list">
             <li>
               <a className="text-decoration-none" href="#">
-                Luxury
+                wall clock
               </a>
             </li>
             <li>
               <a className="text-decoration-none" href="#">
-                Sport Wear
+                Tea cup
               </a>
             </li>
             <li>
               <a className="text-decoration-none" href="#">
-                Men's Shoes
+                Spice Boxes
               </a>
             </li>
             <li>
               <a className="text-decoration-none" href="#">
-                Women's Shoes
+                Dinner Set
               </a>
             </li>
             <li>
               <a className="text-decoration-none" href="#">
-                Popular Dress
+                canvas painting
               </a>
             </li>
             <li>
               <a className="text-decoration-none" href="#">
-                Gym Accessories
+                Lighting
               </a>
             </li>
             <li>
               <a className="text-decoration-none" href="#">
-                Sport Shoes
-              </a>
+                wall hanging              </a>
             </li>
           </ul>
         </div>
@@ -100,17 +109,6 @@ export default function Footer() {
                 Contact
               </a>
             </li>
-            <li>
-              <Link className="text-decoration-none" to="/sellersignin">
-                Seller
-              </Link>
-            </li>
-            <li>
-              <Link className="text-decoration-none" to="/">
-                Customer
-              </Link>
-            </li>
-
           </ul>
         </div>
       </div>
