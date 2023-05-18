@@ -62,13 +62,14 @@ export default function CustomerOrders() {
                         <h6 class="text-charcoal mb-0 w-100">Shipped To</h6>
                         <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">{order.contactPerson}</p>
                       </div>
+                      <div class="col-12 col-md-3">
+                        <a href={"#index" + index + 1} data-toggle="collapse" data-parent="#accordion" class="btn btn-success w-90">View Order</a>
+                      </div>
                       <div class="col-6 col-lg">
                         <h6 class="text-charcoal mb-0 w-100">Status</h6>
                         <p class="text-pebble mb-0 w-100 mb-2 mb-md-0">{order.status}</p>
                       </div>
-                      <div class="col-12 col-md-3">
-                        <a href={"#index" + index + 1} data-toggle="collapse" data-parent="#accordion" class="btn btn-success w-90">View Order</a>
-                      </div>
+                      
                     </div>
 
                   </div>
@@ -87,8 +88,11 @@ export default function CustomerOrders() {
                   <div class="row no-gutters">
                     <div class="col-12 col-md-9 pr-0 pr-md-3">
                       <div class="alert p-2 alert-success w-100 mb-0">
-                        <h6 class="text-green mb-0"><b>Shipped</b></h6>
-                        <p class="text-green hidden-sm-down mb-0">Est. delivery between Aug 5 – Aug 9th, 2017</p>
+                      {order.status=='shipped' &&
+                        <h6 class="text-green mb-0"><b>Shipped</b></h6>}
+                      {order.status=='pending' &&
+                     <> <h6 class="text-blue mb-0"><b>Pending</b></h6>
+                        <p class="text-green hidden-sm-down mb-0">Est. delivery till {order.date.substring(0,8)+(((order.date.substring(8,10)*1+(3)))%(29))}</p></>}
                       </div>
                     </div>
                     <div class="col-12 col-md-3">

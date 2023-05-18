@@ -1,14 +1,77 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import "../featuresProduct/features.css"
 import { Rating } from '@mui/material'
+import { ToastContainer, toast } from 'react-toastify'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { addItemIntoCart, updateCartItems } from '../../redux-config/CartSlice'
+import { addItemInWishlist, updateWishlistItems } from "../../redux-config/wishlistSlice";
+import Navigation from "../navigation/Navigation";
+
+
+
 
 
 export default function FeatureProducts() {
   const { featuresProductList, isLoading, error } = useSelector(state => state.featuresproduct)
+  const { cartItems, cartError } = useSelector((state) => state.cart);
+  const { currentCustomer } = useSelector((state) => state.customer);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const addWishlistdata = (products) => {
+    if (!currentCustomer) toast.warning("Please Login First");
+    else {
+      let status = true;
+      if (cartItems.length != 0)
+        status = cartItems?.some((item) => item?.productId?._id == products._id);
+      else status = false;
+      if (status) toast.info("Item is already added in wishlist");
+      else {
+        dispatch(
+          addItemInWishlist({
+            customerId: currentCustomer._id,
+            productId: products._id,
+          })
+        );
+        if (!cartError) {
+          dispatch(updateWishlistItems(products));
+          toast.success("Item Successfuly Added in wishlist");
+        }
+        else {
+          toast.error("!Oop somthing went wrong");
+        }
+      }
+    }
+  }
+
+  const productDescriptionId = (productDid) => {
+    navigate("/productdescription", { state: { productDetail: productDid } });
+  };
+  
+
+
+  const addToCart = (products) => {
+    if (!currentCustomer) toast.warning("Please Login first");
+    else {
+      dispatch(
+        addItemIntoCart({
+          customerId: currentCustomer._id,
+          productId: products._id,
+        })
+      );
+      if (!cartError) {
+        dispatch(updateCartItems(products));
+        // toast.success("Item Successfuly Added in Cart");
+      } else {
+        toast.error("!Oop somthing went wrong");
+      }
+    };
+  }
   return <>
 
     {/* Gallery */}
+    <ToastContainer/>
     <div className="row">
 
       <div className=" col-lg-4 col-md-12 mb-4 mb-lg-0">
@@ -81,28 +144,32 @@ export default function FeatureProducts() {
                   <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                     <ul className="list-unstyled">
                       <li>
-                        <a
-                          className="btn btn-success text-white"
-                          href="shop-single.html"
-                        >
-                          <i className="far fa-heart" />
-                        </a>
+                      <a
+                            onClick={() => addWishlistdata(products)}
+                            className="btn btn-success text-white"
+                          >
+                            <i className="far fa-heart" />
+                          </a>
                       </li>
                       <li>
-                        <a
-                          className="btn btn-success text-white mt-2"
-                          href="shop-single.html"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
+                      <button
+                            className="btn btn-success text-white mt-2"
+                            onClick={() => productDescriptionId(products)}
+                          >
+                            <i className="far fa-eye" />
+                          </button>
                       </li>
                       <li>
-                        <a
-                          className="btn btn-success text-white mt-2"
-                          href="shop-single.html"
-                        >
-                          <i className="fas fa-cart-plus" />
-                        </a>
+                       
+                          {/* <i className="fas fa-cart-plus" /> */}
+
+
+                          <Link
+                            onClick={() => addToCart(products)}
+                            className="btn btn-success text-white mt-2"
+                          >
+                            <i className="fas fa-cart-plus" />
+                          </Link>
                       </li>
                     </ul>
                   </div>

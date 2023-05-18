@@ -12,7 +12,7 @@ import api from "../../WebApi/api";
 import { addItemInWishlist, updateWishlistItems } from "../../redux-config/wishlistSlice";
 import CircularStatic from "../../SellerComponents/spinner/Spinner";
 import { Rating } from "@mui/material";
-export default function Products() {
+export default function Products() {  
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
