@@ -17,7 +17,6 @@ import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
 import UserProfile from './components/User/UserProfile/UserProfile';
-
 import SideNav from './SellerComponents/sideNav';
 import OrderDetail from './SellerComponents/orderDetail';
 import Checkout from './components/User/payments/Checkout';
@@ -26,6 +25,7 @@ import Sales from './SellerComponents/sales';
 import Wishlist from './components/Wishlist/wishlist';
 import CustomerOrders from './components/order/Orders';
 import InfiniteProduct from "./components/Shop/InfiniteProduct";
+import ProductReview from './components/ProductPage/ProductReview';
 
 
 function App() {
@@ -57,6 +57,7 @@ function App() {
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/orders" element={<CustomerOrders />} />
       <Route path="/infinitProduct" element={<InfiniteProduct />} />
+      <Route path='productreview' element={<ProductReview/>}/>
     </Routes>
   </>
 }

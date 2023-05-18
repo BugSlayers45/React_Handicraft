@@ -61,21 +61,19 @@ export default function Navigation() {
                     Contact
                   </a>
                 </li>
-                <li className="nav-item">
+                {currentCustomer&&<li className="nav-item">
                   <Link to="/orders" className="nav-link">
                     Orders
                   </Link>
-                </li>
+                </li>}
                 <li className="nav-item">
                   <Link to="/wishlist" className="nav-link">
-                    wishlist
+                    Wishlist
                   </Link>
                 </li>
               </ul>
             </div>
             <div className="navbar align-self-center d-flex ml-5">
-
-
               {currentCustomer && <Link
                 to="/cart"
                 className="nav-icon position-relative text-decoration-none"

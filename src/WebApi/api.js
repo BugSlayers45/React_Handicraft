@@ -1,6 +1,6 @@
 export default {
    USER_SIGNIN: "/customer/signIn",
-   USER_SIGNUP: "/customer/signup",
+   USER_SIGNUP: "/customer/register",
    VIEW_ALL_PRODUCT: "/product/viewproduct",
    SERACH_FILTER: "/product/search/",
    PRODUCT_BY_CATEGORY: "/product/products/",
@@ -15,6 +15,8 @@ export default {
    PRODUCT_LIST_BY_SELLER: "/product/productList",
    ORDER_BY_SELLER: "/order/getorderbyseller",
    UPDATE_PRODUCT: "/product/updated",
-   VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct"
+   VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct",
+   // CREATE_REVIEW:"/product/addreview/:id/reviews"
+   VIEW_PRODUCT_BY_ID:"/product/"
 
 }

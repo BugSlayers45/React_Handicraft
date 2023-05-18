@@ -8,56 +8,22 @@ export default function FeatureProducts() {
   const { featuresProductList, isLoading, error } = useSelector(state => state.featuresproduct)
   return <>
 
-    {/* Gallery */}
-    <div className="row">
-
-      <div className=" col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <div className='img-hover-zoom' >
-          <img
-            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_520,h_400/https://akkaara.co.in/wp-content/uploads/2019/11/10-removebg-preview-1-520x400.png"
-            className="w-100 shadow-1-strong rounded mb-4"
-            alt="Boat on Calm Water"
-          /></div>
-        <div className='img-hover-zoom'>
-          <img
-            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_897/https://akkaara.co.in/wp-content/uploads/2019/01/elephant_product1-897x1091.jpg"
-            className="w-100 shadow-1-strong rounded mb-4"
-            alt="Wintry Mountain Landscape"
-          /></div>
-      </div>
-      <div className="col-lg-4 mb-4 mb-lg-0">
-        <div className='img-hover-zoom'>
-          <img
-            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_750,h_920/https://akkaara.co.in/wp-content/uploads/2019/11/EEFE250F-338F-404A-9681-B6B934D364C6-750x920.jpg"
-            className="w-100 shadow-1-strong rounded mb-4"
-            alt="Mountains in the Clouds"
-          /></div>
-        <div className='img-hover-zoom'>
-          <img
-            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_520,h_500/https://akkaara.co.in/wp-content/uploads/2019/01/tressure-520x500.jpg"
-            className="w-100 shadow-1-strong rounded mb-4"
-            alt="Boat on Calm Water"
-          /></div>
-      </div>
-      <div className="col-lg-4 mb-4 mb-lg-0">
-        <div className='img-hover-zoom'>
-          <img
-            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_520,h_400/https://akkaara.co.in/wp-content/uploads/2019/01/impreession-520x400.jpg"
-            className="w-100 shadow-1-strong rounded mb-4"
-            alt="Yosemite National Park"
-          />
-        </div>
-        <div className='img-hover-zoom'>
-          <img
-            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_897/https://akkaara.co.in/wp-content/uploads/2019/11/45-897x1091.jpg"
-            className="w-100 shadow-1-strong rounded mb-4"
-            alt="Waves at Sea"
-          />
-        </div>
-      </div>
-    </div>
-    {/* Gallery */}
-
+   {/* Gallery */}
+{/* <div className="row">
+  <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" className="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp" className="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
+  </div>
+  <div className="col-lg-4 mb-4 mb-lg-0">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp" className="w-100 shadow-1-strong rounded mb-4" alt="Mountains in the Clouds" />
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" className="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+  </div>
+  <div className="col-lg-4 mb-4 mb-lg-0">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp" className="w-100 shadow-1-strong rounded mb-4" alt="Waves at Sea" />
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp" className="w-100 shadow-1-strong rounded mb-4" alt="Yosemite National Park" />
+  </div>
+</div> */}
+{/* Gallery */}
     {/* Start Featured Product */}
     <section className="bg-light">
       <div className="container py-5">

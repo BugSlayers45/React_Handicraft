@@ -55,7 +55,6 @@ export default function Cart() {
 
   const checkout = async (orderpackage) => {
     navigate("/checkout", { state: { orderpackage: orderpackage } });
-    localStorage.clear();
   };
 
   React.useEffect(() => {

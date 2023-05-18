@@ -13,19 +13,23 @@ export default function SignUp() {
   const [customerContact, setCOntact] = useState("")
   const navigate = useNavigate()
   const handleSubmit = async (event) => {
+    window.alert("dsmfbsm")
     try {
-      window.alert("agya")
+      window.alert(customerContact+"  "+customerEmail+"   "+customerName+"  "+customerPassword)
       event.preventDefault()
       var response = await axios.post(api.USER_SIGNUP, { customerName, customerEmail, customerPassword, customerContact })
-      if (response.data.status)
+      if (response.data.status){
+      console.log("sign up")
         toast.success("your are sucessfully sigin up")
       navigate("/signin")
+      }
     }
     catch (err) {
       if (response.status.err === 400)
         toast.error("Bad Request!")
       else if (response.status.err === 500)
         toast.error("Server Error !")
+      console.log(err)
     }
   }
   return <>
@@ -33,7 +37,7 @@ export default function SignUp() {
     <h2 className="tip">Register yourself</h2>
     <ToastContainer />
     <div className="cont">
-      <form onsubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form sign-up">
           <label className="labellogin">
             <span>Name</span>
