@@ -177,7 +177,7 @@ function SellerSignUp() {
 
                                 /> <small id="nameside" style={{ color: "red" }}>*</small>
 
-                            </div><br />
+                            </div>
                             <div className="user-box ml-4">
 
                                 <input placeholder="Enter Email"
@@ -186,7 +186,7 @@ function SellerSignUp() {
 
                                 /><small id="emailside" style={{ color: "red", marginBottom: "2px" }}>*</small>
 
-                            </div><br />
+                            </div>
                             <div className="user-box ml-4">
                                 <input placeholder="Enter Password"
                                     onChange={(event) => setPassword(event.target.value)} onKeyUp={pswdValidation}
@@ -194,7 +194,7 @@ function SellerSignUp() {
 
                                 /><small id="pswdside" style={{ color: "red", marginBottom: "2px" }}>*</small>
 
-                            </div><br />
+                            </div>
                             <div className="user-box ml-4">
                                 <input placeholder="Enter Contact No" onKeyUp={contactValidation} id="contact" name="contact" onChange={(event) => setContact(event.target.value)} type="text" className="form-control" name="contact" required="" />
                                 <small id="conside" style={{ color: "red", marginBottom: "2px" }}>*</small>
@@ -202,14 +202,14 @@ function SellerSignUp() {
 
                             <div className="user-box ml-4">
 
-                                <label>Address</label><br />
+
                                 <input
-                                    onChange={(event) => setAddress(event.target.value)}
+                                    onChange={(event) => setAddress(event.target.value)} placeholder="Address"
                                     type="text" className="form-control"
 
                                 />
 
-                            </div><br />
+                            </div>
                             <button type="submit" className="btn btn-dark mt-2 ml-4 mb-2" style={{
                                 borderRadius: "5%", width: "95%"
                             }}>

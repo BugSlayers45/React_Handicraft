@@ -14,15 +14,13 @@ function Order() {
     const orderdetails = (totalOrders) => {
         navigate("/orderdetail", { state: { totalOrders: totalOrders } })
     }
-
-
-
+    
     const orderlist = async () => {
         try {
             let response = await axios.get(api.ORDER_BY_SELLER + `/${currentSeller._id}`);
             if (response.data.status)
                 setOrders(response.data.sellerOrder);
-             console.log(response.data.sellerOrder);
+            console.log(response.data.sellerOrder);
 
         } catch (err) {
             console.log(err);
@@ -42,7 +40,7 @@ function Order() {
         }
         return false;
     })
-
+    const sortorder = uniqueorder.sort((b, a) => b.date > a.date ? 1 : -1);
 
     useEffect(() => {
         orderlist();
@@ -74,7 +72,7 @@ function Order() {
                             </thead>
                             <tbody>
                                 {console.log(sellerOrder)}
-                                {uniqueorder.map((item, index) =>
+                                {sortorder.map((item, index) =>
 
                                     <tr className="text-center" style={{ boxShadow: "1px 1px 3px gray" }} >
                                         <td>{index + 1}</td>

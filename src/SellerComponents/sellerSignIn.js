@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import SideNav from "./sideNav";
 import api from "../WebApi/api";
+import "../SellerComponents/signin.css";
+import { useGoogleLogin } from "@react-oauth/google";
 
 function SellerSignIn() {
 
@@ -27,7 +29,6 @@ function SellerSignIn() {
         } catch (err) {
             toast.error("Oops! something went wrong");
         }
-
     }
 
     // ------------------------------------------------------------------------------
@@ -115,16 +116,30 @@ function SellerSignIn() {
         return status;
     }
     // ------------------------------------------------------------------------------------
-
-
+    const login = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+            try {
+                let data = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", { headers: { "Authorization": `Bearer ${tokenResponse.access_token}` } })
+                // dispatch(fetchAdmin(data.data.email));
+                toast.success("Sign In Success");
+                navigate("/sellerHome");
+            } catch (err) {
+                if (err.request.status == 400) {
+                    window.alert("User not found , SignUp First");
+                }
+                else
+                    window.alert("Something went wrong . . .");
+            }
+        }
+    });
 
     return <><SellerNavigation />
         <div className="container mt-5 mb-5" style={{ marginLeft: "17vw", }}>
             <div className=" row">
                 <div className="col-1 me-2"><SideNav /></div>
-                <div className="col-9 d-flex">
+                <div className="col-9 d-flex" style={{ marginLeft: "7vw" }}>
                     <div className=" col-sm-12 col-lg-5 col-md-12 bg-primary p-0" >
-                        <img className="img-fluid img-responsive w-100" src="assets/img/potter1.jpg" style={{ height: "70vh" }} />
+                        <img className="img-fluid img-responsive w-100" src="assets/img/potter1.jpg" style={{ height: "69vh" }} />
                     </div>
                     <div className="login-boxcol-sm-12 col-lg-6 col-md-12 " style={{ boxShadow: "3px 5px 25px gray" }}><br />
                         <h2 className="text-center" >Login</h2><hr /><br />
@@ -147,9 +162,13 @@ function SellerSignIn() {
                                     onChange={(event) => setPassword(event.target.value)} placeholder="Enter password"
                                 /><small id="pswdside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
                             </div>
-                            <button type="submit" className="btn btn-dark mt-4 ml-4 mr-4" style={{ borderRadius: "5%", width: "88%" }}>
+                            <button type="submit" className="btn btn-dark mt-2 ml-4 mr-4" style={{ borderRadius: "5%", width: "88%" }}>
                                 SignIn
                             </button>
+                            <button id="google-login-btn" className='btn-block mb-4' onClick={login}>
+                                Continue with Google
+                            </button>
+
                             <div className="mt-2 text-right mb-4 mr-4">
                                 <Link to="/sellersignUp">New User ?</Link>
                             </div>
@@ -159,8 +178,6 @@ function SellerSignIn() {
                 </div >
             </div>
         </div >
-
-
     </>
 }
 
