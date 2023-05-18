@@ -13,11 +13,9 @@ export default function Checkout() {
   const { currentCustomer } = useSelector(state => state.customer)
   const data = useSelector(state => state.deliveryDetail)
   const location = useLocation()
-  console.log(location)
-  const totalBill = location.state.orderpackage.billamount + location.state.orderpackage.SHIPPING_FEES
 
+  const totalBill = location.state.orderpackage.billamount + location.state.orderpackage.SHIPPING_FEES
   const products = location.state.orderpackage.cartitems
-  console.log(products)
   const dispatch = useDispatch()
   const [name, setName] = useState()
   const [deliveryaddress, setdeliveryAddress] = useState()
@@ -46,7 +44,7 @@ export default function Checkout() {
   // --------------------------------------------------------
 
 
-  // console.log(location.state.orderpackage)
+ 
 
   const personDetail = async (event) => {
     event.preventDefault()
@@ -58,7 +56,7 @@ export default function Checkout() {
       const data = { name, deliveryaddress, contactPerson, contactNumber }
       dispatch(setDeliveryDetail(data))
       const response = await axios.post("http://localhost:3000/order/buynow", {
-        "_id": currentCustomer._id,
+        "customerid": currentCustomer._id,
         "deliveryAddress": deliveryaddress,
         "contactNumber": contactNumber,
         "contactPerson": contactPerson,
@@ -66,7 +64,6 @@ export default function Checkout() {
       }
       )
       toast.success("Order Placed Successfully")
-      console.log(response)
     }
 
     // --------------------------------------------------------
@@ -91,7 +88,7 @@ export default function Checkout() {
         const data = { name, deliveryaddress, contactPerson, contactNumber }
         dispatch(setDeliveryDetail(data))
         const res = await axios.post("http://localhost:3000/order/buynow", {
-          "_id": currentCustomer._id,
+          "customerid": currentCustomer._id,
           "deliveryAddress": deliveryaddress,
           "contactNumber": contactNumber,
           "contactPerson": contactPerson,
@@ -165,10 +162,15 @@ export default function Checkout() {
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     <strong> Products</strong>
                   </li>
-                  {products.map((product) => (<li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                  {products.length>1&&products.map((product) => (<li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     {product.productId.title.substring(0, 40)}
                     <br />
                     <span>Qty {product.quantity}</span>
+                  </li>))}
+                  {products.length==1&&products.map((product) => (<li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                    {product.productId.title.substring(0, 40)}
+                    <br />
+                    <span>Qty 1</span>
                   </li>))}
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                     <div>
@@ -203,6 +205,8 @@ export default function Checkout() {
 
       </form>
       <div>
+        
+      
         {/* Button trigger modal */}
         {/* Modal */}
         <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">

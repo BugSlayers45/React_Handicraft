@@ -16,7 +16,6 @@ const store = configureStore({
         cart: CartSlice,
         seller: SellerSlice,
         featuresproduct:featuresProductSlice,
-
         wishlist : wishlistSlice,
         deliveryDetail:DeliveryDetailSlice
     }

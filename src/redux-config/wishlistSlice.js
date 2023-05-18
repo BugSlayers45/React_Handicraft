@@ -26,8 +26,16 @@ const slice = createSlice({
     },
     reducers: {
         updateWishlistItems: (state, action) => {
+            if(!state.wishlistData.length){
+            state.wishlistData = [{ productId: action.payload }]
+            localStorage.setItem("wishlist",JSON.stringify(state.wishlistData))
+            }      
+            else{
             state.wishlistData = [...state.wishlistData, { productId: action.payload }]
+             localStorage.setItem("wishlist",JSON.stringify(state.wishlistData))
+            }
         }
+       
     },
     extraReducers: (builder) => {
         builder.addCase(fetchWishlist.pending, (state, action) => {

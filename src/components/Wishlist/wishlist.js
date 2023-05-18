@@ -51,16 +51,13 @@ export default function Wishlist() {
 
   const deletefromWishlist = async(product)=>{
     let response=await axios.post("http://localhost:3000/wishlist/delete",{customerId:currentCustomer._id,productId:product._id})
-    if(response.data.status){
-      wishList();
+    if(response.data){
+      wishList()
     }
-
-    
   }
   
    useEffect(()=>{
     wishList();
-
    },[])
   return <>
     <Header />
@@ -71,57 +68,6 @@ export default function Wishlist() {
 
           <div className="main-heading mb-10 text-center" >My wishlist</div>
           <div className="col-lg-9">
-            <div className="row">
-              <div className="col-md-6">
-                <ul className="list-inline shop-top-menu pb-3 pt-1">
-                  <li className="list-inline-item">
-                    <form
-                      action=""
-                      method="get"
-                      className="modal-content modal-body border-0 p-0"
-                    >
-                      <div className="input-group mb-2">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="inputModalSearch"
-                          name="q"
-                          placeholder="Search ..."
-                        />
-                        <button
-                          type="submit"
-                          className="input-group-text bg-success text-light"
-                        >
-                          <i className="fa fa-fw fa-search text-white" />
-                        </button>
-                      </div>
-                    </form>
-                  </li>
-                  <li className="list-inline-item">
-                    <a
-                      className="h3 text-dark text-decoration-none mr-3"
-                      href="#"
-                    >
-                      Men's
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a className="h3 text-dark text-decoration-none" href="#">
-                      Women's
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-6 pb-4">
-                <div className="d-flex">
-                  <select className="form-control">
-                    <option>Featured</option>
-                    <option>A to Z</option>
-                    <option>Top rating</option>
-                  </select>
-                </div>
-              </div>
-            </div>
            
           </div>
 
