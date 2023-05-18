@@ -121,14 +121,14 @@ function ProductList() {
                                                     <td ><img className="img-fluid" src={product.thumbnail} style={{ height: "80px", width: "100px", borderRadius: "50%", boxShadow: "1px 2px 10px gray" }} /></td>
 
                                                     <td>{product.title.substring(0, 15)}</td>
-                                                    <td>{product.description.substring(0, 35)}<button className="btn btn-sm btn-light" onClick={() => productsDescription(product)}>View More</button></td>
+                                                    <td> <a onClick={() => productsDescription(product)}>{product.description.substring(0, 35)}</a></td>
                                                     <td>{product.price}</td>
                                                     <td>{product.discountPercentage}</td>
                                                     <td>{product.rating}</td>
                                                     <td>{product.stock}</td>
                                                     <td><button className="btn btn-outline-primary" onClick={() => (UpdateProduct(product))} >Edit</button></td>
                                                     <td><button onClick={() => deleteProduct(product._id)}><i class="fas fa-trash-alt" style={{ color: "red" }}></i></button></td>
-                                                </tr>
+                                                </tr >
                                             </>
                                         )
                                     }) : <div className='d-flex justify-content-center mt-4'>

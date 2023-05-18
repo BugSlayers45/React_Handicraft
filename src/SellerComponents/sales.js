@@ -4,12 +4,17 @@ import SideNav from "./sideNav";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import api from "../WebApi/api";
+import { useNavigate } from "react-router-dom";
 
 function Sales() {
     const { currentSeller } = useSelector(state => state.seller);
     const [product, setProducts] = useState([]);
+    const [separateArray, setSeparateArray] = useState([]);
     const [sales, setSales] = useState([]);
+    const navigate = useNavigate();
     let elementCounts = {};
+
+
 
     const buiedProduct = async () => {
         try {
@@ -24,15 +29,46 @@ function Sales() {
         }
     }
 
-
+    const soldProduct = (item) => {
+        console.log(item);
+        product.map((items, index) => {
+            if (items.productDetails.title == item) {
+                navigate(("/sellerProductDescription"), { state: { productData: items.productDetails } })
+                console.log("payal")
+            }
+        })
+    }
     product.forEach(element => {
         (element.OrderItems?.quantity >= 1) ?
+
 
             elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1 * element.OrderItems?.quantity
             : elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1;
 
     })
-    console.log(elementCounts);
+    // console.log(elementCounts);
+    var newArray = Object.entries(elementCounts);
+    console.log(newArray);
+
+    const addPrice = () => {
+        let i = 0;
+        newArray.map((arr, index) => {
+            arr.push(separateArray[i++]);
+            return arr;
+        })
+    }
+    console.log(addPrice());
+
+    useEffect(() => {
+        var uniqueIndices = [];
+        product.forEach(index => {
+            if (!uniqueIndices.includes(index.productDetails.price)) {
+                uniqueIndices.push(index.productDetails.price);
+            }
+        });
+        setSeparateArray(uniqueIndices);
+    }, [product]);
+    console.log(separateArray);
 
 
     useEffect(() => {
@@ -56,22 +92,17 @@ function Sales() {
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
-                            <th>Date</th>
                         </thead>
                         <tbody>
-
-                            {product.map((item, index) =>
-
-
-                                <tr style={{ boxShadow: "1px 1px 3px gray" }} >
-                                    {/* {console.log(item.productDetails)} */}
+                            {newArray.map((item, index) =>
+                                <tr>
                                     <td>{index + 1}</td>
-                                    <td>{item.productDetails.title}</td>
-                                    <td>{item.OrderItems.quantity}</td>
-                                    <td>{item.productDetails.price * item.OrderItems.quantity}</td>
-                                    <td>{item.date.substring(0, 10)}</td>
+                                    <td onClick={(event) => soldProduct(item[0])}><a >{item[0]}</a></td>
+                                    <td className="text-center">{item[1]}</td>
+                                    <td className="text-center">{item[2] * item[1]}</td>
                                 </tr>
                             )}
+
                         </tbody>
                     </table>
                 </div>
