@@ -33,7 +33,7 @@ function Sales() {
         console.log(item);
         product.map((items, index) => {
             if (items.productDetails.title == item) {
-                navigate(("/sellerProductDescription"), { state: { productData: items.productDetails } })
+                navigate(("/sellerProductDescription"), { state: { productDetail: items.productDetails } });
                 console.log("payal")
             }
         })
@@ -62,7 +62,7 @@ function Sales() {
             if (!uniqueIndices.includes(index.productDetails.price)) {
                 uniqueIndices.push(index.productDetails.price);
             }
-        }); 
+        });
         setSeparateArray(uniqueIndices);
     }, [product]);
     console.log(separateArray);

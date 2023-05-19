@@ -8,7 +8,6 @@ const slice = createSlice({
     },
     reducers: {
         setDeliveryDetail: (state, action) => {
-            console.log(action.payload)
             state.deliveryDetail = action.payload
         }
     }

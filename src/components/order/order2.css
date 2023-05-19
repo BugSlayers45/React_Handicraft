@@ -165,14 +165,17 @@ a.account-card .card:active {
   color: #79879A;
 }
 
-.btn-primary {
-  background: #C62931;
-  border-color: #C62931;
+.btn-success {
+  background: #59ab6e
+  ;
+  border-color: #2e633b
+  ;
   cursor: pointer;
 }
-.btn-primary:hover {
-  background: #d94950;
-  border-color: #d94950;
+
+.btn-success:hover {
+  background: #4bcc6b;
+  border-color: #4bcc6b;;
 }
 
 .btn-secondary {

@@ -15,10 +15,9 @@ const store = configureStore({
         featuresproduct: featuresProductSlice,
         cart: CartSlice,
         seller: SellerSlice,
-        featuresproduct: featuresProductSlice,
-
-        wishlist: wishlistSlice,
-        deliveryDetail: DeliveryDetailSlice
+        featuresproduct:featuresProductSlice,
+        wishlist : wishlistSlice,
+        deliveryDetail:DeliveryDetailSlice
     }
 })
 export default store
