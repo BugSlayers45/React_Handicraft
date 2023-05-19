@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 import SideNav from "./sideNav";
 import api from "../WebApi/api";
-import "../SellerComponents/signin.css";
+
 import { useGoogleLogin } from "@react-oauth/google";
 
 function SellerSignIn() {
@@ -162,14 +162,10 @@ function SellerSignIn() {
                                     onChange={(event) => setPassword(event.target.value)} placeholder="Enter password"
                                 /><small id="pswdside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
                             </div>
-                            <button type="submit" className="btn btn-dark mt-2 ml-4 mr-4" style={{ borderRadius: "5%", width: "88%" }}>
+                            <button type="submit" className="btn btn-dark mt-4 ml-4 mr-4" style={{ borderRadius: "5%", width: "88%" }}>
                                 SignIn
                             </button>
-                            <button id="google-login-btn" className='btn-block mb-4' onClick={login}>
-                                Continue with Google
-                            </button>
-
-                            <div className="mt-2 text-right mb-4 mr-4">
+                            <div className="mt-3 text-right mb-4 mr-4">
                                 <Link to="/sellersignUp">New User ?</Link>
                             </div>
 

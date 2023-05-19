@@ -5,10 +5,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { setCustomer } from "../../../redux-config/CustomerSlice";
+import { fetchUser, setCustomer } from "../../../redux-config/CustomerSlice";
 import 'react-toastify/dist/ReactToastify.css'
 import api from "../../../WebApi/api";
 import Navigation from "../../navigation/Navigation";
+import { useGoogleLogin } from "@react-oauth/google";
+import "../SignIn/signin.css";
 
 
 export default function SignIn() {
@@ -117,6 +119,24 @@ export default function SignIn() {
     return status;
   }
 
+  const login = useGoogleLogin({
+    onSuccess: async tokenResponse => {
+      try {
+        let data = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", { headers: { "Authorization": `Bearer ${tokenResponse.access_token}` } })
+        dispatch(fetchUser(data.data.email));
+        toast.success("Sign In Success");
+        navigate("/");
+      } catch (err) {
+        if (err.request.status == 400) {
+          window.alert("User not found , SignUp First");
+        }
+        else
+          window.alert("Something went wrong . . .");
+      }
+    }
+  });
+
+
   return <>
     <ToastContainer />
     <Navigation />
@@ -135,7 +155,9 @@ export default function SignIn() {
           </label>
           <p className="forgot-pass">Forgot password?</p>
           <button type="submit" className="submit loginbtn">Sign In</button>
-          <button type="submit" className="fb-btn form-control loginbtn">Connect with <span>Google</span></button>
+          <button id="google-login-btn" className='btn-block mb-4' onClick={login}>
+            Continue with Google
+          </button>
         </form>
       </div>
 
@@ -148,6 +170,7 @@ export default function SignIn() {
           <Link to={'/signUp'}>
             <div className="img__btn">
               <span className="m--up">Sign Up</span>
+
             </div>
           </Link>
         </div>

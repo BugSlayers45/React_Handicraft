@@ -33,7 +33,7 @@ function Sales() {
         console.log(item);
         product.map((items, index) => {
             if (items.productDetails.title == item) {
-                navigate(("/sellerProductDescription"), { state: { productData: items.productDetails } })
+                navigate(("/sellerProductDescription"), { state: { productDetail: items.productDetails } });
                 console.log("payal")
             }
         })
@@ -46,10 +46,7 @@ function Sales() {
             : elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1;
 
     })
-    // console.log(elementCounts);
     var newArray = Object.entries(elementCounts);
-    console.log(newArray);
-
     const addPrice = () => {
         let i = 0;
         newArray.map((arr, index) => {

@@ -14,7 +14,7 @@ function Order() {
     const orderdetails = (totalOrders) => {
         navigate("/orderdetail", { state: { totalOrders: totalOrders } })
     }
-    
+
     const orderlist = async () => {
         try {
             let response = await axios.get(api.ORDER_BY_SELLER + `/${currentSeller._id}`);
