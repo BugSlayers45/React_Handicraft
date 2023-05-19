@@ -15,6 +15,7 @@ export default {
    PRODUCT_LIST_BY_SELLER: "/product/productList",
    ORDER_BY_SELLER: "/order/getorderbyseller",
    UPDATE_PRODUCT: "/product/updated",
-   VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct"
+   VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct",
+   CUSTOMER_SIGNIN: "/customer/customerSignin"
 
 }

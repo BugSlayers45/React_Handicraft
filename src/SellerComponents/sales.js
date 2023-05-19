@@ -46,10 +46,7 @@ function Sales() {
             : elementCounts[element.productDetails.title] = (elementCounts[element.productDetails.title] || 0) + 1;
 
     })
-    // console.log(elementCounts);
     var newArray = Object.entries(elementCounts);
-    console.log(newArray);
-
     const addPrice = () => {
         let i = 0;
         newArray.map((arr, index) => {
@@ -65,7 +62,7 @@ function Sales() {
             if (!uniqueIndices.includes(index.productDetails.price)) {
                 uniqueIndices.push(index.productDetails.price);
             }
-        });
+        }); 
         setSeparateArray(uniqueIndices);
     }, [product]);
     console.log(separateArray);
