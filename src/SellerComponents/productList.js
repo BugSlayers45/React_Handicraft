@@ -64,8 +64,8 @@ function ProductList() {
         setPage(page - 1)
     }
 
-    const productsDescription = (productData) => {
-        navigate(("/sellerProductDescription"), { state: { productData: productData } });
+    const productsDescription = (productDetail) => {
+        navigate(("/sellerProductDescription"), { state: { productDetail: productDetail } });
     }
 
     useEffect(() => {
