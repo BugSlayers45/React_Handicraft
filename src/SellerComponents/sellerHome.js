@@ -25,9 +25,6 @@ function SellerHome() {
             console.log(err);
         }
     }
-
-
-
     const totalOrders = async () => {
         try {
             let response = await axios.get(api.ORDER_BY_SELLER + `/${currentSeller._id}`);
