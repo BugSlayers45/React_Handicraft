@@ -21,6 +21,8 @@ import { Add, Remove } from "@mui/icons-material";
 import CircularStatic from "../../../SellerComponents/spinner/Spinner";
 import "../Cart/cart.css"
 import { ToastContainer } from "react-toastify";
+import CartEmpty from "./CartEmpty";
+import axios from "axios";
 
 
 
@@ -47,8 +49,10 @@ export default function Cart() {
   function clearCart(cartItem) {
     dispatch(clearAllCart(cartItem));
   }
-  function removeCartItems(cartItem) {
+  const removeCartItems=async(cartItem)=>{
     dispatch(removeCartItem(cartItem));
+    let response=await axios.post("http://localhost:3000/cart/deleteproduct",{customerId:currentCustomer._id,productId:cartItem._id})
+    console.log(response)
   }
 
   const orderpackage = { cartitems: cartItems, billamount: totalAmount, SHIPPING_FEES: SHIPPING_FEES };
@@ -66,9 +70,10 @@ export default function Cart() {
       <ToastContainer />
       <Header />
       <Navigation />
-      {cartItems.length && (<div>
+      
+      
 
-        <section className="auto" style={{ backgroundColor: "whitesmoke" }}>
+      <section className="auto" style={{ backgroundColor: "whitesmoke" }}>
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col">
               <br />
@@ -76,8 +81,8 @@ export default function Cart() {
                 <span className="h2">Shopping Cart </span>
                 <span className="h4"></span>
               </p>
-
-              <div className="card mb-4">
+              {!cartItems.length &&<CartEmpty/>}
+              {cartItems.length&&<div className="card mb-4">
                 <div className="card-body p-4">
                   {!cartItems && <CircularStatic />}
                   {cartItems.map((items, index) => (
@@ -168,11 +173,11 @@ export default function Cart() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div>}
             </div>
           </div>
         </section>
-        <div class="col-md-4">
+        {cartItems.length&&<div><div class="col-md-4">
           <div class="card mb-4">
             <div class="card-header py-3">
               <h5 class="mb-0">Summary</h5>
@@ -221,20 +226,8 @@ export default function Cart() {
             </div>
           </div>
         </div>
-      </div>)}
-      {!cartItems.length && (
-        <div>
-          <h1 classname="display-5 ml-5">Your Cart Empty</h1>
-          <button type="button" className="btn btn-outline-warning">Continue Shoping</button>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-        </div>
-
-      )}
-
+      </div>}
+     
       <Footer />
     </>
   );

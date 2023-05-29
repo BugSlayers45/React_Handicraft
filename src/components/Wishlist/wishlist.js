@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addItemIntoCart, updateCartItems } from "../../redux-config/CartSlice";
-import { fetchWishlist } from "../../redux-config/wishlistSlice";
+import { fetchWishlist, removeWishlistItem } from "../../redux-config/wishlistSlice";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import Navigation from "../navigation/Navigation";
 import "./wishlist.css";
-
+import WishlistEmpty from "./WishlistEmpty";
 export default function Wishlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,12 +50,18 @@ export default function Wishlist() {
   };
 
   const deletefromWishlist = async(product)=>{
+    alert("Are you sure ?")
+    
+
+    dispatch(removeWishlistItem(product));
     let response=await axios.post("http://localhost:3000/wishlist/delete",{customerId:currentCustomer._id,productId:product._id})
     if(response.data){
+      toast.error(`item is removed from the Wishlist`)
       wishList()
+     
     }
   }
-  
+   console.log(wishlistData)
    useEffect(()=>{
     wishList();
    },[])
@@ -75,8 +81,10 @@ export default function Wishlist() {
         </div>
         <div className="row">
               <div className="container">
+              {(!currentCustomer)&& <WishlistEmpty/>||wishlistData.length==0&& <WishlistEmpty/>}
+
               <div className="row">
-                {currentCustomer && wishlistData?.wishlistItems?.map((products, index) => (
+                {currentCustomer&&wishlistData.map((products, index) =>
                   <div key={index} className="col-md-4">
                     <div
                       className="card mb-4 product-wap rounded-0"
@@ -92,7 +100,7 @@ export default function Wishlist() {
                           <ul className="list-unstyled">
                           <li>
                             <a
-                             onClick = {()=>deletefromWishlist(products.productId)}
+                             onClick = {()=>deletefromWishlist(products)}
                               className="btn btn-success text-white"
                             >
                               <i i class="fa fa-trash" aria-hidden="true"></i>
@@ -138,9 +146,9 @@ export default function Wishlist() {
                       </div>
                     </div>
                   </div>
-                ))}
-                {!currentCustomer && <div>Wishlist is empty</div>}
+                )}
                 </div>
+               
               </div>
             </div>
 

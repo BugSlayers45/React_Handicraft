@@ -10,6 +10,7 @@ import Navigation from "../navigation/Navigation";
 import ReactImageMagnify from "react-image-magnify";
 import axios from "axios";
 import api from "../../WebApi/api";
+import "../ProductPage/detail.css"
 
 export default function ProductDescription() {
   const location = useLocation();
@@ -21,6 +22,7 @@ export default function ProductDescription() {
   const { cartItems, cartError } = useSelector((state) => state.cart);
   const [value, setValue] = React.useState(0);
   const [review,setReview]=React.useState();
+  const [mainimage,setMainimage]=useState(productDetail.thumbnail)
   const dealOfTheDay=( productDetail.price -(productDetail.price * productDetail.discountPercentage) /100).toFixed(1)
   const SHIPPING_FEES = 60;
   const orderpackage = { cartitems:[{productId:productDetail}], billamount:dealOfTheDay, SHIPPING_FEES: SHIPPING_FEES };
@@ -44,6 +46,11 @@ export default function ProductDescription() {
       }
     }
   };
+  function changeImage(smallimage) {
+    setTimeout(()=>{
+      setMainimage(smallimage)
+    },500) 
+}
 
   const buynow = () => {
     if (!currentCustomer)
@@ -51,9 +58,9 @@ export default function ProductDescription() {
     else 
       navigate("/checkout", { state: { orderpackage: orderpackage } });
     }
-  const handleClick = (i) => {
-    console.log(i);
-  };
+  // const handleClick = (i) => {
+  //   console.log(i);
+  // };
 
   const reviewDetail=async()=>{
    try{
@@ -83,31 +90,32 @@ export default function ProductDescription() {
                 {imageArray.map((singleImage, index) => (
                   <img
                     key={index}
-                    onClick={() => handleClick(index)}
-                    src={singleImage}
+                    onMouseOver={() =>changeImage(singleImage) }
+                    src={singleImage} alt="reload"
                     id="smallimage"
-                    style={{ height: 70, width: 70 }}
+                    style={{ height: 70, width: 70 , borderRadius:"20%"}}
                     className="mb-3
-                  mt-3"
+                  mt-3" 
                   />
                 ))}
               </div>
             </div>
-            <div className="col-lg-5">
-              <ReactImageMagnify
-                {...{
+            <div className="col-lg-5" >
+              <ReactImageMagnify  
+                 {...{
                   smallImage: {
-                    alt: "Wristwatch by Ted Baker London",
+                    alt: "gyi",
                     isFluidWidth: true,
-                    src: productDetail.thumbnail,
+                    src:mainimage,
                   },
                   largeImage: {
-                    src: productDetail.thumbnail,
+                    src: mainimage,
                     width: 1500,
                     height: 2000,
+                  
                   },
-                }}
-                style={{ zIndex: "2" }}
+                }} 
+                style={{ zIndex: "2" }}   id="mainImage"
               />
             </div>
             <Col md={10}>

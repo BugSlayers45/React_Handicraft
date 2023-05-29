@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Order from './SellerComponents/order';
 import SellerProduct from './SellerComponents/sellerDescription';
@@ -26,6 +25,9 @@ import Wishlist from './components/Wishlist/wishlist';
 import CustomerOrders from './components/order/Orders';
 import InfiniteProduct from "./components/Shop/InfiniteProduct";
 import ProductReview from './components/ProductPage/ProductReview';
+import SuccessOrder from './components/User/payments/SuccessOrder';
+import CartEmpty from './components/User/Cart/CartEmpty';
+import WishlistEmpty from './components/Wishlist/WishlistEmpty';
 
 
 function App() {
@@ -57,7 +59,10 @@ function App() {
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/orders" element={<CustomerOrders />} />
       <Route path="/infinitProduct" element={<InfiniteProduct />} />
-      <Route path='productreview' element={<ProductReview/>}/>
+      <Route path='/productreview' element={<ProductReview/>}/>
+      <Route path='/ordersuccess' element={<SuccessOrder/>}/>
+      <Route path='/cartempty' element={<CartEmpty/>}/>
+      <Route path='/wislistempty' element={<WishlistEmpty/>}/>
     </Routes>
   </>
 }
