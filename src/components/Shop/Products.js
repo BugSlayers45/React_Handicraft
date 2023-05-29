@@ -15,8 +15,7 @@ import {
 } from "../../redux-config/wishlistSlice";
 import CircularStatic from "../../SellerComponents/spinner/Spinner";
 import { Rating } from "@mui/material";
-import Loader from "../Spinner/Loader";
-export default function Products() {
+export default function Products() {  
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();

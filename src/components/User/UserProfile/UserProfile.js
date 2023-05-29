@@ -35,7 +35,6 @@ export default function UserProfile()
   }
 
     // return response.data.formData
- 
 
     return <>
       <section className="h-100 gradient-custom-2">
