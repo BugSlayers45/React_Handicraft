@@ -89,8 +89,8 @@ function SellerHome() {
                     <div className="row ">
                         <SideNav />
                         <div className="col-9 mt-5">
-                            <div className=" ml-3">
-                                <h2 className="display-6">Service Details</h2>
+                            <div className="">
+                                <h2 className="display-6 ml-5">Service Details</h2>
                                 <hr className="line" />
                             </div>
                             <div className="d-flex mt-5  ">

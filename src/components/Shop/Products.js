@@ -21,6 +21,7 @@ export default function Products() {
     (state) => state.category
   );
   const { cartItems, cartError } = useSelector((state) => state.cart);
+  const {wishlistData,wishlistError}=useSelector((state)=>state.wishlist);
   const categoryDetail = location.state?.category;
   const categoryid = categoryDetail?._id;
 
@@ -96,8 +97,9 @@ export default function Products() {
     if (!currentCustomer) toast.warning("Please Login First");
     else {
       let status = true;
-      if (cartItems.length != 0)
-        status = cartItems?.some((item) => item?.productId?._id == products._id);
+      console.log(wishlistData)
+      if (wishlistData.length != 0)
+        status = wishlistData?.wishlistItems?.some((item) => item?.productId?._id == products._id);
       else status = false;
       if (status) toast.info("Item is already added in wishlist");
       else {
@@ -119,6 +121,7 @@ export default function Products() {
   }
 
   useEffect(() => {
+    productList();
     if (categoryid) {
       categroyFilterFromHome();
     } else {
@@ -183,7 +186,7 @@ export default function Products() {
               </ul>
             </div>
           </div>
-          <div className="row">
+          {products&&<div className="row">
             {products.map((products, index) => (
               <div key={index} className="col-md-4">
                 <div
@@ -195,7 +198,7 @@ export default function Products() {
                     <img
                       className="card-img rounded-1  img-fluid"
                       style={{ height: "300px" }}
-                      src={products.thumbnail} alt={<CircularStatic />}
+                      src={products.thumbnail} alt={<Loader/>}
                     />
                     <div className="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                       <ul className="list-unstyled">
@@ -241,7 +244,9 @@ export default function Products() {
                 </div>
               </div>
             ))}
-          </div>
+          </div>}
+          {!products.length&&<div className="row">
+          <Loader/></div>}
         </div>
       </div>
     </div>

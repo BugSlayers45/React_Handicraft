@@ -17,7 +17,6 @@ import Products from './components/Shop/Products';
 import Cart from './components/User/Cart/Cart';
 import 'react-toastify/dist/ReactToastify.css'
 import UserProfile from './components/User/UserProfile/UserProfile';
-
 import SideNav from './SellerComponents/sideNav';
 import OrderDetail from './SellerComponents/orderDetail';
 import Checkout from './components/User/payments/Checkout';
