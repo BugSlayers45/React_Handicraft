@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 export const fetchWishlist = createAsyncThunk("fetchwishlist", async (obj) => {
     let response = await axios.post("http://localhost:3000/wishlist/viewwishlist", { customerId: obj.customerId })
@@ -20,23 +22,31 @@ export const addItemInWishlist = createAsyncThunk("addtowishlist", async (obj) =
 const slice = createSlice({
     name: "wishlistData",
     initialState: {
-        wishlistData: [],
+        wishlistData:localStorage.getItem('wishlistData') ? JSON.parse(localStorage.getItem('wishlistData')):[],
         wishlistError: null,
         flag: false
     },
     reducers: {
+        setWishlist:(state,action)=>{
+       state.wishlistData=action.payload
+        },
         updateWishlistItems: (state, action) => {
             if(!state.wishlistData.length){
             state.wishlistData = [{ productId: action.payload }]
-            localStorage.setItem("wishlist",JSON.stringify(state.wishlistData))
+            localStorage.setItem("wishlistData",JSON.stringify(state.wishlistData))
             }      
             else{
             state.wishlistData = [...state.wishlistData, { productId: action.payload }]
-             localStorage.setItem("wishlist",JSON.stringify(state.wishlistData))
+             localStorage.setItem("wishlistData",JSON.stringify(state.wishlistData))
             }
-        }
-       
-    },
+        },
+        removeWishlistItem(state,action){
+            const inCartItem=state.wishlistData.filter(WishlistItems=>WishlistItems.productId._id!==action.payload.productId._id)
+            state.wishlistData=inCartItem
+            localStorage.setItem("wishlistData",JSON.stringify(state.wishlistData))
+         
+        
+        },
     extraReducers: (builder) => {
         builder.addCase(fetchWishlist.pending, (state, action) => {
             state.wishlistData = action.payload
@@ -50,8 +60,9 @@ const slice = createSlice({
             state.cartError = "Opp! Something went Wrong"
         })
     }
+}
 
 })
 
-export const { updateWishlistItems } = slice.actions;
+export const { updateWishlistItems,removeWishlistItem } = slice.actions;
 export default slice.reducer;
