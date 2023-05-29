@@ -69,24 +69,6 @@ export default function FeatureProducts() {
     };
   }
   return <>
-
-   {/* Gallery */}
-{/* <div className="row">
-  <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" className="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp" className="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
-  </div>
-  <div className="col-lg-4 mb-4 mb-lg-0">
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp" className="w-100 shadow-1-strong rounded mb-4" alt="Mountains in the Clouds" />
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" className="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-  </div>
-  <div className="col-lg-4 mb-4 mb-lg-0">
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp" className="w-100 shadow-1-strong rounded mb-4" alt="Waves at Sea" />
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp" className="w-100 shadow-1-strong rounded mb-4" alt="Yosemite National Park" />
-  </div>
-</div> */}
-{/* Gallery */}
-    {/* Start Featured Product */}
     <section className="bg-light">
       <div className="container py-5">
         <div className="row text-center py-3">
@@ -141,13 +123,14 @@ export default function FeatureProducts() {
                 </div>
                 <div className="card-body">
                   <a href="shop-single.html" className="h3 text-decoration-none">
-                    {products.title}
+                    {products.title.substring(0,50)}
                   </a>
-                  <ul className="list-unstyled d-flex justify-content-center mb-1">
+                  <ul className="list-unstyled d-flex justify-content-center mb-1 mt-2">
                     <Rating name="half-rating-read" defaultValue={products.rating} precision={0.5} readOnly />
 
                   </ul>
-                  <p className="text-center mb-0">{products.price}</p>
+
+                  <p className="text-center mb-0 mt-2">&#8377; {products.price}</p>
                 </div>
               </div>
             </div>

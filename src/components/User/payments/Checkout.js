@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import Navigation from '../../navigation/Navigation'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDeliveryDetail } from '../../../redux-config/DeliveryDetailSlice'
 import "../payments/payments.css"
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
+import ValidateForm from "form-validation-react";
 
 export default function Checkout() {
   const [payment, setPayment] = useState("");
   const { currentCustomer } = useSelector(state => state.customer)
   const data = useSelector(state => state.deliveryDetail)
   const location = useLocation()
+  const navigate=useNavigate()
 
   const totalBill = location.state.orderpackage.billamount + location.state.orderpackage.SHIPPING_FEES
   const products = location.state.orderpackage.cartitems
@@ -21,6 +23,7 @@ export default function Checkout() {
   const [deliveryaddress, setdeliveryAddress] = useState()
   const [contactPerson, setContactPerson] = useState()
   const [contactNumber, setContactNumber] = useState()
+  
 
   // --------------------------------------------------------
   const loadScript = (src) => {
@@ -61,9 +64,12 @@ export default function Checkout() {
         "contactNumber": contactNumber,
         "contactPerson": contactPerson,
         "orderItems": products
+        
       }
       )
+      console.log(response)
       toast.success("Order Placed Successfully")
+      navigate("/ordersuccess")
     }
 
     // --------------------------------------------------------
@@ -96,7 +102,6 @@ export default function Checkout() {
         }
         )
         console.log(res)
-
       },
       prefill: {
         name: "vikram",

@@ -5,15 +5,17 @@ import { toast } from "react-toastify";
  
 export const fetchCart=createAsyncThunk("fetch cart",async(customerId)=>{
     let response=await axios.post(api.VIEW_CART_ITEMS,{customerId})
-    window.alert(response.data.cartItems)
     return response.data[0].cartItems
     
 })
-export const addItemIntoCart = createAsyncThunk("cart/addItemcart",async(obj)=>{
+
+export const addItemIntoCart=createAsyncThunk("cart/addItemcart",async(obj)=>{
+    const response=await axios.post(api.ADD_TO_CART,{customerId:obj.customerId,productId:obj.productId})
     console.log(obj)
-    let response=await axios.post(api.ADD_TO_CART,{customerId:obj.customerId,productId:obj.productId})
-    if(response.data.status)
+    if(response.data.status){
+        console.log(response)
     return response.data
+    }
 })
 const slice=createSlice({
     name:"cart",

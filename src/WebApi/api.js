@@ -1,13 +1,13 @@
 export default {
-   USER_SIGNIN:"/customer/signIn",
-   USER_SIGNUP:"/customer/signup",
-   VIEW_ALL_PRODUCT:"/product/limitLoadproduct",
-   SERACH_FILTER:"/product/search/",
-   PRODUCT_BY_CATEGORY:"/product/products/",
-   PRODUCT_BY_HOME_CATEGORY:"/product/products/",
-   REMOVE_FROM_CART:"/cart/deleteproduct",
-   VIEW_CART_ITEMS:"/cart/viewCartItems",
-   ADD_TO_CART:"/cart/add-to-cart",
+   USER_SIGNIN: "/customer/signin",
+   USER_SIGNUP: "/customer/register",
+   VIEW_ALL_PRODUCT: "/product/viewproduct",
+   SERACH_FILTER: "/product/search/",
+   PRODUCT_BY_CATEGORY: "/product/products/",
+   PRODUCT_BY_HOME_CATEGORY: "/product/products/",
+   REMOVE_FROM_CART: "/cart/deleteproduct",
+   VIEW_CART_ITEMS: "/cart/viewCartItems",
+   ADD_TO_CART: "/cart/add-to-cart",
    PRODUCT_ADD: "/product/save",
    CUSTOMER_SAVE: "/customer/save",
    SELLER_SIGNIN: "/seller/signin",
@@ -18,6 +18,5 @@ export default {
    VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct",
    CUSTOMER_SIGNIN: "/customer/customerSignin",
    VIEW_PRODUCT_BY_ID: "/product/"
-
 
 }
