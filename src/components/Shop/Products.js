@@ -15,10 +15,16 @@ import {
 } from "../../redux-config/wishlistSlice";
 import CircularStatic from "../../SellerComponents/spinner/Spinner";
 import { Rating } from "@mui/material";
-export default function Products() {  
+import Loader from "../Spinner/Loader";
+import { Pagination } from "react-bootstrap";
+export default function Products() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const [pageData, setPageData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
   const { currentCustomer } = useSelector((state) => state.customer);
   const { categoryList, error, isLoading } = useSelector(
     (state) => state.category
@@ -30,11 +36,9 @@ export default function Products() {
   const categoryDetail = location.state?.category;
   const categoryid = categoryDetail?._id;
 
-  const [products, setProducts] = useState([]);
   const productList = async () => {
     try {
       let response = await axios.get(api.VIEW_ALL_PRODUCT);
-
       setProducts(response.data.products);
     } catch (err) {
       toast.error("Something went wrong");
@@ -45,7 +49,6 @@ export default function Products() {
     let key = event.target.value;
     if (key) {
       let result = await axios.get(api.SERACH_FILTER + `${key}`);
-
       if (result) setProducts(result.data.Product);
     } else {
       productList();
@@ -89,7 +92,8 @@ export default function Products() {
           addItemIntoCart({
             customerId: currentCustomer._id,
             productId: products._id,
-          }))
+          })
+        );
       } else {
         toast.error("!Oop somthing went wrong");
       }
@@ -99,7 +103,7 @@ export default function Products() {
     if (!currentCustomer) toast.warning("Please Login First");
     else {
       let status = true;
-      if (wishlistData.length!= 0)
+      if (wishlistData.length != 0)
         status = wishlistData?.wishlistItems?.some(
           (item) => item?.productId?._id == products._id
         );
@@ -121,6 +125,14 @@ export default function Products() {
       }
     }
   };
+  const handleNext = () => {
+    if (page === pageCount) return page;
+    setPage(page + 1);
+  };
+  const handlePrevios = () => {
+    if (page === 1) return page;
+    setPage(page - 1);
+  };
 
   useEffect(() => {
     productList();
@@ -129,7 +141,19 @@ export default function Products() {
     } else {
       productList();
     }
-  }, []);
+  }, [page]);
+
+  useEffect(() => {
+    const pagedatacount = Math.ceil(products.length / 10);
+    setPageCount(pagedatacount);
+
+    if (page) {
+      const LIMIT = 9;
+      const skip = LIMIT * page; // 5 *2 = 10
+      const dataskip = products.slice(page === 1 ? 0 : skip - LIMIT, skip);
+      setPageData(dataskip);
+    }
+  }, [products]);
 
   return (
     <>
@@ -192,7 +216,7 @@ export default function Products() {
             </div>
             {products && (
               <div className="row">
-                {products.map((products, index) => (
+                {pageData.map((products, index) => (
                   <div key={index} className="col-md-4">
                     <div
                       className="card mb-4 product-wap rounded-0"
@@ -263,8 +287,31 @@ export default function Products() {
             )}
           </div>
         </div>
+        <div className="d-flex justify-content-end col-md-12">
+          <Pagination style={{ maxWidth: "100vw" }} className="bg-success">
+            <Pagination.Prev onClick={handlePrevios} disabled={page === 1} />
+            {Array(pageCount)
+              .fill(null)
+              .map((ele, index) => {
+                return (
+                  <>
+                    <Pagination.Item
+                      style={{ maxWidth: "100vw", color: "#59ab6e" }}
+                      active={page === index + 1 ? true : false}
+                      onClick={() => setPage(index + 1)}
+                    >
+                      {index + 1}
+                    </Pagination.Item>
+                  </>
+                );
+              })}
+            <Pagination.Next
+              onClick={handleNext}
+              disabled={page === pageCount}
+            />
+          </Pagination>
+        </div>
       </div>
-      {/* End Content */}
     </>
   );
 }

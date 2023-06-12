@@ -3,15 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import "../featuresProduct/features.css"
 import { Rating } from '@mui/material'
 import { ToastContainer, toast } from 'react-toastify'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addItemIntoCart, updateCartItems } from '../../redux-config/CartSlice'
 import { addItemInWishlist, updateWishlistItems } from "../../redux-config/wishlistSlice";
-import Navigation from "../navigation/Navigation";
-
-
-
-
-
+import "react-toastify/dist/ReactToastify.css";
 export default function FeatureProducts() {
   const { featuresProductList, isLoading, error } = useSelector(state => state.featuresproduct)
   const { cartItems, cartError } = useSelector((state) => state.cart);
@@ -52,7 +47,8 @@ export default function FeatureProducts() {
 
 
   const addToCart = (products) => {
-    if (!currentCustomer) toast.warning("Please Login first");
+    if (!currentCustomer)
+    toast.warning("Please Login first");
     else {
       dispatch(
         addItemIntoCart({
@@ -69,6 +65,7 @@ export default function FeatureProducts() {
     };
   }
   return <>
+  <ToastContainer/>
     <section className="bg-light">
       <div className="container py-5">
         <div className="row text-center py-3">
@@ -107,10 +104,6 @@ export default function FeatureProducts() {
                           </button>
                       </li>
                       <li>
-                       
-                          {/* <i className="fas fa-cart-plus" /> */}
-
-
                           <Link
                             onClick={() => addToCart(products)}
                             className="btn btn-success text-white mt-2"
