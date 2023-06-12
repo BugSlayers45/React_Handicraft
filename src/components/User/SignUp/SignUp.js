@@ -1,69 +1,161 @@
-import React, { useState } from 'react'
-import "../SignUp/login.css"
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
-import { Link } from 'react-router-dom'
-import api from '../../../WebApi/api'
-import Navigation from '../../navigation/Navigation'
-export default function SignUp() {
-  const [customerName, setName] = useState("")
-  const [customerEmail, setEmail] = useState("")
-  const [customerPassword, setPassword] = useState("")
-  const [customerContact, setCOntact] = useState("")
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { signUpSchema } from "./schemas";
+import "../SignUp/login.css";
+import TextField from "@mui/material/TextField";
+import { Link, useNavigate } from "react-router-dom";
+import Navigation from "../../navigation/Navigation";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import api from "../../../WebApi/api";
+
+const initialValues = {
+  name: "",
+  password: "",
+  email: "",
+  contact: "",
+};
+
+export default function FormikSignup() {
   const navigate = useNavigate()
-  const handleSubmit = async (event) => {
-    window.alert("dsmfbsm")
-    try {
-      window.alert(customerContact+"  "+customerEmail+"   "+customerName+"  "+customerPassword)
-      event.preventDefault()
-      var response = await axios.post(api.USER_SIGNUP, { customerName, customerEmail, customerPassword, customerContact })
-      if (response.data.status){
-      console.log("sign up")
-        toast.success("your are sucessfully sigin up")
-      navigate("/signin")
+  const [login, setLogin] = useState({});
+  const {
+    values,
+    errors,
+    touched,
+    name,
+    email,
+    password,
+    contact,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: async(values) => {
+      setLogin(values);
+      try {
+        console.log(login)
+        var response = await axios.post(api.USER_SIGNUP, { customerName:login.name, customerEmail:login.email, customerPassword:login.password, customerContact:login.contact })
+        if (response.data.status){
+          toast.success("your are sucessfully sigin up")
+        navigate("/signin")
+        }
+      }
+      catch (err) {
+        if (response.status.err === 400)
+          toast.error("Bad Request!")
+        else if (response.status.err === 500)
+          toast.error("Server Error !")
+        console.log(err)
       }
     }
-    catch (err) {
-      if (response.status.err === 400)
-        toast.error("Bad Request!")
-      else if (response.status.err === 500)
-        toast.error("Server Error !")
-      console.log(err)
-    }
-  }
-  return <>
-    <Navigation />
-    <h2 className="tip">Register yourself</h2>
-    <ToastContainer />
-    <div className="cont">
-      <form onSubmit={handleSubmit}>
-        <div className="form sign-up">
-          <label className="labellogin">
-            <span>Name</span>
-            <input type="text" className="logininput" onChange={(event) => setName(event.target.value)} />
-            <small id="nameHelpId" class="form-text text-muted"></small>
-          </label>
-          <label className="labellogin">
-            <span>Contact</span>
-            <input type="text" className="logininput" onChange={(event) => setCOntact(event.target.value)} />
+  });
 
-          </label>
-          <label className="labellogin">
+
+  console.log(login);
+  return (
+    <>
+     <Navigation />
+    <h2 className="tip">Register yourself</h2>
+    <ToastContainer/>
+      <div className="cont">
+        <form onSubmit={handleSubmit}>
+          <div className="form sign-up">
+          <div className="input-block ">
+            <lable className="input-block labellogin" htmlFor="name">
+              <span>Name</span>
+              <input
+                type="text"
+                autoComplete="off"
+                name="name"
+                id="name"
+               
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                variant="standard"
+                className="logininput"
+              />
+              {errors.name && touched.name ? (
+                <p className="form-error">{errors.name}</p>
+              ) : null}
+            </lable>
+          </div>
+          <div className="input-block">
+            <lable className="input-block labellogin" htmlFor="email">
             <span>Email</span>
-            <input type="email" className="logininput" onChange={(event) => setEmail(event.target.value)} />
-            <small id="emailHelpId" class="form-text text-muted"></small>
-          </label>
-          <label className="labellogin">
-            <span>Password</span>
-            <input type="password" className="logininput" onChange={(event) => setPassword(event.target.value)} />
-            <small id="passwordHelpId" class="form-text text-muted"></small>
-          </label>
-          <button type="submit" className="submit loginbtn">Sign Up</button>
-          <button type="button" className="fb-btn loginbtn">Join with <span>Google</span></button>
-        </div>
-      </form>
-      <div className="sub-cont">
+            <br/>
+              <input
+                type="email"
+                autoComplete="off"
+                name="email"
+                id="email"
+              
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                variant="standard"
+                className="logininput"
+              />
+              {errors.email && touched.email ? (
+                <p className="form-error">{errors.email}</p>
+              ) : null}
+            </lable>
+          </div>
+          <div className="input-block">
+            <lable className="input-block labellogin" htmlFor="password">
+              <span>Password</span>
+              <input
+                type="password"
+                autoComplete="off"
+                name="password"
+                id="password"
+                
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                variant="standard"
+                className="logininput"
+              />
+              {errors.password && touched.password ? (
+                <p className="form-error labellogin">{errors.password}</p>
+              ) : null}
+            </lable>
+          </div>
+          <div className="input-block">
+            <label className="input-block labellogin" htmlFor="contact">
+              <span>Contact</span>
+              <input
+                type="text"
+                autoComplete="off"
+                name="contact"
+                id="contact"
+               
+                value={values.contact}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                variant="standard"
+                className="logininput"
+              />
+              {errors.contact && touched.contact ? (
+                <p className="form-error labellogin">{errors.contact}</p>
+              ) : null}
+            </label>
+          </div>
+          <br/>
+          <br/>
+          <div className="modal-buttons">
+            <button type="submit" className="btn btn-success loginbtn">
+              Sign up
+            </button>
+            <br/>
+            <br/>
+          </div>
+          </div>
+        </form>
+        <div className="sub-cont">
         <div className="img">
           <div className="img__text m--up">
             <h2>One of us?</h2>
@@ -76,7 +168,7 @@ export default function SignUp() {
           </Link>
         </div>
       </div>
-    </div>
-
-  </>
+      </div>
+    </>
+  );
 }

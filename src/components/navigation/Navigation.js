@@ -57,9 +57,9 @@ export default function Navigation() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="contact.html">
-                    Contact
-                  </a>
+                  <Link to={"/contact"} className="nav-link">
+                     Contact
+                  </Link>
                 </li>
                 {currentCustomer&&<li className="nav-item">
                   <Link to="/orders" className="nav-link">
@@ -120,6 +120,7 @@ export default function Navigation() {
                 SignUp
               </Link>}
             </div>
+
           </div>
         </div>
       </nav>

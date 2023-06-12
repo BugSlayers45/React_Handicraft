@@ -1,6 +1,6 @@
 export default {
    USER_SIGNIN: "/customer/signin",
-   USER_SIGNUP: "/customer/register",
+   USER_SIGNUP: "/customer/signup",
    VIEW_ALL_PRODUCT: "/product/viewproduct",
    SERACH_FILTER: "/product/search/",
    PRODUCT_BY_CATEGORY: "/product/products/",
@@ -18,5 +18,4 @@ export default {
    VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct",
    CUSTOMER_SIGNIN: "/customer/customerSignin",
    VIEW_PRODUCT_BY_ID: "/product/"
-
 }

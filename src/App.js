@@ -28,11 +28,8 @@ import ProductReview from './components/ProductPage/ProductReview';
 import SuccessOrder from './components/User/payments/SuccessOrder';
 import CartEmpty from './components/User/Cart/CartEmpty';
 import WishlistEmpty from './components/Wishlist/WishlistEmpty';
-
-
-
-function App() {
-
+import Contact from './components/Contact/Contact';
+function App(){
   return <>
     <Routes>
       <Route path='/' element={<Home />} />
@@ -64,6 +61,7 @@ function App() {
       <Route path='/ordersuccess' element={<SuccessOrder/>}/>
       <Route path='/cartempty' element={<CartEmpty/>}/>
       <Route path='/wislistempty' element={<WishlistEmpty/>}/>
+      <Route path='/contact' element={<Contact/>}/>
     </Routes>
   </>
 }

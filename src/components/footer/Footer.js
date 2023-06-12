@@ -73,10 +73,6 @@ export default function Footer() {
                 Lighting
               </a>
             </li>
-            <li>
-              <a className="text-decoration-none" href="#">
-                wall hanging              </a>
-            </li>
           </ul>
         </div>
         <div className="col-md-4 pt-5">

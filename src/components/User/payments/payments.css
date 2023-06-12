@@ -49,3 +49,7 @@ hr.new1 {
     border-radius: 1px;
     font-size: 17px;
 }
+.error{
+    color: red;
+    font: italic;
+}
