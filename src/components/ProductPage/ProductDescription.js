@@ -104,7 +104,7 @@ export default function ProductDescription() {
               <ReactImageMagnify  
                  {...{
                   smallImage: {
-                    alt: "gyi",
+                    alt: "Image not found",
                     isFluidWidth: true,
                     src:mainimage,
                   },
@@ -214,7 +214,7 @@ export default function ProductDescription() {
                 <small className="card-title">
                   Description:
                   <br />
-                  {productDetail.description}
+                  {productDetail.description?.substring(0,500)}.....
                 </small>
               </div>
             </Col>
@@ -230,9 +230,10 @@ export default function ProductDescription() {
               <div className="card border-light">
                 <div className="card-body">
                   <h4 className="card-title">Rating</h4>
+                  <small className="bg-light">Total Review:{review?.numReviews}</small>
                   <div className="table ">
                   <p className="card-text">
-                 {review?.reviews.map((item,index)=><div><h6 key={index}>{item.customer.customerName }</h6>
+                 {review?.reviews.map((item,index)=><div><h6 key={index}>{item.customer.customerName.toUpperCase() }</h6>
                  <Rating
                     name="half-rating-read"
                     defaultValue={item.rating}
@@ -240,8 +241,11 @@ export default function ProductDescription() {
                     readOnly
                   /> 
                   <p>{item.comment}</p>
+                  <hr style={{borderTop:"2px solid black"}}></hr>
                  </div>)}
+                
                   </p> 
+                 
                 </div>
               </div>
               </div>

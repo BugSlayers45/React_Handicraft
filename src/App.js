@@ -29,6 +29,7 @@ import SuccessOrder from './components/User/payments/SuccessOrder';
 import CartEmpty from './components/User/Cart/CartEmpty';
 import WishlistEmpty from './components/Wishlist/WishlistEmpty';
 import Contact from './components/Contact/Contact';
+import ForgetPassword from './components/User/SignIn/ForgetPassword';
 function App(){
   return <>
     <Routes>
@@ -62,6 +63,7 @@ function App(){
       <Route path='/cartempty' element={<CartEmpty/>}/>
       <Route path='/wislistempty' element={<WishlistEmpty/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/forgetpassword' element={<ForgetPassword/>} />
     </Routes>
   </>
 }

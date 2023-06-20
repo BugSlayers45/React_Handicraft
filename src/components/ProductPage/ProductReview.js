@@ -26,7 +26,7 @@ export default function ProductReview() {
     const createReview = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/product/addreview/reviews",
+          api.ADD_PRODUCT_REVIEW,
           {
             productId: productId,
             customerId: currentCustomer._id,

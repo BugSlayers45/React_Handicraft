@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Loader from "../Spinner/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import OrderEmpty from "./emptyOrder";
+import api from "../../WebApi/api";
 
 export default function CustomerOrders() {
   const { currentCustomer } = useSelector((state) => state.customer);
@@ -24,9 +25,7 @@ export default function CustomerOrders() {
 
   const orderList = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/order/orderdetail",{ id: currentCustomer._id }
-      );
+      const response = await axios.post(api.ORDERS_DETAILS,{ id: currentCustomer._id });
       if(response.data.status)
       setOrders(response.data.order);
       else{

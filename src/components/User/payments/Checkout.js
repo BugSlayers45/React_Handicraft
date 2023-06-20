@@ -9,6 +9,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useFormik } from "formik";
 import { paymentSchema } from "./schemas/paymentIndex";
+import api from "../../../WebApi/api";
 
 export default function Checkout() {
   const { currentCustomer } = useSelector((state) => state.customer);
@@ -28,7 +29,7 @@ export default function Checkout() {
     location.state.orderpackage.SHIPPING_FEES;
   const products = location.state.orderpackage.cartitems;
   const dispatch = useDispatch();
-  const [checkout,setCheckout]=useState({});
+   
  // --------------------------------------------------------
  const loadScript = (src) => {
   return new Promise((resolve) => {
@@ -55,19 +56,21 @@ useEffect(() => {
     initialValues:initialValues,
     validationSchema:paymentSchema,
     onSubmit:async(values)=>{
-        setCheckout(values)
-        console.log(values)
+  
+      localStorage.setItem("values",JSON.stringify(values))
+      console.log(values);
+      const checkout=JSON.parse(localStorage.getItem("values"));
         if (values.payment ==='online') {
           window.alert(values.payment)
            displayRazorpay();
         } else {
           dispatch(setDeliveryDetail(checkout));
           console.log(checkout)
-          const response = await axios.post("http://localhost:3000/order/buynow", {
+          const response = await axios.post(api.PLACE_ORDER, {
             customerid: currentCustomer._id,
-            deliveryAddress: checkout.deliveryAddress,
-            contactNumber: checkout.contactNumber,
-            contactPerson: checkout.contactPerson,
+            deliveryAddress: values.deliveryAddress,
+            contactNumber: values.contactNumber,
+            contactPerson: values.contactPerson,
             orderItems: products,
           });
           console.log(response);
@@ -78,10 +81,10 @@ useEffect(() => {
   })
  
   const displayRazorpay = async () => {
-    let response = await axios.post("http://localhost:3000/api/razorpay", {
+    let response = await axios.post(api.RAZORPAY_MODE, {
       totalBill,
     });
-
+    const checkout=JSON.parse(localStorage.getItem("values"));
     let data = response.data;
     const options = {
       key: "rzp_test_Vhg1kq9b86udsY",
@@ -99,7 +102,7 @@ useEffect(() => {
         toast.success("Order Success");
     
         dispatch(setDeliveryDetail(checkout));
-        const res = await axios.post("http://localhost:3000/order/buynow", {
+        const res = await axios.post(api.PLACE_ORDER, {
           customerid: currentCustomer._id,
           deliveryAddress: checkout.deliveryAddress,
           contactNumber: checkout.contactNumber,

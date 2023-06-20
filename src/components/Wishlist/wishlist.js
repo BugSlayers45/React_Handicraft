@@ -10,6 +10,7 @@ import Header from "../header/Header";
 import Navigation from "../navigation/Navigation";
 import "./wishlist.css";
 import WishlistEmpty from "./WishlistEmpty";
+import api from "../../WebApi/api";
 export default function Wishlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ export default function Wishlist() {
     
 
     dispatch(removeWishlistItem(product));
-    let response=await axios.post("http://localhost:3000/wishlist/delete",{customerId:currentCustomer._id,productId:product._id})
+    let response=await axios.post(api.WISHLIST_DELETE,{customerId:currentCustomer._id,productId:product._id})
     if(response.data){
       toast.error(`item is removed from the Wishlist`)
       wishList()
