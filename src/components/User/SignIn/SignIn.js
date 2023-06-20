@@ -153,7 +153,7 @@ export default function SignIn() {
             <span>Password</span>
             <input type="password" onKeyUp={pswdValidation} id="pid" name="password" className="form-control logininput" onChange={(event) => setPassword(event.target.value)} /><small id="pswdside" style={{ color: "red", marginLeft: "12px", marginBottom: "2px" }}>*</small>
           </label>
-          <p className="forgot-pass">Forgot password?</p>
+        <Link to={"/forgetpassword"}> <p className="forgot-pass">Forgot password?</p></Link> 
           <button type="submit" className="submit loginbtn">Sign In</button>
           <button id="google-login-btn" className='btn-block mb-4' onClick={login}>
             Continue with Google

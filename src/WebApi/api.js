@@ -17,5 +17,14 @@ export default {
    UPDATE_PRODUCT: "/product/updated",
    VIEW_ALL_PRODUCT_ON_SCROLL: "/product/limitLoadproduct",
    CUSTOMER_SIGNIN: "/customer/customerSignin",
-   VIEW_PRODUCT_BY_ID: "/product/"
+   VIEW_PRODUCT_BY_ID: "/product/",
+   ORDERS_DETAILS:"/order/orderdetail",
+   ADD_PRODUCT_REVIEW:"/product/addreview/reviews",
+   PLACE_ORDER:"/order/buynow",
+   RAZORPAY_MODE:"/api/razorpay",
+   WISHLIST_DELETE:"/wishlist/delete",
+   FEATURE_PRODUCT:"/product/featuresproduct",
+   VIEW_WISHLIST:"/wishlist/viewwishlist",
+   ADD_WISHLISTS:"/wishlist/addtowishlist"
+
 }

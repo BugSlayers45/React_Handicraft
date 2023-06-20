@@ -263,7 +263,7 @@ export default function Products() {
                           href="shop-single.html"
                           className="h3 text-decoration-none"
                         >
-                          {products.title.substring(0, 60)}
+                          {products.title?.substring(0, 60)}
                         </a>
                         <ul className="list-unstyled d-flex justify-content-center mb-1">
                           <Rating
